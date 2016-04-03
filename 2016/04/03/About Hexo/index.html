@@ -73,7 +73,7 @@ hexo 的使用12345$ npm install -g hexo // 全局安装hexo$ cd /path/to/your/s
 在github建立 user.github.io 仓库
 
 hexo 的使用12345$ npm install -g hexo // 全局安装hexo$ cd /path/to/your/site$ hexo init // 完成初">
-<meta property="og:updated_time" content="2016-04-03T09:16:28.863Z">
+<meta property="og:updated_time" content="2016-04-03T09:46:15.965Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="About Hexo">
 <meta name="twitter:description" content="利用node 的hexo 框架在github上搭建博客  http://zengxp0605.github.io
@@ -102,7 +102,7 @@ hexo 的使用12345$ npm install -g hexo // 全局安装hexo$ cd /path/to/your/s
   <title> About Hexo | Jason Zeng </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="h-CN">
 
   
 
@@ -157,7 +157,7 @@ hexo 的使用12345$ npm install -g hexo // 全局安装hexo$ cd /path/to/your/s
             
               <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -167,7 +167,7 @@ hexo 的使用12345$ npm install -g hexo // 全局安装hexo$ cd /path/to/your/s
             
               <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
             
-            About
+            Über
           </a>
         </li>
       
@@ -177,7 +177,17 @@ hexo 的使用12345$ npm install -g hexo // 全局安装hexo$ cd /path/to/your/s
             
               <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
-            Archives
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            Kategorien
           </a>
         </li>
       
@@ -240,12 +250,31 @@ hexo 的使用12345$ npm install -g hexo // 全局安装hexo$ cd /path/to/your/s
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-04-03T15:58:38+08:00" content="2016-04-03">
               2016-04-03
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/部署/" itemprop="url" rel="index">
+                    <span itemprop="name">部署</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -364,10 +393,10 @@ hexo 的使用12345$ npm install -g hexo // 全局安装hexo$ cd /path/to/your/s
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
+            Übersicht
           </li>
         </ul>
       
@@ -382,20 +411,27 @@ hexo 的使用12345$ npm install -g hexo // 全局安装hexo$ cd /path/to/your/s
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
-            <a href="/archives">
+            <a href="/">
               <span class="site-state-item-count">3</span>
-              <span class="site-state-item-name">posts</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
           
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">Kategorien</span>
+              
+            </div>
+          
 
           
             <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">3</span>
-                <span class="site-state-item-name">tags</span>
-              </a>
+              
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">Tags</span>
+              
             </div>
           
 
@@ -451,7 +487,7 @@ hexo 的使用12345$ npm install -g hexo // 全局安装hexo$ cd /path/to/your/s
 </div>
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
