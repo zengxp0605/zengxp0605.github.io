@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Tag: memcache | Jason Zeng</title>
+  <title>Jason Zeng</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="tech blog">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Jason Zeng">
-<meta property="og:url" content="http://zengxp0605.github.io/tags/memcache/index.html">
+<meta property="og:url" content="http://zengxp0605.github.io/page/2/index.html">
 <meta property="og:site_name" content="Jason Zeng">
 <meta property="og:description" content="tech blog">
 <meta name="twitter:card" content="summary">
@@ -170,56 +170,71 @@
 
       <div class="body-wrap">
   
+    <article id="post-php一些小技巧" class="article article-type-post" itemscope itemprop="blogPost">
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/01/12/Redis-vs-Memcache/" class="archive-article-date">
-  	<time datetime="2016-01-12T14:33:57.000Z" itemprop="datePublished">1月 12</time>
+    <div class="article-meta">
+      <a href="/2015/03/15/php一些小技巧/" class="article-date">
+  	<time datetime="2015-03-15T14:33:57.000Z" itemprop="datePublished">2015-03-15</time>
 </a>
-        </div>
-    	 
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/01/12/Redis-vs-Memcache/">Redis与Memcache的对比</a>
+      <a class="article-title" href="/2015/03/15/php一些小技巧/">php一些小技巧</a>
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/memcache/">memcache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Redis/">Redis</a>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
+      </header>
+      
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="php-cli命令行运行-kill-自身"><a href="#php-cli命令行运行-kill-自身" class="headerlink" title="php cli命令行运行,kill 自身"></a>php cli命令行运行,kill 自身</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pid = getmypid(); // 获取pid</span><br><span class="line">exec(&quot;ps -eo%mem,rss,pid | grep $pid&quot;, $output); // 可以得到内存占用比例。</span><br><span class="line">exec(&quot;kill $pid&quot;); // 设置一个阀值，大于某个值后执行;</span><br></pre></td></tr></table></figure>
 
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/php/">php</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </nav>
+  
 </div>
       <footer id="footer">
   <div class="outer">
@@ -243,10 +258,10 @@
 		fancybox: true,
 		mathjax: true,
 		animate: true,
-		isHome: false,
+		isHome: true,
 		isPost: false,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false
 	}
