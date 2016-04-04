@@ -4,19 +4,36 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Test Page | Jason Zeng</title>
+  <title>Git 常用命令 | Jason Zeng</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="This is a test page.">
-<meta name="keywords">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Test Page">
-<meta property="og:url" content="http://zengxp0605.github.io/test/index.html">
+  <meta name="description" content="以Github为例,介绍windows下 Git常用命令的使用
+
+
+配置 SSH KEYS  (使用 ssh 协议的路径时需要, 使用http/https 无需配置)
+
+在 Git Bash中执行:  ssh-keygen -t rsa -C &amp;quot;youremail&amp;quot;   
+此时会在当前用户根目录下生成.ssh文件夹，里面有两个文件：id_rsa , id_rsa.pub">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git 常用命令">
+<meta property="og:url" content="http://zengxp0605.github.io/2016/04/02/Git-Usage/index.html">
 <meta property="og:site_name" content="Jason Zeng">
-<meta property="og:description" content="This is a test page.">
-<meta property="og:updated_time" content="2016-04-03T09:17:18.709Z">
+<meta property="og:description" content="以Github为例,介绍windows下 Git常用命令的使用
+
+
+配置 SSH KEYS  (使用 ssh 协议的路径时需要, 使用http/https 无需配置)
+
+在 Git Bash中执行:  ssh-keygen -t rsa -C &amp;quot;youremail&amp;quot;   
+此时会在当前用户根目录下生成.ssh文件夹，里面有两个文件：id_rsa , id_rsa.pub">
+<meta property="og:updated_time" content="2016-04-04T04:29:42.336Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Test Page">
-<meta name="twitter:description" content="This is a test page.">
+<meta name="twitter:title" content="Git 常用命令">
+<meta name="twitter:description" content="以Github为例,介绍windows下 Git常用命令的使用
+
+
+配置 SSH KEYS  (使用 ssh 协议的路径时需要, 使用http/https 无需配置)
+
+在 Git Bash中执行:  ssh-keygen -t rsa -C &amp;quot;youremail&amp;quot;   
+此时会在当前用户根目录下生成.ssh文件夹，里面有两个文件：id_rsa , id_rsa.pub">
   
   
     <link rel="icon" href="/favicon.png">
@@ -170,11 +187,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="page-undefined" class="article article-type-page" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Git-Usage" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/test/index.html" class="article-date">
-  	<time datetime="2016-04-03T07:58:38.000Z" itemprop="datePublished">2016-04-03</time>
+      <a href="/2016/04/02/Git-Usage/" class="article-date">
+  	<time datetime="2016-04-02T09:00:00.000Z" itemprop="datePublished">2016-04-02</time>
 </a>
     </div>
   
@@ -187,7 +204,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Test Page
+      Git 常用命令
     </h1>
   
 
@@ -196,10 +213,14 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/">undefined</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
 	</div>
 
         
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Git/">Git</a>
+	</div>
+
 
         <div class="clearfix"></div>
       </div>
@@ -207,13 +228,71 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="This-is-a-test-page"><a href="#This-is-a-test-page" class="headerlink" title="This is a test page."></a>This is a test page.</h3>
+        <blockquote>
+<p>以Github为例,介绍windows下 Git常用命令的使用</p>
+</blockquote>
+<ol>
+<li><p>配置 SSH KEYS  (使用 ssh 协议的路径时需要, 使用http/https 无需配置)</p>
+<ul>
+<li>在 Git Bash中执行:  <code>ssh-keygen -t rsa -C &quot;youremail&quot;</code>   </li>
+<li>此时会在当前用户根目录下生成.ssh文件夹，里面有两个文件：id_rsa , id_rsa.pub  </li>
+<li>复制 ~/.ssh/id_rsa.pub 内容, 登陆github账户-&gt;Settings-&gt;SSH Keys-&gt; add , 粘贴,保存</li>
+</ul>
+</li>
+<li><p>配置本机全局的用户名和邮箱( 可以设置不同的用户名)  </p>
+<ul>
+<li>全局的配置文件: /c/Users/username/.gitconfig</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;username&quot;</span><br><span class="line">git config --global user.email &quot;email&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>基本操作命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- git clone https://github.com/zengxp0605/test.git jason/test // 克隆一个远程的仓库到本地jason/test目录</span><br><span class="line">- git status  // 查看当前状态</span><br><span class="line">- git add filename // 添加单个文件</span><br><span class="line">- git add * // 或者使用git add -A , 添加所有更新的文件</span><br><span class="line">- git commit -am &quot;your message&quot; // 提交到本地仓库</span><br><span class="line">- git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;</span><br><span class="line">- git push origin master // 推送到远程仓库, 简写: git push (没有默认匹配分支时无法简写)</span><br><span class="line">- git pull &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;</span><br><span class="line">- git pull origin master   // 拉取更新, 简写: git pull </span><br><span class="line">- git pull origin next:master  // 取回origin主机的next分支，与本地的master分支合并</span><br><span class="line">- *.gitignore -&gt; 需要忽略，不需跟踪的文件或目录可以配置到此文件中,支持通配符*</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>本地已有文件的目录需要初始化为git仓库时</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- git init  // 初始化仓库</span><br><span class="line">- git remote add origin git@github.com:facebook/react-native.git  // 添加远程库origin 分支 </span><br><span class="line">- git remote -v   // 查看远程库,和分支</span><br><span class="line">- git remote remove origin  // 删除origin 分支</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关于分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- git branch  // 查看本地分支， 带星号的为当前分支</span><br><span class="line">- git branch -a // 查看本地及远程分支</span><br><span class="line">- git branch testing  // 创建本地分支 testing </span><br><span class="line">- git checkout master  // 切换到master 分支</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="遇到的一些问题："><a href="#遇到的一些问题：" class="headerlink" title="遇到的一些问题："></a>遇到的一些问题：</h4><ol>
+<li><p>git push/git pull 时提示需要加入远程和本地仓库地址</p>
+<ul>
+<li><p>方法1: 执行命令 (以下命令同时可以设置为 –global)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config branch.master.remote origin</span><br><span class="line">git config branch.master.merge refs/heads/master</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法2：修改 ~/.git/config 文件,添加以下行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[branch &quot;master&quot;]</span><br><span class="line">    remote = origin</span><br><span class="line">    merge = refs/heads/master</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+
       
     </div>
     
   </div>
   
     
+<nav id="article-nav">
+  
+    <a href="/2016/04/02/sublime快捷键整理/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Sublime text 3 常用快捷键
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/01/template-md/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
   
 </article>
 
@@ -243,7 +322,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="undefined" data-title="Test Page" data-url="http://zengxp0605.github.io/test/index.html"></div>
+	<div class="ds-thread" data-thread-key="Git-Usage" data-title="Git 常用命令" data-url="http://zengxp0605.github.io/2016/04/02/Git-Usage/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -286,7 +365,7 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
