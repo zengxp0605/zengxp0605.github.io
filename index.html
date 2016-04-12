@@ -61,7 +61,7 @@
 				<div class="tips-box hide">
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
-						<li>菜单</li>
+						<li>Menu</li>
 						<li>Tags</li>
 						
 						
@@ -100,7 +100,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Git/" style="font-size: 15px;">Git</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/memcache/" style="font-size: 10px;">memcache</a> <a href="/tags/movie/" style="font-size: 10px;">movie</a> <a href="/tags/music/" style="font-size: 10px;">music</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nodejs/" style="font-size: 20px;">nodejs</a> <a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/sublime/" style="font-size: 15px;">sublime</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a>
+						<a href="/tags/Git/" style="font-size: 15px;">Git</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/memcache/" style="font-size: 10px;">memcache</a> <a href="/tags/movie/" style="font-size: 10px;">movie</a> <a href="/tags/music/" style="font-size: 10px;">music</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nodejs/" style="font-size: 20px;">nodejs</a> <a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/sublime/" style="font-size: 15px;">sublime</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/转载/" style="font-size: 10px;">转载</a>
 					</div>
 				</section>
 				
@@ -108,7 +108,7 @@
 				
                 <section class="switch-part switch-part3">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/IDE/">IDE</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Redis/">Redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/nodejs/">nodejs</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/">php</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/windows/">windows</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/娱乐/">娱乐</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/部署/">部署</a><span class="category-list-count">1</span></li></ul>
+                        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/IDE/">IDE</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Redis/">Redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/nodejs/">nodejs</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/">php</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/windows/">windows</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/娱乐/">娱乐</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/部署/">部署</a><span class="category-list-count">1</span></li></ul>
                     </div>
                 </section>
                 
@@ -169,6 +169,159 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-Node_stdout-redirect-to-file" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/12/Node_stdout-redirect-to-file/" class="article-date">
+  	<time datetime="2016-04-12T12:13:54.000Z" itemprop="datePublished">2016-04-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/12/Node_stdout-redirect-to-file/">nodejs stdout重定向到文件(日志写入)</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="nodejs-调试日志写入自定义文件"><a href="#nodejs-调试日志写入自定义文件" class="headerlink" title="nodejs 调试日志写入自定义文件"></a>nodejs 调试日志写入自定义文件</h3><ol>
+<li><p>最简单的方式重定向标准输出(stdout)  </p>
+<ul>
+<li><p>启动的时候重定向  </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node app.js &gt; d:/tmp/app.log</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如上启动后, console.log 输出的日志将会写入到文件中, console.error 仍在控制台输出</p>
+</li>
+</ul>
+</li>
+</ol>
+<ol>
+<li><p>修改 <code>console</code> 对象</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 写入文件</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">writeFile</span>(<span class="params">file, content</span>)</span>&#123; </span><br><span class="line">    <span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>); </span><br><span class="line">      </span><br><span class="line">    <span class="comment">// appendFile，如果文件不存在，会自动创建新文件  </span></span><br><span class="line">    <span class="comment">// 如果用writeFile，那么会删除旧文件，直接写新文件  </span></span><br><span class="line">    fs.appendFile(file, <span class="string">"\r\n"</span> + content, <span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;  </span><br><span class="line">        <span class="keyword">if</span>(err)  </span><br><span class="line">            <span class="built_in">console</span>.info(<span class="string">"fail "</span> + err);  </span><br><span class="line">        <span class="keyword">else</span>  </span><br><span class="line">            <span class="built_in">console</span>.info(<span class="string">"写入文件ok"</span>);  </span><br><span class="line">    &#125;);  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log = <span class="function"><span class="keyword">function</span>(<span class="params">msg</span>)</span>&#123;</span><br><span class="line">  process.stdout.write(<span class="string">'Log data: '</span> + msg);</span><br><span class="line">  writeFile(<span class="string">'d:/tmp/test.log'</span>, msg);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'test about 中文'</span>);</span><br><span class="line"><span class="built_in">console</span>.error(<span class="string">'test2 error'</span>); <span class="comment">// 正常输出,没有重新定义此方法</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过重置process.stdout 对象, log 和 error 全部写入test.log </p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">var</span> logStream = fs.createWriteStream(<span class="string">'d:/tmp/test.log'</span>, &#123;flags: <span class="string">'a'</span>&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试文件写入</span></span><br><span class="line"><span class="comment">//logStream.write("My first row\n");</span></span><br><span class="line"><span class="comment">//logStream.write("My second row\n");</span></span><br><span class="line"></span><br><span class="line">process.stdout.write = process.stderr.write = logStream.write.bind(logStream);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'test1'</span>);</span><br><span class="line"><span class="built_in">console</span>.error(<span class="string">'test2 error'</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开启子进程时，运行命令行重定向</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">var</span> logStream = fs.createWriteStream(<span class="string">'d:/tmp/test.log'</span>, &#123;flags: <span class="string">'a'</span>&#125;);</span><br><span class="line"></span><br><span class="line">logStream.write(<span class="string">"My first row\n"</span>);</span><br><span class="line">logStream.write(<span class="string">"My second row\n"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> spawn = <span class="built_in">require</span>(<span class="string">'child_process'</span>).spawn,</span><br><span class="line">    ls    = spawn(<span class="string">'ls'</span>, [<span class="string">'-al'</span>, <span class="string">'d:/'</span>]);</span><br><span class="line"></span><br><span class="line">ls.stdout.pipe(logStream);  <span class="comment">// 结果写入文件</span></span><br><span class="line">ls.stderr.pipe(logStream);</span><br><span class="line"></span><br><span class="line">ls.stdout.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'stdout: '</span> + data);  <span class="comment">// 输出到控制台</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">ls.on(<span class="string">'close'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">code</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'child process exited with code '</span> + code); <span class="comment">// 输出到控制台</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="有时间抽空看-pm2-forerver-模块日志写入的方式"><a href="#有时间抽空看-pm2-forerver-模块日志写入的方式" class="headerlink" title="有时间抽空看 pm2, forerver 模块日志写入的方式"></a>有时间抽空看 pm2, forerver 模块日志写入的方式</h3>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/nodejs/">nodejs</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-Node_[child_process]_spawn-vs-exec" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/12/Node_[child_process]_spawn-vs-exec/" class="article-date">
+  	<time datetime="2016-04-12T12:13:39.000Z" itemprop="datePublished">2016-04-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/12/Node_[child_process]_spawn-vs-exec/">Node.js child_processs中的pawn和exec</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="spawn和exec-的使用"><a href="#spawn和exec-的使用" class="headerlink" title="spawn和exec 的使用"></a>spawn和exec 的使用</h4><p>Node.js的child_process模块中有两个方法spawn和exec，这两个方法都可以被用来开启一个子进程来执行其他的程序。一些Node.js的新手常常对这个两个方法感到很困惑：既然两个方法的功能一样，那么究竟应该选择哪个方法。在本文中，我们将一起来探索spawn和我exec方法的不同之处，以便你在将来能够选择正确的方法。</p>
+<p>child_process.spaen会返回一个带有stdout和stderr流的对象。你可以通过stdout流来读取子进程返回给Node.js的数据。stdout拥有’data’,’end’以及一般流所具有的事件。当你想要子进程返回大量数据给Node时，比如说图像处理，读取二进制数据等等，你最好使用spawn方法。</p>
+<p>child_process.spawn方法是“异步中的异步”，意思是在子进程开始执行时，它就开始从一个流总将数据从子进程返回给Node。</p>
+<p>下面是一个例子，比如说我们想从一个URL下载文件，我们选择使用curl工具，此时，我们就可以在Node中使用spawn运行curl工具，下面是具体代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用curl下载文件的函数</span></span><br><span class="line"><span class="keyword">var</span> download_file_curl = <span class="function"><span class="keyword">function</span>(<span class="params">file_url</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 提取文件名</span></span><br><span class="line">    <span class="keyword">var</span> file_name = url.parse(file_url).pathname.split(<span class="string">'/'</span>).pop();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建一个可写流的实例</span></span><br><span class="line">    <span class="keyword">var</span> file = fs.createWriteStream(DOWNLOAD_DIR + file_name);</span><br><span class="line">    <span class="comment">// 使用spawn运行curl</span></span><br><span class="line">    <span class="keyword">var</span> curl = spawn(<span class="string">'curl'</span>, [file_url]);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 为spawn实例添加了一个data事件</span></span><br><span class="line">    curl.stdout.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123; file.write(data); &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 添加一个end监听器来关闭文件流</span></span><br><span class="line">    curl.stdout.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">      file.end();</span><br><span class="line">      <span class="built_in">console</span>.log(file_name + <span class="string">' downloaded to '</span> + DOWNLOAD_DIR);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 当子进程退出时，检查是否有错误，同时关闭文件流</span></span><br><span class="line">    curl.on(<span class="string">'exit'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">code</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (code != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Failed: '</span> + code);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>child_process.exec方法会从子进程中返回一个完整的buffer。默认情况下，这个buffer的大小应该是200k。如果子进程返回的数据大小超过了200k，程序将会崩溃，同时显示错误信息“Error：maxBuffer exceeded”。你可以通过在exec的可选项中设置一个更大的buffer体积来解决这个问题，但是你不应该这样做，因为exec本来就不是用来返回很多数据的方法。对于有很多数据返回的情况，你应该使用上面的spawn方法。那么exec究竟是用来做什么的呢？我们可以使用它来运行程序然后返回结果的状态，而不是结果的数据。</p>
+<p>child_process.exec方法是“同步中的异步”，意思是尽管exec是异步的，它一定要等到子进程运行结束以后然后一次性返回所有的buffer数据。如果exec的buffer体积设置的不够大，它将会以一个“maxBuffer exceeded”错误失败告终。</p>
+<p>和上面一样，我们现在还是想要从一个URL下载文件。不同的是，我们现在要使用wget方法而不是curl方法，此时我们就需要使用exec方法在Node中执行wget命令，同时在子进程运行完毕后返回结果信息。下面是具体代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用wget下载文件的函数</span></span><br><span class="line"><span class="keyword">var</span> download_file_wget = <span class="function"><span class="keyword">function</span>(<span class="params">file_url</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 提取文件名</span></span><br><span class="line">    <span class="keyword">var</span> file_name = url.parse(file_url).pathname.split(<span class="string">'/'</span>).pop();</span><br><span class="line">    <span class="comment">// 组合wget命令</span></span><br><span class="line">    <span class="keyword">var</span> wget = <span class="string">'wget -P '</span> + DOWNLOAD_DIR + <span class="string">' '</span> + file_url;</span><br><span class="line">    <span class="comment">// 使用exec执行wget命令</span></span><br><span class="line">  </span><br><span class="line">    <span class="keyword">var</span> child = exec(wget, <span class="function"><span class="keyword">function</span>(<span class="params">err, stdout, stderr</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">      <span class="keyword">else</span> <span class="built_in">console</span>.log(file_name + <span class="string">' downloaded to '</span> + DOWNLOAD_DIR);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>现在，你应该已经很清楚spawn和exec之间的区别了。总结一下：当你想要从子进程返回大量数据时使用spawn，如果只是返回简单的状态信息，那么使用exec。</p>
+<blockquote>
+<p>原文地址: <a href="http://www.html-js.com/article/A-day-to-learn-to-talk-about-JavaScript-spawn-and-exec-Nodejs-in-the-childprocess-module?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="external">说说Node.js child_process模块中的spawn和exec方法 </a></p>
+</blockquote>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/nodejs/">nodejs</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-Node_forever模块使用" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -288,7 +441,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;apps&quot;:[</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;name&quot;:&quot;pm_test&quot;,</span><br><span class="line">      &quot;script&quot;:&quot;./server/index.js&quot;,</span><br><span class="line">      &quot;cwd&quot;:&quot;d:/Tools/nodejs/src/pm2-test&quot;,</span><br><span class="line">      &quot;instances&quot;:1,</span><br><span class="line">      &quot;watch&quot; : true,</span><br><span class="line">      &quot;error_file&quot;:&quot;d:/pm2-logs/errfile.log&quot;,</span><br><span class="line">      &quot;out_file&quot;:&quot;d:/pm2-logs/outfile.log&quot;,</span><br><span class="line">      &quot;autorestart&quot;:false</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 启动 index.js, 名称设置为 `test-name`, 并监控 `D:/Tools/nodejs/src/pm2-test` 文件夹的变化,自动重启</span><br><span class="line">pm2 start --name &quot;test-name&quot; ./server/index.js --watch &quot;D:/Tools/nodejs/src/pm2-test&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 停止并删除所有</span><br><span class="line">pm2 delete all</span><br><span class="line"></span><br><span class="line"># 清除日志</span><br><span class="line">pm2 flush</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 启动或重启apps.json 中配置的server</span><br><span class="line">pm2 startOrRestart apps.json</span><br></pre></td></tr></table></figure>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"># 启动 index.js, 名称设置为 `test-name`, 并监控 `D:/Tools/nodejs/src/pm2-test` 文件夹的变化,自动重启</span><br><span class="line">pm2 start  ./server/index.js --watch &quot;D:/Tools/nodejs/src/pm2-test&quot; --name test-name</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 停止</span><br><span class="line">pm2 stop 0 </span><br><span class="line">pm2 stop all   </span><br><span class="line"></span><br><span class="line"># 重启</span><br><span class="line">pm2 restart 0      </span><br><span class="line">pm2 restart all </span><br><span class="line"></span><br><span class="line"># 删除</span><br><span class="line">pm2 delete 0 </span><br><span class="line">pm2 delete all //停止并删除所有</span><br><span class="line"></span><br><span class="line"># 清除日志</span><br><span class="line">pm2 flush</span><br><span class="line"></span><br><span class="line"># 查看日志(通过pm2 list 查看到到服务的id)</span><br><span class="line">pm2 logs 0</span><br><span class="line"></span><br><span class="line"># 启动或重启apps.json 中配置的server</span><br><span class="line">pm2 startOrRestart apps.json</span><br><span class="line"></span><br><span class="line"># 查看内存使用情况</span><br><span class="line">pm2 monit</span><br></pre></td></tr></table></figure>
 <ol>
 <li>详见 <a href="https://github.com/Unitech/pm2" target="_blank" rel="external">github</a></li>
 </ol>
@@ -500,87 +653,6 @@
 
 
   
-    <article id="post-0-how-to-use-hexo" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/04/03/0-how-to-use-hexo/" class="article-date">
-  	<time datetime="2016-04-03T07:58:38.000Z" itemprop="datePublished">2016-04-03</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/03/0-how-to-use-hexo/">利用node 的hexo 框架在github上搭建博客</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><a href="http://zengxp0605.github.io">本人博客</a></li>
-</ul>
-<h2 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h2><ul>
-<li>安装node &amp;&amp; git</li>
-<li>在github建立 username.github.io 仓库</li>
-<li>或者在coding 上建立 username 为名称的仓库 </li>
-</ul>
-<h2 id="hexo-的使用"><a href="#hexo-的使用" class="headerlink" title="hexo 的使用"></a>hexo 的使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo // 全局安装hexo</span><br><span class="line">cd /path/to/your/site</span><br><span class="line">hexo init // 完成初始化</span><br><span class="line">hexo generate  // 生成静态页面</span><br><span class="line">hexo server // 本地启动</span><br></pre></td></tr></table></figure>
-<p>出现下面两条日志 项目已经启动<br>INFO  Start processing<br>INFO  Hexo is running at <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a>. Press Ctrl+C to stop.</p>
-<h2 id="安装next-主题"><a href="#安装next-主题" class="headerlink" title="安装next 主题"></a>安装next 主题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /path/to/your/site</span><br><span class="line">git clone https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
-<h2 id="更换主题-进入站点-找到-config-yml"><a href="#更换主题-进入站点-找到-config-yml" class="headerlink" title="更换主题, 进入站点 找到 _config.yml"></a>更换主题, 进入站点 找到 _config.yml</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ theme: next // landscape默认</span><br></pre></td></tr></table></figure>
-<ul>
-<li>目前使用的主题是: <a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="external">https://github.com/litten/hexo-theme-yilia</a></li>
-</ul>
-<h2 id="配置-config-yml"><a href="#配置-config-yml" class="headerlink" title="配置 _config.yml"></a>配置 _config.yml</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">title: Jason Zeng // 修改自己的</span><br><span class="line">subtitle:     // 导航上面的小标题</span><br><span class="line">description: Jason blog  // 描述</span><br><span class="line">author: Jason</span><br><span class="line">language: zh-CN</span><br><span class="line">timezone:</span><br><span class="line"></span><br><span class="line">url: http://jason-zi.coding.me // 修改自己的 就是域名</span><br><span class="line">root: /</span><br><span class="line">permalink: :year/:month/:day/:title/</span><br><span class="line">permalink_defaults:</span><br><span class="line"></span><br><span class="line">theme: next // 主题</span><br><span class="line"></span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git@github.com:***/**.github.io.git // 自己的名字</span><br></pre></td></tr></table></figure>
-<p>ps: deploy的type改成git，然后运行下npm install hexo-deployer-git –save 再hexo g hexo d</p>
-<h2 id="新建文章-新建单页"><a href="#新建文章-新建单页" class="headerlink" title="新建文章 新建单页"></a>新建文章 新建单页</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;postName&quot; #新建文章</span><br><span class="line">hexo new page &quot;pageName&quot; #新建页面</span><br><span class="line">hexo generate #生成静态页面至public目录</span><br><span class="line">hexo server #开启预览访问端口（默认端口4000，&apos;ctrl + c&apos;关闭server）</span><br><span class="line">hexo help # 查看帮助</span><br><span class="line">hexo version #查看Hexo的版本</span><br><span class="line"></span><br><span class="line">//以下是简写</span><br><span class="line">hexo g == hexo generate</span><br><span class="line">hexo d == hexo deploy</span><br><span class="line">hexo s == hexo server</span><br><span class="line">hexo n == hexo new</span><br></pre></td></tr></table></figure>
-<h2 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean    //清除</span><br><span class="line">hexo generate //生成静态页面</span><br><span class="line">hexo deploy   //发布</span><br></pre></td></tr></table></figure>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><a href="http://oksite.github.io/2016/03/30/My-New-Post-1" target="_blank" rel="external">oksite的博客</a></li>
-</ul>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/部署/">部署</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
     <article id="post-Markdown-Usage" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -708,6 +780,87 @@
 
 
   
+    <article id="post-0-how-to-use-hexo" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/03/0-how-to-use-hexo/" class="article-date">
+  	<time datetime="2016-04-03T07:58:38.000Z" itemprop="datePublished">2016-04-03</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/03/0-how-to-use-hexo/">利用node 的hexo 框架在github上搭建博客</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><a href="http://zengxp0605.github.io">本人博客</a></li>
+</ul>
+<h2 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h2><ul>
+<li>安装node &amp;&amp; git</li>
+<li>在github建立 username.github.io 仓库</li>
+<li>或者在coding 上建立 username 为名称的仓库 </li>
+</ul>
+<h2 id="hexo-的使用"><a href="#hexo-的使用" class="headerlink" title="hexo 的使用"></a>hexo 的使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo // 全局安装hexo</span><br><span class="line">cd /path/to/your/site</span><br><span class="line">hexo init // 完成初始化</span><br><span class="line">hexo generate  // 生成静态页面</span><br><span class="line">hexo server // 本地启动</span><br></pre></td></tr></table></figure>
+<p>出现下面两条日志 项目已经启动<br>INFO  Start processing<br>INFO  Hexo is running at <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a>. Press Ctrl+C to stop.</p>
+<h2 id="安装next-主题"><a href="#安装next-主题" class="headerlink" title="安装next 主题"></a>安装next 主题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /path/to/your/site</span><br><span class="line">git clone https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+<h2 id="更换主题-进入站点-找到-config-yml"><a href="#更换主题-进入站点-找到-config-yml" class="headerlink" title="更换主题, 进入站点 找到 _config.yml"></a>更换主题, 进入站点 找到 _config.yml</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ theme: next // landscape默认</span><br></pre></td></tr></table></figure>
+<ul>
+<li>目前使用的主题是: <a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="external">https://github.com/litten/hexo-theme-yilia</a></li>
+</ul>
+<h2 id="配置-config-yml"><a href="#配置-config-yml" class="headerlink" title="配置 _config.yml"></a>配置 _config.yml</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">title: Jason Zeng // 修改自己的</span><br><span class="line">subtitle:     // 导航上面的小标题</span><br><span class="line">description: Jason blog  // 描述</span><br><span class="line">author: Jason</span><br><span class="line">language: zh-CN</span><br><span class="line">timezone:</span><br><span class="line"></span><br><span class="line">url: http://jason-zi.coding.me // 修改自己的 就是域名</span><br><span class="line">root: /</span><br><span class="line">permalink: :year/:month/:day/:title/</span><br><span class="line">permalink_defaults:</span><br><span class="line"></span><br><span class="line">theme: next // 主题</span><br><span class="line"></span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git@github.com:***/**.github.io.git // 自己的名字</span><br></pre></td></tr></table></figure>
+<p>ps: deploy的type改成git，然后运行下npm install hexo-deployer-git –save 再hexo g hexo d</p>
+<h2 id="新建文章-新建单页"><a href="#新建文章-新建单页" class="headerlink" title="新建文章 新建单页"></a>新建文章 新建单页</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;postName&quot; #新建文章</span><br><span class="line">hexo new page &quot;pageName&quot; #新建页面</span><br><span class="line">hexo generate #生成静态页面至public目录</span><br><span class="line">hexo server #开启预览访问端口（默认端口4000，&apos;ctrl + c&apos;关闭server）</span><br><span class="line">hexo help # 查看帮助</span><br><span class="line">hexo version #查看Hexo的版本</span><br><span class="line"></span><br><span class="line">//以下是简写</span><br><span class="line">hexo g == hexo generate</span><br><span class="line">hexo d == hexo deploy</span><br><span class="line">hexo s == hexo server</span><br><span class="line">hexo n == hexo new</span><br></pre></td></tr></table></figure>
+<h2 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean    //清除</span><br><span class="line">hexo generate //生成静态页面</span><br><span class="line">hexo deploy   //发布</span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="http://oksite.github.io/2016/03/30/My-New-Post-1" target="_blank" rel="external">oksite的博客</a></li>
+</ul>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/部署/">部署</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-Git-Usage-Detail" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -780,104 +933,6 @@
 <blockquote>
 <p>提醒：把 d:/ 改成 Bash 下的 /d/ </p>
 </blockquote>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Git/">Git</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Git-Usage" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/04/02/Git-Usage/" class="article-date">
-  	<time datetime="2016-04-02T09:00:00.000Z" itemprop="datePublished">2016-04-02</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/02/Git-Usage/">Git 常用命令</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>以Github为例,介绍windows下 Git常用命令的使用</p>
-</blockquote>
-<ol>
-<li><p>配置 SSH KEYS  (使用 ssh 协议的路径时需要, 使用http/https 无需配置)</p>
-<ul>
-<li>在 Git Bash中执行:  <code>ssh-keygen -t rsa -C &quot;youremail&quot;</code>   </li>
-<li>此时会在当前用户根目录下生成.ssh文件夹，里面有两个文件：id_rsa , id_rsa.pub  </li>
-<li>复制 ~/.ssh/id_rsa.pub 内容, 登陆github账户-&gt;Settings-&gt;SSH Keys-&gt; add , 粘贴,保存</li>
-</ul>
-</li>
-<li><p>配置本机全局的用户名和邮箱( 可以设置不同的用户名)  </p>
-<ul>
-<li>全局的配置文件: /c/Users/username/.gitconfig</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;username&quot;</span><br><span class="line">git config --global user.email &quot;email&quot;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>基本操作命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- git clone https://github.com/zengxp0605/test.git jason/test // 克隆一个远程的仓库到本地jason/test目录</span><br><span class="line">- git status  // 查看当前状态</span><br><span class="line">- git add filename // 添加单个文件</span><br><span class="line">- git add * // 或者使用git add -A , 添加所有更新的文件</span><br><span class="line">- git commit -am &quot;your message&quot; // 提交到本地仓库</span><br><span class="line">- git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;</span><br><span class="line">- git push origin master // 推送到远程仓库, 简写: git push (没有默认匹配分支时无法简写)</span><br><span class="line">- git pull &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;</span><br><span class="line">- git pull origin master   // 拉取更新, 简写: git pull </span><br><span class="line">- git pull origin next:master  // 取回origin主机的next分支，与本地的master分支合并</span><br><span class="line">- *.gitignore -&gt; 需要忽略，不需跟踪的文件或目录可以配置到此文件中,支持通配符*</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>本地已有文件的目录需要初始化为git仓库时</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- git init  // 初始化仓库</span><br><span class="line">- git remote add origin git@github.com:facebook/react-native.git  // 添加远程库origin 分支 </span><br><span class="line">- git remote -v   // 查看远程库,和分支</span><br><span class="line">- git remote remove origin  // 删除origin 分支</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>关于分支</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- git branch  // 查看本地分支， 带星号的为当前分支</span><br><span class="line">- git branch -a // 查看本地及远程分支</span><br><span class="line">- git branch testing  // 创建本地分支 testing </span><br><span class="line">- git checkout master  // 切换到master 分支</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h4 id="遇到的一些问题："><a href="#遇到的一些问题：" class="headerlink" title="遇到的一些问题："></a>遇到的一些问题：</h4><ol>
-<li><p>git push/git pull 时提示需要加入远程和本地仓库地址</p>
-<ul>
-<li><p>方法1: 执行命令 (以下命令同时可以设置为 –global)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config branch.master.remote origin</span><br><span class="line">git config branch.master.merge refs/heads/master</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>方法2：修改 ~/.git/config 文件,添加以下行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[branch &quot;master&quot;]</span><br><span class="line">    remote = origin</span><br><span class="line">    merge = refs/heads/master</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ol>
 
       
     </div>
@@ -1127,165 +1182,6 @@
       
 	<div class="article-category tagcloud">
 	<a class="article-category-link" href="/categories/IDE/">IDE</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Node_mysql_transaction_promise" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/04/01/Node_mysql_transaction_promise/" class="article-date">
-  	<time datetime="2016-04-01T14:33:57.000Z" itemprop="datePublished">2016-04-01</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/01/Node_mysql_transaction_promise/">nodejs中mysql异步事务的几点思考</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="说明"><a href="#说明" class="headerlink" title="说明:"></a>说明:</h4><ul>
-<li>mysql 只在启动node 时,初始化一次连接, 通过 <code>global.app.set(&#39;db.test&#39;, mysqlConn)</code> 存储, 获取使用 <code>app.get(&#39;db.test&#39;)</code>;</li>
-<li>所有的测试都是基于socket连接发送 emit 命令来执行的 </li>
-<li>测试只使用一个<code>test</code> 表,同时当做日志表使用,</li>
-<li><code>test</code> 表结构如下:    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE `test` (</span><br><span class="line">  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT &apos;自增长ID&apos;,</span><br><span class="line">  `user_id` int(11) unsigned NOT NULL COMMENT &apos;不允许为NULL,NULL 报错&apos;,</span><br><span class="line">  `title` varchar(100) NOT NULL DEFAULT &apos;&apos; COMMENT &apos;title&apos;,</span><br><span class="line">  `content` varchar(500) NOT NULL DEFAULT &apos;&apos; COMMENT &apos;content&apos;,</span><br><span class="line">  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT &apos;自动更新时间&apos;,</span><br><span class="line">  PRIMARY KEY (`id`)</span><br><span class="line">) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT=&apos;test&apos;;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="使用原始的回调写法"><a href="#使用原始的回调写法" class="headerlink" title="使用原始的回调写法"></a>使用原始的回调写法</h3><ol>
-<li>只执行两条sql语句(事务A), 例子来自 <a href="https://www.npmjs.com/package/mysql#transactions" target="_blank" rel="external">node-mysql模块</a></li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">test.trans = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> connection = app.get(<span class="string">'db.test'</span>);</span><br><span class="line"></span><br><span class="line">    connection.beginTransaction(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (err) &#123; <span class="keyword">throw</span> err; &#125;</span><br><span class="line">      <span class="keyword">var</span> data1 = &#123;</span><br><span class="line">        user_id : <span class="number">111</span>,</span><br><span class="line">        title: <span class="string">'insert'</span>,</span><br><span class="line">      &#125;;</span><br><span class="line">      connection.query(<span class="string">'INSERT INTO test SET ?'</span>, data1 , <span class="function"><span class="keyword">function</span>(<span class="params">err, result</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (err) &#123;</span><br><span class="line">          <span class="keyword">return</span> connection.rollback(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'rollback0, 部分失败!'</span>, err);</span><br><span class="line">          &#125;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> data2 = &#123;</span><br><span class="line">            user_id : <span class="number">222</span>,</span><br><span class="line">            <span class="comment">//user_id : null, // 此时将触发回滚</span></span><br><span class="line">            title: <span class="string">'Log:'</span>, </span><br><span class="line">            content: result.insertId + <span class="string">' added'</span>,</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/***********代码段1 start***************/</span></span><br><span class="line">        connection.query(<span class="string">'INSERT INTO test SET ?'</span>, data2, <span class="function"><span class="keyword">function</span>(<span class="params">err, result</span>) </span>&#123;</span><br><span class="line">          <span class="keyword">if</span> (err) &#123;</span><br><span class="line">            <span class="keyword">return</span> connection.rollback(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'rollback1, 部分失败!'</span>, err);</span><br><span class="line">            &#125;);</span><br><span class="line">          &#125;  </span><br><span class="line">          connection.commit(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (err) &#123;</span><br><span class="line">              <span class="keyword">return</span> connection.rollback(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                  <span class="built_in">console</span>.log(<span class="string">'rollback2, 部分失败!'</span>, err);</span><br><span class="line">              &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'All success!'</span>);</span><br><span class="line">          &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">/***********代码段1 end***************/</span></span><br><span class="line"></span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<ol>
-<li>将上述的代码段1 修改为下面的语句, 批量insert, 但是只有最后一次才提交<ul>
-<li>目的是为了制造延时较长时间才执行 commit 或者 rollback</li>
-</ul>
-</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> i = <span class="number">15</span>;</span><br><span class="line"><span class="keyword">while</span>(i &gt;= <span class="number">0</span>)&#123;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params">_i</span>)</span>&#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">            data2.user_id = _i;</span><br><span class="line">            connection.query(<span class="string">'INSERT INTO test SET ?'</span>, data2, <span class="function"><span class="keyword">function</span>(<span class="params">err, result</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (err) &#123;</span><br><span class="line">                    <span class="keyword">return</span> connection.rollback(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                        <span class="built_in">console</span>.log(<span class="string">'rollback1, 部分失败!'</span>, err);</span><br><span class="line">                    &#125;);</span><br><span class="line">                &#125;  </span><br><span class="line"></span><br><span class="line">                <span class="comment">// 只有最后一次才commit</span></span><br><span class="line">                <span class="keyword">if</span>(_i != <span class="number">15</span>) <span class="keyword">return</span> <span class="literal">null</span>; </span><br><span class="line">                </span><br><span class="line">                connection.commit(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">                    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">                        <span class="keyword">return</span> connection.rollback(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                            <span class="built_in">console</span>.log(<span class="string">'rollback2, 部分失败!'</span>, err);</span><br><span class="line">                        &#125;);</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="built_in">console</span>.log(<span class="string">'All success!'</span>);</span><br><span class="line">                &#125;);</span><br><span class="line"></span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;, <span class="number">1000</span> * _i); <span class="comment">// 延时一直递增</span></span><br><span class="line">    &#125;)(i);</span><br><span class="line"></span><br><span class="line">    i --;</span><br><span class="line">&#125; <span class="comment">// end while</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>并且此时, 在上面的语句还没有commit 的时候, 另一个socket 连接执行了下面的代码(事务B),那么会造成什么后果呢?</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">test.insert = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> connection = app.get(<span class="string">'db.test'</span>);</span><br><span class="line"></span><br><span class="line">    connection.beginTransaction(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (err) &#123; <span class="keyword">throw</span> err; &#125;</span><br><span class="line">        <span class="keyword">var</span> data1 = &#123;</span><br><span class="line">            user_id : <span class="number">3333</span>,</span><br><span class="line">            title: <span class="string">'insert 333'</span>,</span><br><span class="line">        &#125;;</span><br><span class="line">        connection.query(<span class="string">'INSERT INTO test SET ?'</span>, data1 , <span class="function"><span class="keyword">function</span>(<span class="params">err, result</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'test.insert: '</span> + result.insertId);</span><br><span class="line">            </span><br><span class="line">            <span class="comment">/***********代码段2 start***************/</span></span><br><span class="line">            <span class="comment">// connection.rollback();</span></span><br><span class="line">            connection.commit(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (err) &#123;</span><br><span class="line">                    <span class="keyword">return</span> connection.rollback(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                        <span class="built_in">console</span>.log(<span class="string">'rollback2, 部分失败!'</span>, err);</span><br><span class="line">                    &#125;);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'All success!'</span>);</span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="comment">/***********代码段2 end***************/</span></span><br><span class="line"></span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">    &#125;); </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p><strong> 此时后面的事务将直接将前面while循环中已经<code>query</code> 的语句都提交并执行掉, while循环中未完成的<br>则将不在事务中 </strong></p>
-</li>
-<li><p>此时如果注释掉 代码段2(commit) 部分, 事务A 中已经 <code>query</code> 的语句都提交并执行掉, 未执行的则在新的事务中,等待下次提交</p>
-</li>
-<li><p>若是 代码段2(commit) 部分改成 <code>connection.rollback();</code> 将会触发事务A 提交, while 未执行的语句将是普通执行的语句,不在事务中</p>
-</li>
-<li><p><strong> 事务B 直接提交了事务A!!! 这个一开始一直没有理解怎么回事???<br>后来想想,node是单线程的, 但是这里都是在不同的回调函数中,应该也是在不同的子线程中执行的,<br>为什么会出现这个情况呢?</strong></p>
-</li>
-</ul>
-<h3 id="通过测试-发现问题在于数据库连接-使用的都是同一个连接"><a href="#通过测试-发现问题在于数据库连接-使用的都是同一个连接" class="headerlink" title="通过测试,发现问题在于数据库连接, 使用的都是同一个连接!!!!!"></a>通过测试,发现问题在于数据库连接, 使用的都是同一个连接!!!!!</h3><p>囧!!!!</p>
-<hr>
-
-<h3 id="MySql-事务相关知识"><a href="#MySql-事务相关知识" class="headerlink" title="MySql 事务相关知识"></a>MySql 事务相关知识</h3><ol>
-<li><p>锁:    </p>
-<ul>
-<li><p>锁的机制</p>
-<ul>
-<li>共享锁：由读表操作加上的锁，加锁后其他用户只能获取该表或行的共享锁，不能获取排它锁，也就是说只能读不能写</li>
-<li>排它锁：由写表操作加上的锁，加锁后其他用户不能获取该表或行的任何锁，典型是mysql事务中</li>
-</ul>
-</li>
-<li><p>锁的范围</p>
-<ul>
-<li>行锁: 对某行记录加上锁</li>
-<li>表锁: 对整个表加上锁</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>什么是事务   </p>
-<ul>
-<li>事务是一条或多条数据库操作语句的组合，具备ACID，4个特点。</li>
-<li>原子性：要不全部成功，要不全部撤销</li>
-<li>隔离性：事务之间相互独立，互不干扰</li>
-<li>一致性：数据库正确地改变状态后，数据库的一致性约束没有被破坏</li>
-<li>持久性：事务的提交结果，将持久保存在数据库中</li>
-</ul>
-</li>
-<li><p>事务级别    </p>
-<ul>
-<li>各种事务级别的简述  </li>
-</ul>
-<p>| 隔离级别                           |   脏读  |   不可重复读   |   幻读  |   加锁读  |<br>| ———————————- | ——- | ————– | ——- | ——— |<br>| READ UNCOMMITTED(读取未提交内容)   |   是    |   是           |   是    |   否      |<br>| READ COMMITTED (读取提交内容)      |   否    |   是           |   是    |   否      |<br>| REPEATABLE READ  (可重读)          |   否    |   否           |   是    |   否      |<br>| SERIALIZABLE  (可串行化)           |   否    |   否           |   否    |   是      |</p>
-</li>
-</ol>
-<ul>
-<li>名词解释:    <ul>
-<li>第一类丢失更新：在没有事务隔离的情况下，两个事务都同时更新一行数据，但是第二个事务却中途失败退出， 导致对数据的两个修改都失效了。</li>
-<li>脏读：脏读就是指当一个事务正在访问数据，并且对数据进行了修改，而这种修改还没有提交到数据库中，这时，另外一个事务也访问这个数据，然后使用了这个数据。</li>
-<li>不可重复读：是指在一个事务内，多次读同一数据。在这个事务还没有结束时，另外一个事务也访问该同一数据。那么，在第一个事务中的两次读数据之间，由于第二个事务的修改，那么第一个事务两次读到的的数据可能是不一样的。这样就发生了在一个事务内两次读到的数据是不一样的，因此称为是不可重复读。</li>
-<li>第二类丢失更新：不可重复读的特例。有两个并发事务同时读取同一行数据，然后其中一个对它进行修改提交，而另一个也进行了修改提交。这就会造成第一次写操作失效。</li>
-<li>幻读：是指当事务不是独立执行时发生的一种现象，例如第一个事务对一个表中的数据进行了修改，这种修改涉及到表中的全部数据行。同时，第二个事务也修改这个表中的数据，这种修改是向表中插入一行新数据。那么，以后就会发生操作第一个事务的用户发现表中还有没有修改的数据行，就好象发生了幻觉一样。<blockquote>
-<p>不可重复读的重点是修改，同样的条件，你读取过的数据，再次读取出来发现值不一样了<br>幻读的重点在于新增或者删除，同样的条件，第 1 次和第 2 次读出来的记录数不一样<br><strong> Mysql默认的事务隔离级别为repeatable_read </strong></p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-<ol>
-<li><p>修改事务级别设置  </p>
-<ul>
-<li><p>全局修改，修改mysql.ini配置文件，在最后加上</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#可选参数有：READ-UNCOMMITTED, READ-COMMITTED, REPEATABLE-READ, SERIALIZABLE.</span><br><span class="line">[mysqld]</span><br><span class="line">transaction-isolation = REPEATABLE-READ</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>对当前session修改，在登录mysql客户端后，执行命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 设置</span><br><span class="line">mysql&gt; set session transaction isolation level read uncommitted;</span><br><span class="line">// 查看</span><br><span class="line">mysql&gt; select @@TX_ISOLATION;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ol>
-<p>4.参考:  </p>
-<ul>
-<li>锁和事务级别, <a href="http://www.cnblogs.com/zemliu/archive/2012/06/17/2552301.html" target="_blank" rel="external">http://www.cnblogs.com/zemliu/archive/2012/06/17/2552301.html</a><blockquote>
-<p>文章通过实例详述了 READ-UNCOMMITTED, READ-COMMITTED, REPEATABLE-READ, SERIALIZABLE 四种隔离级别时出现的现象  </p>
-</blockquote>
-</li>
-</ul>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/nodejs/">nodejs</a>
 	</div>
 
 
