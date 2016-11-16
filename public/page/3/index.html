@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://zengxp0605.github.io">
+  <title>Jason Zeng</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="tech blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Jason Zeng">
+<meta property="og:url" content="http://zengxp0605.github.io/page/3/index.html">
+<meta property="og:site_name" content="Jason Zeng">
+<meta property="og:description" content="tech blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jason Zeng">
+<meta name="twitter:description" content="tech blog">
+  
+  
+    <link rel="icon" href="/assets/images/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/assets/images/avatar.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Jason Zeng</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Jason&#39;s personal blog</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/archives">所有文章</a></li>
+	        
+				<li><a href="/about">关于</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/zengxp0605" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/shopping0605" title="weibo">weibo</a>
+		        
+					<a class="mail" target="_blank" href="mailto:xiaoping_zeng@foxmail.com" title="mail">mail</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Jason Zeng</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/assets/images/avatar.jpg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Jason Zeng</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Jason&#39;s personal blog</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/zengxp0605" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/shopping0605" title="weibo">weibo</a>
+			        
+						<a class="mail" target="_blank" href="mailto:xiaoping_zeng@foxmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        
+  
+    <article id="post-1-Js-EveryDay-avg(reduce)" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/13/1-Js-EveryDay-avg(reduce)/">每天学点js-求平均值</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="取平均值"><a href="#取平均值" class="headerlink" title="取平均值"></a>取平均值</h3><p>要取得平均值，我们需要将数字求和，然后除以values的数目，步骤如下：</p>
+<ul>
+<li>取得数组长度(length)</li>
+<li>求和(sum)</li>
+<li>取得平均值(sum/length)</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> values = [<span class="number">2</span>, <span class="number">56</span>, <span class="number">3</span>, <span class="number">41</span>, <span class="number">0</span>, <span class="number">4</span>, <span class="number">100</span>, <span class="number">23</span>];</div><div class="line"><span class="keyword">let</span> sum = values.reduce(<span class="function">(<span class="params">previous, current</span>) =&gt;</span> current += previous);</div><div class="line"><span class="keyword">let</span> avg = sum / values.length;</div><div class="line"><span class="comment">// avg = 28</span></div></pre></td></tr></table></figure>
+<h4 id="取得中值的步骤是："><a href="#取得中值的步骤是：" class="headerlink" title="取得中值的步骤是："></a>取得中值的步骤是：</h4><ul>
+<li>将数组排序</li>
+<li>取得中位数</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> values = [<span class="number">2</span>, <span class="number">56</span>, <span class="number">3</span>, <span class="number">41</span>, <span class="number">0</span>, <span class="number">4</span>, <span class="number">100</span>, <span class="number">23</span>];</div><div class="line">values.sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a - b);</div><div class="line"><span class="keyword">let</span> lowMiddle = <span class="built_in">Math</span>.floor((values.length - <span class="number">1</span>) / <span class="number">2</span>);</div><div class="line"><span class="keyword">let</span> highMiddle = <span class="built_in">Math</span>.ceil((values.length - <span class="number">1</span>) / <span class="number">2</span>);</div><div class="line"><span class="keyword">let</span> median = (values[lowMiddle] + values[highMiddle]) / <span class="number">2</span>;</div><div class="line"><span class="comment">// median = 13,5</span></div></pre></td></tr></table></figure>
+<p>或者使用无符号右移操作符：(不太理解!!)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> values = [<span class="number">2</span>, <span class="number">56</span>, <span class="number">3</span>, <span class="number">41</span>, <span class="number">0</span>, <span class="number">4</span>, <span class="number">100</span>, <span class="number">23</span>];</div><div class="line">values.sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a - b);</div><div class="line"><span class="keyword">let</span> median = (values[(values.length - <span class="number">1</span>) &gt;&gt; <span class="number">1</span>] + values[values.length &gt;&gt; <span class="number">1</span>]) / <span class="number">2</span></div><div class="line"><span class="comment">// median = 23</span></div></pre></td></tr></table></figure>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/04/13/1-Js-EveryDay-avg(reduce)/" class="archive-article-date">
+  	<time datetime="2016-04-13T12:30:00.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-04-13</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每天学点js/">每天学点js</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/js/">js</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-1-Js-EveryDay-pass_by_value_or_reference" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/13/1-Js-EveryDay-pass_by_value_or_reference/">每天学点js-传值机制</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="直接赋值时-非基本类型数据"><a href="#直接赋值时-非基本类型数据" class="headerlink" title="直接赋值时(非基本类型数据)"></a>直接赋值时(非基本类型数据)</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> me = &#123;<span class="attr">name</span>: <span class="string">'Tom'</span>&#125;; </div><div class="line"></div><div class="line"><span class="keyword">var</span> self = me;</div><div class="line"></div><div class="line">self.name = <span class="string">'Change a name'</span>;</div><div class="line"><span class="built_in">console</span>.log(self);  <span class="comment">// output: Object &#123;partOf: "Change a name"&#125;</span></div><div class="line"><span class="built_in">console</span>.log(me);    <span class="comment">// output: Object &#123;partOf: "Change a name"&#125;</span></div><div class="line"></div><div class="line"><span class="comment">// 改变self </span></div><div class="line">self = &#123;<span class="attr">name</span> : <span class="string">'Jason'</span>&#125;;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(self);  <span class="comment">// output: &#123;name: "Jason"&#125;</span></div><div class="line"><span class="built_in">console</span>.log(me);    <span class="comment">// output: &#123;partOf: "Change a name"&#125;</span></div></pre></td></tr></table></figure>
+<h3 id="函数传递时"><a href="#函数传递时" class="headerlink" title="函数传递时"></a>函数传递时</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">    <span class="attr">b</span>: <span class="number">2</span></div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> fn = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</div><div class="line">fn.c = <span class="number">3</span>;</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">x, y, z</span>) </span>&#123;</div><div class="line">    x = <span class="number">4</span>;</div><div class="line">    y.b = <span class="number">5</span>;</div><div class="line">    z.c = <span class="number">6</span>;</div><div class="line">    <span class="keyword">return</span> z;</div><div class="line">&#125;</div><div class="line">test(a, obj, fn);</div><div class="line"><span class="built_in">console</span>.log(a + obj.b + fn.c);  <span class="comment">// output: 6</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>首先test传递进去的实参中，a是基本类型（复制了一份值），obj是object（指向地址呼啦啦，你动我也动呢），<br>fn也当然不是基本类型啦。在执行test的时候，x被赋值为4(跟a没关系，各玩各的嘛，a仍然为1)，y的b被赋值为5，那obj的b也变为5，z的c变为6，那fn的c当然也会是6. 所以结果应该是1+5+6 =12. （其实test不返回z也一样，z仍然改变的）。<br>参考: <a href="http://www.2cto.com/kf/201401/273413.html" target="_blank" rel="external">http://www.2cto.com/kf/201401/273413.html</a></p>
+</blockquote>
+<h4 id="关于类型的介绍"><a href="#关于类型的介绍" class="headerlink" title="关于类型的介绍"></a>关于类型的介绍</h4><ul>
+<li>基本类型</li>
+</ul>
+<p>Javascript的基本类型有Boolean,String,Number,还有Undefined和Null，首先得明白的是，只有字面量的Boolean，String和Number，以及undefined+null(exact undefined null，区分大小写)才是属于基本类型的，new出来的不算。</p>
+<p>即：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">alert(<span class="keyword">typeof</span> <span class="literal">false</span>);    <span class="comment">//"boolean"</span></div><div class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="literal">false</span>);</div><div class="line">alert(<span class="keyword">typeof</span> b);        <span class="comment">//"object"</span></div></pre></td></tr></table></figure></p>
+<p>同样，<code>new String(&#39;aaa&#39;)</code>这种都不是基本类型，直接的<code>a=&#39;aaa&#39;</code>，a是基本类型，这就是：字面量的才是基本类型。</p>
+<p>另一方面，Object，Function，Array其实都是构造函数，因为可以直接new Object()等，<br>所以它们都是函数，<code>(Object instanceof Function === true) &amp;&amp; (Function instanceof Object===true)</code></p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结:"></a>小结:</h3><blockquote>
+<p>基本类型, JavaScript 按值传递,copy副本,与原值互不影响<br>非基本类型，JavaScript将引用 按值传递, </p>
+</blockquote>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/04/13/1-Js-EveryDay-pass_by_value_or_reference/" class="archive-article-date">
+  	<time datetime="2016-04-13T12:00:00.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-04-13</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每天学点js/">每天学点js</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/js/">js</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-2-Node-stdout_redirect_to_file" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/12/2-Node-stdout_redirect_to_file/">nodejs stdout重定向到文件(日志写入)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="nodejs-调试日志写入自定义文件"><a href="#nodejs-调试日志写入自定义文件" class="headerlink" title="nodejs 调试日志写入自定义文件"></a>nodejs 调试日志写入自定义文件</h3><ol>
+<li><p>最简单的方式重定向标准输出(stdout)  </p>
+<ul>
+<li><p>启动的时候重定向  </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">node app.js &gt; d:/tmp/app.log</div></pre></td></tr></table></figure>
+</li>
+<li><p>如上启动后, console.log 输出的日志将会写入到文件中, console.error 仍在控制台输出</p>
+</li>
+</ul>
+</li>
+</ol>
+<ol>
+<li><p>修改 <code>console</code> 对象</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 写入文件</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">writeFile</span>(<span class="params">file, content</span>)</span>&#123; </div><div class="line">    <span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>); </div><div class="line">      </div><div class="line">    <span class="comment">// appendFile，如果文件不存在，会自动创建新文件  </span></div><div class="line">    <span class="comment">// 如果用writeFile，那么会删除旧文件，直接写新文件  </span></div><div class="line">    fs.appendFile(file, <span class="string">"\r\n"</span> + content, <span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;  </div><div class="line">        <span class="keyword">if</span>(err)  </div><div class="line">            <span class="built_in">console</span>.info(<span class="string">"fail "</span> + err);  </div><div class="line">        <span class="keyword">else</span>  </div><div class="line">            <span class="built_in">console</span>.info(<span class="string">"写入文件ok"</span>);  </div><div class="line">    &#125;);  </div><div class="line">&#125;  </div><div class="line"></div><div class="line"><span class="built_in">console</span>.log = <span class="function"><span class="keyword">function</span>(<span class="params">msg</span>)</span>&#123;</div><div class="line">  process.stdout.write(<span class="string">'Log data: '</span> + msg);</div><div class="line">  writeFile(<span class="string">'d:/tmp/test.log'</span>, msg);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'test about 中文'</span>);</div><div class="line"><span class="built_in">console</span>.error(<span class="string">'test2 error'</span>); <span class="comment">// 正常输出,没有重新定义此方法</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>通过重置process.stdout 对象, log 和 error 全部写入test.log </p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"><span class="keyword">var</span> logStream = fs.createWriteStream(<span class="string">'d:/tmp/test.log'</span>, &#123;<span class="attr">flags</span>: <span class="string">'a'</span>&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 测试文件写入</span></div><div class="line"><span class="comment">//logStream.write("My first row\n");</span></div><div class="line"><span class="comment">//logStream.write("My second row\n");</span></div><div class="line"></div><div class="line">process.stdout.write = process.stderr.write = logStream.write.bind(logStream);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'test1'</span>);</div><div class="line"><span class="built_in">console</span>.error(<span class="string">'test2 error'</span>);</div></pre></td></tr></table></figure>
+</li>
+<li><p>开启子进程时，运行命令行重定向</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"><span class="keyword">var</span> logStream = fs.createWriteStream(<span class="string">'d:/tmp/test.log'</span>, &#123;<span class="attr">flags</span>: <span class="string">'a'</span>&#125;);</div><div class="line"></div><div class="line">logStream.write(<span class="string">"My first row\n"</span>);</div><div class="line">logStream.write(<span class="string">"My second row\n"</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> spawn = <span class="built_in">require</span>(<span class="string">'child_process'</span>).spawn,</div><div class="line">    ls    = spawn(<span class="string">'ls'</span>, [<span class="string">'-al'</span>, <span class="string">'d:/'</span>]);</div><div class="line"></div><div class="line">ls.stdout.pipe(logStream);  <span class="comment">// 结果写入文件</span></div><div class="line">ls.stderr.pipe(logStream);</div><div class="line"></div><div class="line">ls.stdout.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'stdout: '</span> + data);  <span class="comment">// 输出到控制台</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line">ls.on(<span class="string">'close'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">code</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'child process exited with code '</span> + code); <span class="comment">// 输出到控制台</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="有时间抽空看-pm2-forerver-模块日志写入的方式"><a href="#有时间抽空看-pm2-forerver-模块日志写入的方式" class="headerlink" title="有时间抽空看 pm2, forerver 模块日志写入的方式"></a>有时间抽空看 pm2, forerver 模块日志写入的方式</h3>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/04/12/2-Node-stdout_redirect_to_file/" class="archive-article-date">
+  	<time datetime="2016-04-12T12:13:54.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-04-12</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/nodejs/">nodejs</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-2-Node-[child_process]_spawn_vs_exec" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/12/2-Node-[child_process]_spawn_vs_exec/">Node.js child_processs中的pawn和exec</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="spawn和exec-的使用"><a href="#spawn和exec-的使用" class="headerlink" title="spawn和exec 的使用"></a>spawn和exec 的使用</h4><p>Node.js的child_process模块中有两个方法spawn和exec，这两个方法都可以被用来开启一个子进程来执行其他的程序。一些Node.js的新手常常对这个两个方法感到很困惑：既然两个方法的功能一样，那么究竟应该选择哪个方法。在本文中，我们将一起来探索spawn和我exec方法的不同之处，以便你在将来能够选择正确的方法。</p>
+<p>child_process.spaen会返回一个带有stdout和stderr流的对象。你可以通过stdout流来读取子进程返回给Node.js的数据。stdout拥有’data’,’end’以及一般流所具有的事件。当你想要子进程返回大量数据给Node时，比如说图像处理，读取二进制数据等等，你最好使用spawn方法。</p>
+<p>child_process.spawn方法是“异步中的异步”，意思是在子进程开始执行时，它就开始从一个流总将数据从子进程返回给Node。</p>
+<p>下面是一个例子，比如说我们想从一个URL下载文件，我们选择使用curl工具，此时，我们就可以在Node中使用spawn运行curl工具，下面是具体代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 使用curl下载文件的函数</span></div><div class="line"><span class="keyword">var</span> download_file_curl = <span class="function"><span class="keyword">function</span>(<span class="params">file_url</span>) </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// 提取文件名</span></div><div class="line">    <span class="keyword">var</span> file_name = url.parse(file_url).pathname.split(<span class="string">'/'</span>).pop();</div><div class="line"></div><div class="line">    <span class="comment">// 创建一个可写流的实例</span></div><div class="line">    <span class="keyword">var</span> file = fs.createWriteStream(DOWNLOAD_DIR + file_name);</div><div class="line">    <span class="comment">// 使用spawn运行curl</span></div><div class="line">    <span class="keyword">var</span> curl = spawn(<span class="string">'curl'</span>, [file_url]);</div><div class="line"></div><div class="line">    <span class="comment">// 为spawn实例添加了一个data事件</span></div><div class="line">    curl.stdout.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123; file.write(data); &#125;);</div><div class="line"></div><div class="line">    <span class="comment">// 添加一个end监听器来关闭文件流</span></div><div class="line">    curl.stdout.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">      file.end();</div><div class="line">      <span class="built_in">console</span>.log(file_name + <span class="string">' downloaded to '</span> + DOWNLOAD_DIR);</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    <span class="comment">// 当子进程退出时，检查是否有错误，同时关闭文件流</span></div><div class="line">    curl.on(<span class="string">'exit'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">code</span>) </span>&#123;</div><div class="line">      <span class="keyword">if</span> (code != <span class="number">0</span>) &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'Failed: '</span> + code);</div><div class="line">      &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>child_process.exec方法会从子进程中返回一个完整的buffer。默认情况下，这个buffer的大小应该是200k。如果子进程返回的数据大小超过了200k，程序将会崩溃，同时显示错误信息“Error：maxBuffer exceeded”。你可以通过在exec的可选项中设置一个更大的buffer体积来解决这个问题，但是你不应该这样做，因为exec本来就不是用来返回很多数据的方法。对于有很多数据返回的情况，你应该使用上面的spawn方法。那么exec究竟是用来做什么的呢？我们可以使用它来运行程序然后返回结果的状态，而不是结果的数据。</p>
+<p>child_process.exec方法是“同步中的异步”，意思是尽管exec是异步的，它一定要等到子进程运行结束以后然后一次性返回所有的buffer数据。如果exec的buffer体积设置的不够大，它将会以一个“maxBuffer exceeded”错误失败告终。</p>
+<p>和上面一样，我们现在还是想要从一个URL下载文件。不同的是，我们现在要使用wget方法而不是curl方法，此时我们就需要使用exec方法在Node中执行wget命令，同时在子进程运行完毕后返回结果信息。下面是具体代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 使用wget下载文件的函数</span></div><div class="line"><span class="keyword">var</span> download_file_wget = <span class="function"><span class="keyword">function</span>(<span class="params">file_url</span>) </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// 提取文件名</span></div><div class="line">    <span class="keyword">var</span> file_name = url.parse(file_url).pathname.split(<span class="string">'/'</span>).pop();</div><div class="line">    <span class="comment">// 组合wget命令</span></div><div class="line">    <span class="keyword">var</span> wget = <span class="string">'wget -P '</span> + DOWNLOAD_DIR + <span class="string">' '</span> + file_url;</div><div class="line">    <span class="comment">// 使用exec执行wget命令</span></div><div class="line">  </div><div class="line">    <span class="keyword">var</span> child = exec(wget, <span class="function"><span class="keyword">function</span>(<span class="params">err, stdout, stderr</span>) </span>&#123;</div><div class="line">      <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</div><div class="line">      <span class="keyword">else</span> <span class="built_in">console</span>.log(file_name + <span class="string">' downloaded to '</span> + DOWNLOAD_DIR);</div><div class="line">    &#125;);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>现在，你应该已经很清楚spawn和exec之间的区别了。总结一下：当你想要从子进程返回大量数据时使用spawn，如果只是返回简单的状态信息，那么使用exec。</p>
+<blockquote>
+<p>原文地址: <a href="http://www.html-js.com/article/A-day-to-learn-to-talk-about-JavaScript-spawn-and-exec-Nodejs-in-the-childprocess-module?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="external">说说Node.js child_process模块中的spawn和exec方法 </a></p>
+</blockquote>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/04/12/2-Node-[child_process]_spawn_vs_exec/" class="archive-article-date">
+  	<time datetime="2016-04-12T12:13:39.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-04-12</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/nodejs/">nodejs</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-2-Node-modules_forever" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/08/2-Node-modules_forever/">Nodejs forever模块使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="使用-node-forever-模块进行本地开发"><a href="#使用-node-forever-模块进行本地开发" class="headerlink" title="使用 node-forever 模块进行本地开发"></a>使用 node-forever 模块进行本地开发</h3><p><strong>重点:监控文件夹更新-&gt;重启app</strong></p>
+<ol>
+<li><p>全局安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install forever -g</div></pre></td></tr></table></figure>
+</li>
+<li><p>首先在任意目录新建apps.json 文件(例 d:/toos/forever),内容如下:</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;uid&quot;:&quot;test&quot;,</div><div class="line">    &quot;watch&quot;:true,</div><div class="line">    &quot;append&quot;:true,</div><div class="line">    &quot;script&quot;:&quot;server/index.js&quot;,  </div><div class="line">    &quot;sourceDir&quot;:&quot;d:/httpd/test&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>上述json文件表示,启动<code>d:/httpd/test/server/index.js</code> 文件, 并监控 <code>d:/httpd/test</code> 文件夹的更新<br>如果<code>d:/httpd/test</code> 文件夹(含子文件夹)下有更新,则自动重启 <code>server/index.js</code> 这个脚本</p>
+</blockquote>
+<ol>
+<li><p>启动服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># 启动js</div><div class="line">forever start index.js</div><div class="line"></div><div class="line"># 启动脚本, 通过json文件配置</div><div class="line">forever start apps.json  </div><div class="line"></div><div class="line"># 查看日志, (以日志流的方式输出到控制台)</div><div class="line">forever logs 0 -f  # 0表示第0个server</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看启动的列表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">forever list</div></pre></td></tr></table></figure>
+</li>
+<li><p>停止脚本,清除日志</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">forever stopall </div><div class="line">forever cleanlogs</div></pre></td></tr></table></figure>
+</li>
+<li><p>详见 <a href="https://github.com/foreverjs/forever" target="_blank" rel="external">github</a></p>
+</li>
+</ol>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/04/08/2-Node-modules_forever/" class="archive-article-date">
+  	<time datetime="2016-04-08T05:53:31.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-04-08</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/nodejs/">nodejs</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-2-Node-modules_pm2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/08/2-Node-modules_pm2/">Nodejs pm2模块使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="使用-node-pm2-模块开发"><a href="#使用-node-pm2-模块开发" class="headerlink" title="使用 node-pm2 模块开发"></a>使用 node-pm2 模块开发</h3><ol>
+<li><p>全局安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install pm2 -g</div></pre></td></tr></table></figure>
+</li>
+<li><p>json配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;apps&quot;:[</div><div class="line">    &#123;</div><div class="line">      &quot;name&quot;:&quot;pm_test&quot;,</div><div class="line">      &quot;script&quot;:&quot;./server/index.js&quot;,</div><div class="line">      &quot;cwd&quot;:&quot;d:/Tools/nodejs/src/pm2-test&quot;,</div><div class="line">      &quot;instances&quot;:1,</div><div class="line">      &quot;watch&quot; : true,</div><div class="line">      &quot;error_file&quot;:&quot;d:/pm2-logs/errfile.log&quot;,</div><div class="line">      &quot;out_file&quot;:&quot;d:/pm2-logs/outfile.log&quot;,</div><div class="line">      &quot;autorestart&quot;:false</div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"># 启动 index.js, 名称设置为 `test-name`, 并监控 `D:/Tools/nodejs/src/pm2-test` 文件夹的变化,自动重启</div><div class="line">pm2 start  ./server/index.js --watch &quot;D:/Tools/nodejs/src/pm2-test&quot; --name test-name</div><div class="line"></div><div class="line"></div><div class="line"># 停止</div><div class="line">pm2 stop 0 </div><div class="line">pm2 stop all   </div><div class="line"></div><div class="line"># 重启</div><div class="line">pm2 restart 0      </div><div class="line">pm2 restart all </div><div class="line"></div><div class="line"># 删除</div><div class="line">pm2 delete 0 </div><div class="line">pm2 delete all //停止并删除所有</div><div class="line"></div><div class="line"># 清除日志</div><div class="line">pm2 flush</div><div class="line"></div><div class="line"># 查看日志(通过pm2 list 查看到到服务的id)</div><div class="line">pm2 logs 0</div><div class="line"></div><div class="line"># 启动或重启apps.json 中配置的server</div><div class="line">pm2 startOrRestart apps.json</div><div class="line"></div><div class="line"># 查看内存使用情况</div><div class="line">pm2 monit</div></pre></td></tr></table></figure>
+<ol>
+<li>详见 <a href="https://github.com/Unitech/pm2" target="_blank" rel="external">github</a></li>
+</ol>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/04/08/2-Node-modules_pm2/" class="archive-article-date">
+  	<time datetime="2016-04-08T05:53:31.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-04-08</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/nodejs/">nodejs</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-2-Node-exports_vs_module.exports" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/05/2-Node-exports_vs_module.exports/">exports和module.exports的理解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="要理解exports和module-exports-首先应该了解一下Node中js模块的编译过程"><a href="#要理解exports和module-exports-首先应该了解一下Node中js模块的编译过程" class="headerlink" title="要理解exports和module.exports,首先应该了解一下Node中js模块的编译过程"></a>要理解exports和module.exports,首先应该了解一下Node中js模块的编译过程</h4><blockquote>
+<p>朴灵在《深入浅出node.js》一书 “Javascript模块编译”小节中介绍:<br>在编译的过程中,Node对获取的JavaScript文件内容进行了头尾包装,在头部添加了<br><code>(function(exports, require, module, __filename, __dirname){ \n</code>, 在尾部添加了 <code>\n});</code> ;</p>
+</blockquote>
+<p>由此可以知道,我们代码中写的一系列方法,如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">exports.add = function(a, b)&#123;</div><div class="line">    return a + b;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">exports.sub = function(a, b)&#123;</div><div class="line">    return a - b;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>会被包装成:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">(function(exports, require, module, __filename, __dirname)&#123;</div><div class="line">    exports.add = function(a, b)&#123;</div><div class="line">        return a + b;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    exports.sub = function(a, b)&#123;</div><div class="line">        return a - b;</div><div class="line">    &#125;;</div><div class="line">&#125;)(module.exports, require, module, module.filename, currentDirname);</div><div class="line">// 这里传入的参数是我个人的理解</div></pre></td></tr></table></figure></p>
+<p>来执行的,也就更好的理解 <strong>exports就是module.exports的引用</strong> 这个说法了;</p>
+<p>所以,如果直接给exports赋值而不是添加属性的话,是无法正常导出方法的,如model.js定义为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 此时 exports指向了新的内存块, 与 module.exports 的引用关系断裂</div><div class="line">exports = &#123;</div><div class="line">    add: function()&#123;&#125;,</div><div class="line">    sub: function()&#123;&#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var m = require(&apos;./model&apos;);</div><div class="line">console.log(m); // 这里m 是空对象</div><div class="line">console.log(typeof m.add); // undefined</div></pre></td></tr></table></figure>
+<p>以上直接给exports赋值无法导出的原因是: </p>
+<blockquote>
+<p>exports对象是通过形参的方式传入的,直接赋值给形参会改变形参的引用,但是并不能改变作用域外的值.   </p>
+</blockquote>
+<p>具体参看文章最后<a href="#fun">js对象引用</a></p>
+<h4 id="以下写法是两种方法是可行的"><a href="#以下写法是两种方法是可行的" class="headerlink" title="以下写法是两种方法是可行的:"></a>以下写法是两种方法是可行的:</h4><p><strong>1. 使用exports逐个添加属性</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">exports.add = function(a, b)&#123;</div><div class="line">    return a + b;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">exports.sub = function(a, b)&#123;</div><div class="line">    return a - b;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p><strong>2. 新建对象,最后将对象赋值给 module.exports</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;</div><div class="line">    id: &apos;test&apos;,</div><div class="line">    add: function()&#123;&#125;,</div><div class="line">    sub: function()&#123;&#125;,</div><div class="line">&#125;;</div><div class="line"></div><div class="line"></div><div class="line">module.exports = obj;</div></pre></td></tr></table></figure></p>
+<p>或者直接给 module.exports赋值一个对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">module.exports = &#123;</div><div class="line">    id: &apos;test&apos;,</div><div class="line">    add: function()&#123;&#125;,</div><div class="line">    sub: function()&#123;&#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>对于很多人使用的 exports = module.exports = someObject, 个人觉得有些多余了,这样赋值后,以下两种方式都无法使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var someObject = &#123;</div><div class="line">    add: function()&#123;&#125;,</div><div class="line">    sub: function()&#123;&#125;,</div><div class="line">&#125;;</div><div class="line"></div><div class="line">exports.test = function()&#123;&#125;;  // 无法导出此方法</div><div class="line"></div><div class="line">module.exports.foo = function()&#123;&#125;;  // 无法导出此方法</div><div class="line"></div><div class="line">someObject.fun = function()&#123;&#125;; // 只能这么使用 </div><div class="line"></div><div class="line">exports = module.exports = someObject;</div></pre></td></tr></table></figure></p>
+<h4 id="最后-再简要说明下-js调用函数时对象传参"><a href="#最后-再简要说明下-js调用函数时对象传参" class="headerlink" title="最后,再简要说明下 js调用函数时对象传参"></a>最后,再简要说明下 <a href="#fun" name="fun" id="fun">js调用函数时对象传参</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&apos;use strict&apos;;</div><div class="line">var globalModule = &#123;</div><div class="line">    scope : &apos;global&apos;,</div><div class="line">    exports : &#123;</div><div class="line">        scope : &apos;global&apos;,</div><div class="line">        fun : function()&#123;console.log(&apos;globalModule.exports.fun&apos;);&#125;,</div><div class="line">    &#125;,</div><div class="line">&#125;;</div><div class="line"></div><div class="line">(function(exports, module)&#123;</div><div class="line">    exports.test = &apos;my-test&apos;;   // 可以给引用增加属性</div><div class="line">    exports.scope = &apos;global-mine&apos;;  // 也可以修改属性</div><div class="line">    console.log(exports);  // output: Object &#123;scope: &quot;global-mine&quot;, test: &quot;my-test&quot;, ...&#125;</div><div class="line">    // 直接赋值给形参会改变形参的引用, 使其指向新的内存块</div><div class="line">    // 这里只要进行其它初始化的操作都会导致同样的效果</div><div class="line">    exports = &#123;</div><div class="line">        scope : &apos;my-module&apos;,</div><div class="line">    &#125;;</div><div class="line">    console.log(exports); // output: Object &#123;scope: &quot;my-module&quot;&#125;</div><div class="line"></div><div class="line">    console.log(module.exports); // output: Object &#123;scope: &quot;global-mine&quot;, test: &quot;my-test&quot;, ...&#125;</div><div class="line"></div><div class="line">&#125;)(globalModule.exports, globalModule);</div></pre></td></tr></table></figure>
+<h5 id="以及关于引用对象的补充示例说明"><a href="#以及关于引用对象的补充示例说明" class="headerlink" title="以及关于引用对象的补充示例说明:"></a>以及关于引用对象的补充示例说明:</h5><ul>
+<li>调用函数时,通过参数传递对象时,传递的即是该对象的引用, 也就是说形参是实参的引用,它们指向同一内存地址</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">var a = &#123;name: &apos;aaa&apos;&#125;;</div><div class="line">var b = a; // 这里 b 即是 a 的引用,它们指向同一内存地址</div><div class="line"></div><div class="line">console.log(a);     // output: Object &#123;name: &quot;aaa&quot;&#125;</div><div class="line">console.log(b);     // output: Object &#123;name: &quot;aaa&quot;&#125;</div><div class="line"></div><div class="line">b.name = &apos;aaabbb&apos;;   // 这里改变了同一个内存地址中的值,因此下面两行输出仍然一致</div><div class="line">console.log(a);     // output: Object &#123;name: &quot;aaabbb&quot;&#125;</div><div class="line">console.log(b);     // output: Object &#123;name: &quot;aaabbb&quot;&#125;</div><div class="line"></div><div class="line">var b = &#123;name: &apos;bbb&apos;&#125;;   // 这里b引用了一个新的对象, 即指向了另一个内存地址</div><div class="line">console.log(a);     //  这里a没有被上一赋值改变,仍指向原来的内存地址 output: Object &#123;name: &quot;aaabbb&quot;&#125;</div><div class="line">console.log(b);     // 这里b是新的内存指向, output: Object &#123;name: &quot;bbb&quot;&#125;</div></pre></td></tr></table></figure>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><ul>
+<li><a href="https://cnodejs.org/topic/5231a630101e574521e45ef8" target="_blank" rel="external">exports 和 module.exports 的区别</a></li>
+<li>朴灵 &lt;&lt;深入浅出node.js&gt;&gt;</li>
+</ul>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/04/05/2-Node-exports_vs_module.exports/" class="archive-article-date">
+  	<time datetime="2016-04-05T04:26:24.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-04-05</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/nodejs/">nodejs</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-sublime插件使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/04/sublime插件使用/">sublime插件使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><ol>
+<li><p>安装Package Control</p>
+</li>
+<li><p>Ctrl + Shift + P 打开 package contrl 面板</p>
+<ul>
+<li>install 安装插件,完整命令[Package Control: Install Package]</li>
+<li>remove 移除插件,完整命令[Package Control: Remove Package]</li>
+</ul>
+</li>
+</ol>
+<h3 id="1-OmniMarkupPreviewer"><a href="#1-OmniMarkupPreviewer" class="headerlink" title="1. OmniMarkupPreviewer"></a>1. OmniMarkupPreviewer</h3><blockquote>
+<p>实时在浏览器中预览markdown 格式文件</p>
+</blockquote>
+<p><strong>Key Bindings</strong></p>
+<p>  The default key bindings:</p>
+<ul>
+<li><p><em>Windows, Linux:</em></p>
+<ul>
+<li><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>O</kbd>: Preview Markup in Browser.</li>
+<li><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>X</kbd>: Export Markup as HTML.</li>
+<li><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>C</kbd>: Copy Markup as HTML.</li>
+</ul>
+</li>
+<li><p><em>OSX:</em></p>
+<ul>
+<li><kbd>⌘</kbd>+<kbd>⌥</kbd>+<kbd>O</kbd>: Preview Markup in Browser.</li>
+<li><kbd>⌘</kbd>+<kbd>⌥</kbd>+<kbd>X</kbd>: Export Markup as HTML.</li>
+<li><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>C</kbd>: Copy Markup as HTML.</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/04/04/sublime插件使用/" class="archive-article-date">
+  	<time datetime="2016-04-04T03:11:37.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-04-04</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sublime/">sublime</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/IDE/">IDE</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-0-how-to-use-hexo" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/03/0-how-to-use-hexo/">利用node 的hexo 框架在github上搭建博客</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><a href="http://zengxp0605.github.io">本人博客</a></li>
+</ul>
+<h2 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h2><ul>
+<li>安装node &amp;&amp; git</li>
+<li>在github建立 username.github.io 仓库</li>
+<li>或者在coding 上建立 username 为名称的仓库 </li>
+</ul>
+<h2 id="hexo-的使用"><a href="#hexo-的使用" class="headerlink" title="hexo 的使用"></a>hexo 的使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo // 全局安装hexo</div><div class="line">cd /path/to/your/site</div><div class="line">hexo init // 完成初始化</div><div class="line">hexo generate  // 生成静态页面</div><div class="line">hexo server // 本地启动</div></pre></td></tr></table></figure>
+<p>出现下面两条日志 项目已经启动<br>INFO  Start processing<br>INFO  Hexo is running at <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a>. Press Ctrl+C to stop.</p>
+<h2 id="安装next-主题"><a href="#安装next-主题" class="headerlink" title="安装next 主题"></a>安装next 主题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd /path/to/your/site</div><div class="line">git clone https://github.com/iissnan/hexo-theme-next themes/next</div></pre></td></tr></table></figure>
+<h2 id="更换主题-进入站点-找到-config-yml"><a href="#更换主题-进入站点-找到-config-yml" class="headerlink" title="更换主题, 进入站点 找到 _config.yml"></a>更换主题, 进入站点 找到 _config.yml</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ theme: next // landscape默认</div></pre></td></tr></table></figure>
+<ul>
+<li>目前使用的主题是: <a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="external">https://github.com/litten/hexo-theme-yilia</a></li>
+</ul>
+<h2 id="配置-config-yml"><a href="#配置-config-yml" class="headerlink" title="配置 _config.yml"></a>配置 _config.yml</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">title: Jason Zeng // 修改自己的</div><div class="line">subtitle:     // 导航上面的小标题</div><div class="line">description: Jason blog  // 描述</div><div class="line">author: Jason</div><div class="line">language: zh-CN</div><div class="line">timezone:</div><div class="line"></div><div class="line">url: http://jason-zi.coding.me // 修改自己的 就是域名</div><div class="line">root: /</div><div class="line">permalink: :year/:month/:day/:title/</div><div class="line">permalink_defaults:</div><div class="line"></div><div class="line">theme: next // 主题</div><div class="line"></div><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repository: git@github.com:***/**.github.io.git // 自己的名字</div></pre></td></tr></table></figure>
+<p>ps: deploy的type改成git，然后运行下npm install hexo-deployer-git –save 再hexo g hexo d</p>
+<h2 id="新建文章-新建单页"><a href="#新建文章-新建单页" class="headerlink" title="新建文章 新建单页"></a>新建文章 新建单页</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">hexo new &quot;postName&quot; #新建文章</div><div class="line">hexo new page &quot;pageName&quot; #新建页面</div><div class="line">hexo generate #生成静态页面至public目录</div><div class="line">hexo server #开启预览访问端口（默认端口4000，&apos;ctrl + c&apos;关闭server）</div><div class="line">hexo help # 查看帮助</div><div class="line">hexo version #查看Hexo的版本</div><div class="line"></div><div class="line">//以下是简写</div><div class="line">hexo g == hexo generate</div><div class="line">hexo d == hexo deploy</div><div class="line">hexo s == hexo server</div><div class="line">hexo n == hexo new</div></pre></td></tr></table></figure>
+<h2 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo clean    //清除</div><div class="line">hexo generate //生成静态页面</div><div class="line">hexo deploy   //发布</div></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="http://oksite.github.io/2016/03/30/My-New-Post-1" target="_blank" rel="external">oksite的博客</a></li>
+</ul>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/04/03/0-how-to-use-hexo/" class="archive-article-date">
+  	<time datetime="2016-04-03T07:58:38.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-04-03</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/部署/">部署</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Markdown-Usage" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/03/Markdown-Usage/">Markdown 语法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>项目地址 : <a href="https://github.com/pandao/editor.md" target="_blank" rel="external">https://github.com/pandao/editor.md</a><br>完整示例 : <a href="https://pandao.github.io/editor.md/examples/full.html" target="_blank" rel="external">https://pandao.github.io/editor.md/examples/full.html</a></p>
+<p><strong>目录 (Table of Contents)</strong></p>
+<p>[TOCM]</p>
+<p>[TOC]</p>
+<hr>
+<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><ul>
+<li><p>代码如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># Heading 1</div><div class="line">## Heading 2               </div><div class="line">### Heading 3</div><div class="line">#### Heading 4</div><div class="line">##### Heading 5</div><div class="line">###### Heading 6</div></pre></td></tr></table></figure>
+</li>
+<li><p>效果如下:  </p>
+<h1 id="Heading-1"><a href="#Heading-1" class="headerlink" title="Heading 1"></a>Heading 1</h1><h2 id="Heading-2"><a href="#Heading-2" class="headerlink" title="Heading 2"></a>Heading 2</h2><h3 id="Heading-3"><a href="#Heading-3" class="headerlink" title="Heading 3"></a>Heading 3</h3><h4 id="Heading-4"><a href="#Heading-4" class="headerlink" title="Heading 4"></a>Heading 4</h4><h5 id="Heading-5"><a href="#Heading-5" class="headerlink" title="Heading 5"></a>Heading 5</h5><h6 id="Heading-6"><a href="#Heading-6" class="headerlink" title="Heading 6"></a>Heading 6</h6></li>
+</ul>
+<hr>
+<h4 id="标题（用底线的形式）Heading-underline"><a href="#标题（用底线的形式）Heading-underline" class="headerlink" title="标题（用底线的形式）Heading (underline)"></a>标题（用底线的形式）Heading (underline)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">This is an H1</div><div class="line">=============</div><div class="line"></div><div class="line">This is an H2</div><div class="line">-------------</div></pre></td></tr></table></figure>
+<h1 id="This-is-an-H1"><a href="#This-is-an-H1" class="headerlink" title="This is an H1"></a>This is an H1</h1><h2 id="This-is-an-H2"><a href="#This-is-an-H2" class="headerlink" title="This is an H2"></a>This is an H2</h2><hr>
+<h3 id="字符效果和横线等"><a href="#字符效果和横线等" class="headerlink" title="字符效果和横线等"></a>字符效果和横线等</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">----</div><div class="line"></div><div class="line">~~删除线~~ &lt;s&gt;删除线（开启识别HTML标签时）&lt;/s&gt;</div><div class="line">*斜体字*      _斜体字_</div><div class="line">**粗体**  __粗体__</div><div class="line">***粗斜体*** ___粗斜体___</div><div class="line"></div><div class="line">上标：X&lt;sub&gt;2&lt;/sub&gt;，下标：O&lt;sup&gt;2&lt;/sup&gt;</div></pre></td></tr></table></figure>
+<hr>
+<p><del>删除线</del> <s>删除线（开启识别HTML标签时）</s><br><em>斜体字</em>      <em>斜体字</em><br><strong>粗体</strong>  <strong>粗体</strong><br><strong><em>粗斜体</em></strong> <strong><em>粗斜体</em></strong>  </p>
+<p>上标：X<sub>2</sub>，下标：O<sup>2</sup></p>
+<h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">插入图片：</div><div class="line">![alt text](http://path/to/img.jpg &quot;title&quot;)</div><div class="line">文字链接：</div><div class="line"></div><div class="line">[Title](你的链接地址)</div><div class="line"></div><div class="line">图片加链接：(其实就是 图片 和 文字链接 2种语法结合起来用。)</div><div class="line">[![alt text](http://path/to/img.jpg &quot;title&quot;)](你的链接地址)</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="任务列表"><a href="#任务列表" class="headerlink" title="任务列表"></a>任务列表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">- [x] GFM task list 1</div><div class="line">- [x] GFM task list 2</div><div class="line">- [ ] GFM task list 3</div><div class="line">    - [ ] GFM task list 3-1</div><div class="line">    - [ ] GFM task list 3-2</div><div class="line">    - [ ] GFM task list 3-3</div><div class="line">- [ ] GFM task list 4</div><div class="line">    - [ ] GFM task list 4-1</div><div class="line">    - [ ] GFM task list 4-2</div></pre></td></tr></table></figure>
+<ul>
+<li>[x] GFM task list 1</li>
+<li>[x] GFM task list 2</li>
+<li>[ ] GFM task list 3<ul>
+<li>[ ] GFM task list 3-1</li>
+<li>[ ] GFM task list 3-2</li>
+<li>[ ] GFM task list 3-3</li>
+</ul>
+</li>
+<li>[ ] GFM task list 4<ul>
+<li>[ ] GFM task list 4-1</li>
+<li>[ ] GFM task list 4-2</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="分页符-Page-break"><a href="#分页符-Page-break" class="headerlink" title="分页符 Page break"></a>分页符 Page break</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[========]</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="绘制表格"><a href="#绘制表格" class="headerlink" title="绘制表格"></a>绘制表格</h3><ul>
+<li><p>代码如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">| First Header  | Second Header | Third Header  |</div><div class="line">| ------------- | ------------- | ------------- |</div><div class="line">| Content Cell  | Content Cell  | Content Cell  |</div><div class="line">| Content Cell  | Content Cell  | Content Cell  |</div></pre></td></tr></table></figure>
+</li>
+<li><p>效果如下:</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>First Header</th>
+<th>Second Header</th>
+<th>Third Header</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content Cell</td>
+<td>Content Cell</td>
+<td>Content Cell</td>
+</tr>
+<tr>
+<td>Content Cell</td>
+<td>Content Cell</td>
+<td>Content Cell</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">st=&gt;start: 用户登陆</div><div class="line">op=&gt;operation: 登陆操作</div><div class="line">cond=&gt;condition: 登陆成功 Yes or No?</div><div class="line">e=&gt;end: 进入后台</div><div class="line"></div><div class="line">st-&gt;op-&gt;cond</div><div class="line">cond(yes)-&gt;e</div><div class="line">cond(no)-&gt;op</div></pre></td></tr></table></figure>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/04/03/Markdown-Usage/" class="archive-article-date">
+  	<time datetime="2016-04-03T07:58:38.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-04-03</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/markdown/">markdown</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/markdown/">markdown</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+    </nav>
+  
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Jason Zeng
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: true,
+		isPost: false,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Css/" style="font-size: 10px;">Css</a> <a href="/tags/Git/" style="font-size: 12.5px;">Git</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/js/" style="font-size: 17.5px;">js</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/memcache/" style="font-size: 10px;">memcache</a> <a href="/tags/movie/" style="font-size: 10px;">movie</a> <a href="/tags/music/" style="font-size: 10px;">music</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nodejs/" style="font-size: 20px;">nodejs</a> <a href="/tags/php/" style="font-size: 12.5px;">php</a> <a href="/tags/promise/" style="font-size: 15px;">promise</a> <a href="/tags/redis/" style="font-size: 12.5px;">redis</a> <a href="/tags/sublime/" style="font-size: 12.5px;">sublime</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/每天学点js/" style="font-size: 17.5px;">每天学点js</a> <a href="/tags/读书笔记/" style="font-size: 10px;">读书笔记</a> <a href="/tags/转载/" style="font-size: 12.5px;">转载</a>
+    			</div>
+    	</section>
+    
+
+    
+
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

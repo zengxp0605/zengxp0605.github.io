@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://zengxp0605.github.io">
+  <title>Nodejs pm2模块使用 | Jason Zeng</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="使用 node-pm2 模块开发
+全局安装
+1npm install pm2 -g
+
+json配置
+1234567891011121314&amp;#123;  &amp;quot;apps&amp;quot;:[    &amp;#123;      &amp;quot;name&amp;quot;:&amp;quot;pm_test&amp;quot;,      &amp;quot;script&amp;quot;:&amp;quot;./server/index.js&amp;quo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nodejs pm2模块使用">
+<meta property="og:url" content="http://zengxp0605.github.io/2016/04/08/2-Node-modules_pm2/index.html">
+<meta property="og:site_name" content="Jason Zeng">
+<meta property="og:description" content="使用 node-pm2 模块开发
+全局安装
+1npm install pm2 -g
+
+json配置
+1234567891011121314&amp;#123;  &amp;quot;apps&amp;quot;:[    &amp;#123;      &amp;quot;name&amp;quot;:&amp;quot;pm_test&amp;quot;,      &amp;quot;script&amp;quot;:&amp;quot;./server/index.js&amp;quo">
+<meta property="og:updated_time" content="2016-11-06T13:07:35.199Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Nodejs pm2模块使用">
+<meta name="twitter:description" content="使用 node-pm2 模块开发
+全局安装
+1npm install pm2 -g
+
+json配置
+1234567891011121314&amp;#123;  &amp;quot;apps&amp;quot;:[    &amp;#123;      &amp;quot;name&amp;quot;:&amp;quot;pm_test&amp;quot;,      &amp;quot;script&amp;quot;:&amp;quot;./server/index.js&amp;quo">
+  
+  
+    <link rel="icon" href="/assets/images/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/assets/images/avatar.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Jason Zeng</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Jason&#39;s personal blog</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/archives">所有文章</a></li>
+	        
+				<li><a href="/about">关于</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/zengxp0605" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/shopping0605" title="weibo">weibo</a>
+		        
+					<a class="mail" target="_blank" href="mailto:xiaoping_zeng@foxmail.com" title="mail">mail</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Jason Zeng</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/assets/images/avatar.jpg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Jason Zeng</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Jason&#39;s personal blog</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/zengxp0605" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/shopping0605" title="weibo">weibo</a>
+			        
+						<a class="mail" target="_blank" href="mailto:xiaoping_zeng@foxmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-2-Node-modules_pm2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Nodejs pm2模块使用
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="使用-node-pm2-模块开发"><a href="#使用-node-pm2-模块开发" class="headerlink" title="使用 node-pm2 模块开发"></a>使用 node-pm2 模块开发</h3><ol>
+<li><p>全局安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install pm2 -g</div></pre></td></tr></table></figure>
+</li>
+<li><p>json配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;apps&quot;:[</div><div class="line">    &#123;</div><div class="line">      &quot;name&quot;:&quot;pm_test&quot;,</div><div class="line">      &quot;script&quot;:&quot;./server/index.js&quot;,</div><div class="line">      &quot;cwd&quot;:&quot;d:/Tools/nodejs/src/pm2-test&quot;,</div><div class="line">      &quot;instances&quot;:1,</div><div class="line">      &quot;watch&quot; : true,</div><div class="line">      &quot;error_file&quot;:&quot;d:/pm2-logs/errfile.log&quot;,</div><div class="line">      &quot;out_file&quot;:&quot;d:/pm2-logs/outfile.log&quot;,</div><div class="line">      &quot;autorestart&quot;:false</div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"># 启动 index.js, 名称设置为 `test-name`, 并监控 `D:/Tools/nodejs/src/pm2-test` 文件夹的变化,自动重启</div><div class="line">pm2 start  ./server/index.js --watch &quot;D:/Tools/nodejs/src/pm2-test&quot; --name test-name</div><div class="line"></div><div class="line"></div><div class="line"># 停止</div><div class="line">pm2 stop 0 </div><div class="line">pm2 stop all   </div><div class="line"></div><div class="line"># 重启</div><div class="line">pm2 restart 0      </div><div class="line">pm2 restart all </div><div class="line"></div><div class="line"># 删除</div><div class="line">pm2 delete 0 </div><div class="line">pm2 delete all //停止并删除所有</div><div class="line"></div><div class="line"># 清除日志</div><div class="line">pm2 flush</div><div class="line"></div><div class="line"># 查看日志(通过pm2 list 查看到到服务的id)</div><div class="line">pm2 logs 0</div><div class="line"></div><div class="line"># 启动或重启apps.json 中配置的server</div><div class="line">pm2 startOrRestart apps.json</div><div class="line"></div><div class="line"># 查看内存使用情况</div><div class="line">pm2 monit</div></pre></td></tr></table></figure>
+<ol>
+<li>详见 <a href="https://github.com/Unitech/pm2" target="_blank" rel="external">github</a></li>
+</ol>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/04/08/2-Node-modules_pm2/" class="archive-article-date">
+  	<time datetime="2016-04-08T05:53:31.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-04-08</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/nodejs/">nodejs</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/04/08/2-Node-modules_forever/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Nodejs forever模块使用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/05/2-Node-exports_vs_module.exports/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">exports和module.exports的理解</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="2-Node-modules_pm2" data-title="Nodejs pm2模块使用" data-url="http://zengxp0605.github.io/2016/04/08/2-Node-modules_pm2/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Jason Zeng
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Css/" style="font-size: 10px;">Css</a> <a href="/tags/Git/" style="font-size: 12.5px;">Git</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/js/" style="font-size: 17.5px;">js</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/memcache/" style="font-size: 10px;">memcache</a> <a href="/tags/movie/" style="font-size: 10px;">movie</a> <a href="/tags/music/" style="font-size: 10px;">music</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nodejs/" style="font-size: 20px;">nodejs</a> <a href="/tags/php/" style="font-size: 12.5px;">php</a> <a href="/tags/promise/" style="font-size: 15px;">promise</a> <a href="/tags/redis/" style="font-size: 12.5px;">redis</a> <a href="/tags/sublime/" style="font-size: 12.5px;">sublime</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/每天学点js/" style="font-size: 17.5px;">每天学点js</a> <a href="/tags/读书笔记/" style="font-size: 10px;">读书笔记</a> <a href="/tags/转载/" style="font-size: 12.5px;">转载</a>
+    			</div>
+    	</section>
+    
+
+    
+
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

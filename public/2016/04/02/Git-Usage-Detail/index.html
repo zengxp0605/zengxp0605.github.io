@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://zengxp0605.github.io">
+  <title>Git 使用详解 | Jason Zeng</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="git 小技巧git 打包发布zip包123456# git 归档方式，但会包含文件夹下现有文件git archive -o 123.zip HEAD $(git diff --name-only &amp;lt;历史版本sha1 号&amp;gt;^) # 使用管道方式打zip 包git diff &amp;lt;新版本号-sha1&amp;gt; &amp;lt;历史版本号-sha1&amp;gt; --name-only | xargs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git 使用详解">
+<meta property="og:url" content="http://zengxp0605.github.io/2016/04/02/Git-Usage-Detail/index.html">
+<meta property="og:site_name" content="Jason Zeng">
+<meta property="og:description" content="git 小技巧git 打包发布zip包123456# git 归档方式，但会包含文件夹下现有文件git archive -o 123.zip HEAD $(git diff --name-only &amp;lt;历史版本sha1 号&amp;gt;^) # 使用管道方式打zip 包git diff &amp;lt;新版本号-sha1&amp;gt; &amp;lt;历史版本号-sha1&amp;gt; --name-only | xargs">
+<meta property="og:updated_time" content="2016-11-06T13:07:35.208Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git 使用详解">
+<meta name="twitter:description" content="git 小技巧git 打包发布zip包123456# git 归档方式，但会包含文件夹下现有文件git archive -o 123.zip HEAD $(git diff --name-only &amp;lt;历史版本sha1 号&amp;gt;^) # 使用管道方式打zip 包git diff &amp;lt;新版本号-sha1&amp;gt; &amp;lt;历史版本号-sha1&amp;gt; --name-only | xargs">
+  
+  
+    <link rel="icon" href="/assets/images/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/assets/images/avatar.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Jason Zeng</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Jason&#39;s personal blog</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/archives">所有文章</a></li>
+	        
+				<li><a href="/about">关于</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/zengxp0605" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/shopping0605" title="weibo">weibo</a>
+		        
+					<a class="mail" target="_blank" href="mailto:xiaoping_zeng@foxmail.com" title="mail">mail</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Jason Zeng</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/assets/images/avatar.jpg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Jason Zeng</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Jason&#39;s personal blog</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/zengxp0605" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/shopping0605" title="weibo">weibo</a>
+			        
+						<a class="mail" target="_blank" href="mailto:xiaoping_zeng@foxmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-Git-Usage-Detail" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Git 使用详解
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="git-小技巧"><a href="#git-小技巧" class="headerlink" title="git 小技巧"></a>git 小技巧</h3><h4 id="git-打包发布zip包"><a href="#git-打包发布zip包" class="headerlink" title="git 打包发布zip包"></a>git 打包发布zip包</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># git 归档方式，但会包含文件夹下现有文件</div><div class="line">git archive -o 123.zip HEAD $(git diff --name-only &lt;历史版本sha1 号&gt;^) </div><div class="line"># 使用管道方式打zip 包</div><div class="line">git diff &lt;新版本号-sha1&gt; &lt;历史版本号-sha1&gt; --name-only | xargs zip update.zip</div><div class="line"># 使用管道方式打zip 包，不指定版本号，而是直接打当前分支和其他分支的差异文件包(比如：比较远端的master和本分支的差异文件打包上线）</div><div class="line">git diff origin/master --name-only | xargs zip package.zip</div></pre></td></tr></table></figure>
+<h4 id="修改最近一次提交说明"><a href="#修改最近一次提交说明" class="headerlink" title="修改最近一次提交说明"></a>修改最近一次提交说明</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git commit –amend</div></pre></td></tr></table></figure>
+<h4 id="不产生无用的merge的同步"><a href="#不产生无用的merge的同步" class="headerlink" title="不产生无用的merge的同步"></a>不产生无用的merge的同步</h4><p>使用 git 自身功能来回滚代码，取消上一次的修改应该用，但要注意，虽然代码是实现了回滚，同时也会自动产生一条“回滚代码”的 log 。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git pull --rebase origin master</div></pre></td></tr></table></figure></p>
+<h4 id="回滚已上传的更新"><a href="#回滚已上传的更新" class="headerlink" title="回滚已上传的更新"></a>回滚已上传的更新</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git revert &lt;sha1_of_commit&gt;</div></pre></td></tr></table></figure>
+<h4 id="回滚master步骤"><a href="#回滚master步骤" class="headerlink" title="回滚master步骤"></a>回滚master步骤</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git reset --hard HEAD~1</div><div class="line">git reset --hard HEAD &lt;需要回滚到的位置&gt;</div><div class="line">git push origin master  --force&lt;强制回滚&gt;</div></pre></td></tr></table></figure>
+<h4 id="git-维护"><a href="#git-维护" class="headerlink" title="git 维护"></a>git 维护</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"># 查看本地git 的分布情况</div><div class="line">git count-objects -v</div><div class="line"></div><div class="line"># .git 目录压缩</div><div class="line">git gc --auto</div><div class="line"># git 数据一致性分析，可以找到丢失的commit sha1</div><div class="line">git fsck</div><div class="line"></div><div class="line"># git 数据清理，包括把丢失的commit 从磁盘上物理删除</div><div class="line">git prune</div><div class="line"></div><div class="line"># 建议的命令</div><div class="line">git fsck &amp;&amp; git gc --prune</div><div class="line"> </div><div class="line"># 或者可以尝试</div><div class="line">git reflog expire --expire=now --all &amp;&amp; git gc --aggressive --prune=now</div></pre></td></tr></table></figure>
+<h4 id="格式化log-显示样式"><a href="#格式化log-显示样式" class="headerlink" title="格式化log 显示样式"></a>格式化log 显示样式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># 先设置一个 config </div><div class="line">git config --global alias.lg &quot;log --color --graph --codetty=format:&apos;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&apos; --abbrev-commit --&quot;</div><div class="line"> </div><div class="line"># 使用设置好的别名</div><div class="line">git lg</div></pre></td></tr></table></figure>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><ul>
+<li>如果想直接使用 git pull 拉去默认分支,可以在 .git/config 加上<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[branch &quot;master&quot;]</div><div class="line">  remote = origin</div><div class="line">  merge = refs/heads/master</div><div class="line">  rebase = true</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="git-设置全局忽略"><a href="#git-设置全局忽略" class="headerlink" title="git 设置全局忽略"></a>git 设置全局忽略</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># 设置全局 忽略列表</div><div class="line">git config --global core.excludesfile ~/.gitignore_global</div><div class="line"></div><div class="line"># 本地生成文件</div><div class="line"></div><div class="line">&gt; ~/.gitignore_global</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="git-命令行"><a href="#git-命令行" class="headerlink" title="git 命令行"></a>git 命令行</h3><h4 id="add-命令"><a href="#add-命令" class="headerlink" title="add 命令"></a>add 命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 进入交互式界面</div><div class="line">git add -i</div></pre></td></tr></table></figure>
+<h4 id="blame-命令"><a href="#blame-命令" class="headerlink" title="blame 命令"></a>blame 命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 显示文件修改日志</div><div class="line">git blame test1.txt</div></pre></td></tr></table></figure>
+<h4 id="branch-命令"><a href="#branch-命令" class="headerlink" title="branch 命令"></a>branch 命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># 当前所有的branch信息</div><div class="line">git branch -avv</div><div class="line"># 从主分支master创建branch_0.1分支</div><div class="line">git branch branch_0.1 master</div></pre></td></tr></table></figure>
+<h4 id="checkout-命令"><a href="#checkout-命令" class="headerlink" title="checkout 命令"></a>checkout 命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"># 更新单个文件</div><div class="line">git checkout origin/master -- &lt;文件路径&gt;</div><div class="line"># 更新某个文件的某个版本</div><div class="line">git checkout origin/master &lt;commit sha1&gt; -- &lt;文件路径&gt;</div><div class="line"></div><div class="line">#切换整个工作区到某个历史版本</div><div class="line">git checkout &lt;commit sha1&gt;</div><div class="line">git checkout HEAD^ # 回滚内容到上一个版本，效果同 git reset</div><div class="line"></div><div class="line"># 从远程分支更新到本地新建一个分支</div><div class="line">git checkout -b &lt;本地新分支名&gt; &lt;远端名称&gt;/&lt;远程分支名&gt;</div></pre></td></tr></table></figure>
+<h4 id="config-命令"><a href="#config-命令" class="headerlink" title="config 命令"></a>config 命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global user.name &quot;yourname&quot;</div><div class="line">git config --global user.email your@exam.com</div></pre></td></tr></table></figure>
+<h4 id="clone-命令"><a href="#clone-命令" class="headerlink" title="clone 命令"></a>clone 命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">#仅获取最新版和一个历史版本,即最后2个版本</div><div class="line">git clone &lt;git path url&gt; --depth=1</div><div class="line"># 检查log 版本</div><div class="line">git rev-list master</div><div class="line"># 或者</div><div class="line">git rev-list master --max-count=10</div></pre></td></tr></table></figure>
+<h4 id="commit-命令"><a href="#commit-命令" class="headerlink" title="commit 命令"></a>commit 命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># 使用最近commit增补提交，不产生新的commit log</div><div class="line">git commit -C HEAD –amend</div><div class="line">#  -a是提交所有改动，-m是加入log信息</div><div class="line">git commit -a -m &quot;log_message&quot;</div></pre></td></tr></table></figure>
+<h4 id="fetch-命令"><a href="#fetch-命令" class="headerlink" title="fetch 命令"></a>fetch 命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># 获取远程信息</div><div class="line">git fetch</div><div class="line"># 精简获取部分远程</div><div class="line">git fetch --depth=&lt;版本数量&gt;</div></pre></td></tr></table></figure>
+<h4 id="log-命令"><a href="#log-命令" class="headerlink" title="log 命令"></a>log 命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># 精简查看历史提交记录</div><div class="line">git log --oneline -&lt;行数&gt;</div><div class="line"></div><div class="line">#查看某个文件的修改日志</div><div class="line">git log --pretty=oneline 文件名</div><div class="line"></div><div class="line">#查看文件的修改内容 (后面的为哈希值)</div><div class="line">git show 7957045706302a92453fecb22806072872bb4f97</div></pre></td></tr></table></figure>
+<h4 id="diff-命令"><a href="#diff-命令" class="headerlink" title="diff 命令"></a>diff 命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#查看未提交文件的修改</div><div class="line">git diff FILENAME</div></pre></td></tr></table></figure>
+<h4 id="stash-命令"><a href="#stash-命令" class="headerlink" title="stash 命令"></a>stash 命令</h4><blockquote>
+<p>参考:  <a href="http://www.williamsang.com/archives/2347.html?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="external">http://www.williamsang.com/archives/2347.html?utm_source=tuicool&amp;utm_medium=referral</a><br>这个命令保存add的新文件,或者的文件到缓存区,  commit 后的内容不会保存<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"># 将当前修改存入缓存区(不会被提交)</div><div class="line">git stash </div><div class="line"># 查看缓存区列表</div><div class="line">git stash list</div><div class="line"></div><div class="line"># 恢复暂存区和工作区进度</div><div class="line">git stash pop --index stash@&#123;0&#125;</div><div class="line"></div><div class="line"># 其他</div><div class="line">git stash [save message] [-k|--no-keep-index] [--patch]</div><div class="line">git stash apply [--index] [&lt;stash&gt;] 不删除已恢复的进度，其他同git stash pop</div><div class="line">git stash drop [&lt;stash&gt;] 删除某一个进度，默认删除最新进度</div><div class="line">git stash clear 删除所有进度</div><div class="line">git stash branch &lt;branchname&gt; &lt;stash&gt; 基于进度创建分支</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="merge-命令"><a href="#merge-命令" class="headerlink" title="merge 命令"></a>merge 命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 撤销当前merge 中的状态</div><div class="line">$ git merge --abort</div></pre></td></tr></table></figure>
+<h4 id="push-命令"><a href="#push-命令" class="headerlink" title="push 命令"></a>push 命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># 提交本地test分支作为远程的master分支</div><div class="line">git push origin test:master</div><div class="line"> </div><div class="line"># 提交本地test分支作为远程的test分支</div><div class="line">git push origin test:test</div><div class="line"> </div><div class="line"># 如果想删除远程的分支呢？类似于上面，如果:左边的分支为空，那么将删除:右边的远程的分支。</div><div class="line"># 刚提交到远程的test将被删除，但是本地还会保存的，不用担心。</div><div class="line">$ git push origin :test  --force&lt;此参数表示强制push 可能会对冲掉新的push 结果&gt;</div></pre></td></tr></table></figure>
+<h4 id="svn-命令"><a href="#svn-命令" class="headerlink" title="svn 命令"></a>svn 命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 关联svn</div><div class="line">git svn init &lt;url&gt; --no-metadata --no-minimize-url -T &lt;主干名，一般为trunk&gt;</div></pre></td></tr></table></figure>
+<h4 id="reset-命令"><a href="#reset-命令" class="headerlink" title="reset 命令"></a>reset 命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># 将版本库恢复到HEAD之前的版本</div><div class="line">* git reset --hard HEAD~1</div><div class="line">* git reset --hard HEAD &lt;版本号&gt;</div></pre></td></tr></table></figure>
+<h4 id="remote"><a href="#remote" class="headerlink" title="remote"></a>remote</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"># 查看远程仓库</div><div class="line">git remote -v</div><div class="line"># 添加远程仓库</div><div class="line">git remote add [name] [url]</div><div class="line">#如: get remote add origin https://github.com/zengxp0605/test.git</div><div class="line"></div><div class="line">#删除远程仓库</div><div class="line">git remote rm [name]</div><div class="line"># 修改远程仓库</div><div class="line">git remote set-url –push[name][newUrl]</div><div class="line"># 拉取远程仓库</div><div class="line">git pull/fetch [remoteName] [localBranchName]</div><div class="line"># 推送远程仓库</div><div class="line">git push [remoteName] [localBranchName]</div><div class="line"># 删除远端已删除，但是本地信息还有分支</div><div class="line">git remote prune [origin]</div></pre></td></tr></table></figure>
+<h4 id="tags-命令"><a href="#tags-命令" class="headerlink" title="tags 命令"></a>tags 命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"># 查看本地tags </div><div class="line">git tag -l</div><div class="line"> </div><div class="line"># push到服务器端 </div><div class="line">git push --tags </div><div class="line"> </div><div class="line"># 删除本地tag </div><div class="line">git tag -d v1.1</div><div class="line"> </div><div class="line"># 补打标签</div><div class="line">git tag -a v0.1.1 [版本号]</div></pre></td></tr></table></figure>
+<h4 id="files-命令"><a href="#files-命令" class="headerlink" title="files 命令"></a>files 命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 恢复多个删除的本地文件</div><div class="line">git ls-files -d | xargs -i git checkout &#123;&#125;</div></pre></td></tr></table></figure>
+<h4 id="git-保存http下的用户名密码"><a href="#git-保存http下的用户名密码" class="headerlink" title="git 保存http下的用户名密码"></a>git 保存http下的用户名密码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config --global credential.helper store</div></pre></td></tr></table></figure>
+<h3 id="gitconfig-配置"><a href="#gitconfig-配置" class="headerlink" title="gitconfig 配置"></a>gitconfig 配置</h3><file txt="" .gitconfig=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">[user]</div><div class="line">    name = Jason</div><div class="line">    email = jason_zeng@admin.com</div><div class="line">[core]</div><div class="line">    autocrlf = true</div><div class="line">    excludesfile = d:/Users/jason/.gitignore_global</div><div class="line">    trustctime = false</div><div class="line">    editor = vim</div><div class="line">    filemode = false</div><div class="line">[http]</div><div class="line">    # 缓存区大小</div><div class="line">    postBuffer = 1048576000</div><div class="line">[diff]</div><div class="line">    tool = sourcetree</div><div class="line">[difftool]</div><div class="line">    prompt = false</div><div class="line">[difftool &quot;sourcetree &quot;]</div><div class="line">    cmd = &apos;D:/Tools/BeyondCompare/BComp.exe&apos; \&quot;$LOCAL\&quot; \&quot;$REMOTE\&quot;</div><div class="line">[merge]</div><div class="line">    tool = sourcetree</div><div class="line">[mergetool]</div><div class="line">    prompt = false</div><div class="line">[mergetool &quot;sourcetree&quot;]</div><div class="line">    cmd = &apos;D:/Tools/BeyondCompare/BComp.exe&apos; \&quot;$LOCAL\&quot; \&quot;$REMOTE\&quot; \&quot;$BASE\&quot; \&quot;$MERGED\&quot;</div><div class="line">    trustExitCode = true</div><div class="line">[alias]</div><div class="line">    # 别名</div><div class="line">    lg = log --color --graph --pretty=format:&apos;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&apos; --abbrev-commit --</div><div class="line">    co = checkout</div><div class="line">    cl = clone</div><div class="line">    ci = commit</div><div class="line">    st = status -sb</div><div class="line">    br = branch</div><div class="line">    unstage = reset HEAD --</div><div class="line">    dc = diff --cached</div><div class="line">[credential]</div><div class="line">    # http协议仓库,保持用户名和密码</div><div class="line">    helper = store</div><div class="line">[push]</div><div class="line">    default = matching</div><div class="line">[color]</div><div class="line">    ui = true</div><div class="line">[pack]</div><div class="line">    windowMemory = 1G</div><div class="line">    SizeLimit = 100m</div><div class="line">    threads = 1</div><div class="line">    window = 0</div><div class="line">    packSizeLimit = 100m</div></pre></td></tr></table></figure><br><br></file>
+
+
+<h3 id="Sourcetree常用工具和配置方式"><a href="#Sourcetree常用工具和配置方式" class="headerlink" title="Sourcetree常用工具和配置方式"></a>Sourcetree常用工具和配置方式</h3><p>BeyondCompare定义为默认工具</p>
+<ul>
+<li>点击 工具-&gt;选项</li>
+<li>在弹出框选择 比较 </li>
+<li>外部对比工具 选择Beyond Compare </li>
+<li>合并工具 选择Beyond Compare</li>
+<li>找到本机git配置文件 .gitconfig</li>
+<li>添加如下配置</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[difftool &quot;sourcetree&quot;]</div><div class="line">cmd = &apos;/d/Tools/BeyondCompare/BComp.exe&apos; \&quot;$LOCAL\&quot; \&quot;$REMOTE\&quot;</div><div class="line">[mergetool &quot;sourcetree&quot;]</div><div class="line">cmd = &apos;/d/Tools/BeyondCompare/BComp.exe&apos; \&quot;$LOCAL\&quot; \&quot;$REMOTE\&quot; \&quot;$BASE\&quot; \&quot;$MERGED\&quot;</div><div class="line">trustExitCode = true</div></pre></td></tr></table></figure>
+<blockquote>
+<p>提醒：把 d:/ 改成 Bash 下的 /d/ </p>
+</blockquote>
+<h3 id="详见-https-github-com-git-tips-tips"><a href="#详见-https-github-com-git-tips-tips" class="headerlink" title="详见 https://github.com/git-tips/tips"></a>详见 <a href="https://github.com/git-tips/tips" target="_blank" rel="external">https://github.com/git-tips/tips</a></h3>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/04/02/Git-Usage-Detail/" class="archive-article-date">
+  	<time datetime="2016-04-02T10:00:00.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-04-02</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/Git/">Git</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/04/03/Markdown-Usage/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Markdown 语法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/02/Git-Usage/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Git 常用命令</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Git-Usage-Detail" data-title="Git 使用详解" data-url="http://zengxp0605.github.io/2016/04/02/Git-Usage-Detail/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Jason Zeng
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Css/" style="font-size: 10px;">Css</a> <a href="/tags/Git/" style="font-size: 12.5px;">Git</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/js/" style="font-size: 17.5px;">js</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/memcache/" style="font-size: 10px;">memcache</a> <a href="/tags/movie/" style="font-size: 10px;">movie</a> <a href="/tags/music/" style="font-size: 10px;">music</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nodejs/" style="font-size: 20px;">nodejs</a> <a href="/tags/php/" style="font-size: 12.5px;">php</a> <a href="/tags/promise/" style="font-size: 15px;">promise</a> <a href="/tags/redis/" style="font-size: 12.5px;">redis</a> <a href="/tags/sublime/" style="font-size: 12.5px;">sublime</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/每天学点js/" style="font-size: 17.5px;">每天学点js</a> <a href="/tags/读书笔记/" style="font-size: 10px;">读书笔记</a> <a href="/tags/转载/" style="font-size: 12.5px;">转载</a>
+    			</div>
+    	</section>
+    
+
+    
+
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

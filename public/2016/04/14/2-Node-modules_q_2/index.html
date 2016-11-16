@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://zengxp0605.github.io">
+  <title>Nodejs q模块使用2 | Jason Zeng</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="nodejs中promise一直使用的是Q模块,对于循环和递归的实现却折腾了好一会儿才想明白…
+promise 循环
+使用拼接then的方式, arr中的函数将依次按照顺序执行, 最后的 result只能拿到arr中最后一个函数的结果  
+
+1234567891011121314151617181920212223242526272829303132333435363738394041424344">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nodejs q模块使用2">
+<meta property="og:url" content="http://zengxp0605.github.io/2016/04/14/2-Node-modules_q_2/index.html">
+<meta property="og:site_name" content="Jason Zeng">
+<meta property="og:description" content="nodejs中promise一直使用的是Q模块,对于循环和递归的实现却折腾了好一会儿才想明白…
+promise 循环
+使用拼接then的方式, arr中的函数将依次按照顺序执行, 最后的 result只能拿到arr中最后一个函数的结果  
+
+1234567891011121314151617181920212223242526272829303132333435363738394041424344">
+<meta property="og:updated_time" content="2016-11-06T13:07:35.200Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Nodejs q模块使用2">
+<meta name="twitter:description" content="nodejs中promise一直使用的是Q模块,对于循环和递归的实现却折腾了好一会儿才想明白…
+promise 循环
+使用拼接then的方式, arr中的函数将依次按照顺序执行, 最后的 result只能拿到arr中最后一个函数的结果  
+
+1234567891011121314151617181920212223242526272829303132333435363738394041424344">
+  
+  
+    <link rel="icon" href="/assets/images/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/assets/images/avatar.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Jason Zeng</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Jason&#39;s personal blog</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/archives">所有文章</a></li>
+	        
+				<li><a href="/about">关于</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/zengxp0605" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/shopping0605" title="weibo">weibo</a>
+		        
+					<a class="mail" target="_blank" href="mailto:xiaoping_zeng@foxmail.com" title="mail">mail</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Jason Zeng</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/assets/images/avatar.jpg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Jason Zeng</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Jason&#39;s personal blog</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/zengxp0605" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/shopping0605" title="weibo">weibo</a>
+			        
+						<a class="mail" target="_blank" href="mailto:xiaoping_zeng@foxmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-2-Node-modules_q_2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Nodejs q模块使用2
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>nodejs中promise一直使用的是<a href="https://github.com/kriskowal/q" target="_blank" rel="external">Q模块</a>,对于循环和递归的实现却折腾了好一会儿才想明白…</p>
+<h3 id="promise-循环"><a href="#promise-循环" class="headerlink" title="promise 循环"></a>promise 循环</h3><ul>
+<li>使用拼接then的方式, arr中的函数将依次按照顺序执行, 最后的 result只能拿到arr中最后一个函数的结果  </li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> test = &#123;&#125;;</div><div class="line"><span class="keyword">var</span> Q = <span class="built_in">require</span>(<span class="string">'q'</span>);</div><div class="line"><span class="keyword">var</span> _ = <span class="built_in">require</span>(<span class="string">'underscore'</span>);</div><div class="line"><span class="keyword">var</span> tableList = []; <span class="comment">// 存储id, 相当于redis 的一个set</span></div><div class="line"></div><div class="line"><span class="comment">// 测试创建桌子</span></div><div class="line">test.createTable = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">    _getUniqTableId().then(<span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'result: '</span>, result );</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'--------------------------'</span>);</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'tableList: '</span>, tableList.join(<span class="string">','</span>) ,<span class="string">' len: '</span> + tableList.length);</div><div class="line">    &#125;).fail(<span class="function"><span class="keyword">function</span>(<span class="params">error</span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'&#123;test.createTable&#125;,error: '</span> + error);</div><div class="line">    &#125;).done(); </div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 获取当前不存在的id</span></div><div class="line"><span class="keyword">var</span> _getUniqTableId = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> arr = [];</div><div class="line">    <span class="keyword">var</span> i = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</div><div class="line">        <span class="keyword">if</span>(i++ == <span class="number">15</span>)  <span class="keyword">break</span>; <span class="comment">// 测试的次数</span></div><div class="line">        (<span class="function"><span class="keyword">function</span>(<span class="params">_i</span>) </span>&#123;</div><div class="line">            <span class="keyword">var</span> id = _.random(<span class="number">0</span> ,<span class="number">10</span>);</div><div class="line">            arr[_i] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                <span class="keyword">return</span> _isIdExists(id, _i);</div><div class="line">            &#125;; </div><div class="line">        &#125;)(i);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">var</span> _p = Q(<span class="number">0</span>);</div><div class="line">    arr.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">f</span>) </span>&#123;</div><div class="line">        _p = _p.then(f).then(<span class="function"><span class="keyword">function</span>(<span class="params">rs</span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'rs: '</span> ,rs);  </div><div class="line">            <span class="keyword">return</span> rs;  </div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">    <span class="keyword">return</span> _p;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 模拟redis 中异步判断id 是否存在于 set中</span></div><div class="line"><span class="comment">// 假设查询需要耗费 500 毫秒</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">_isIdExists</span>(<span class="params">id, _i</span>)</span>&#123;   </div><div class="line">    <span class="keyword">var</span> deferred = Q.defer();</div><div class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> isExists = _.contains(tableList, id);</div><div class="line">        <span class="keyword">if</span>(!isExists)&#123;</div><div class="line">            tableList.push(id);</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'tableList: '</span>, _i ,<span class="string">'-&gt;'</span>, tableList.join(<span class="string">','</span>));</div><div class="line">        deferred.resolve(&#123;<span class="attr">id</span>: id, <span class="attr">isExists</span>: isExists&#125;);  <span class="comment">// true 表示存在</span></div><div class="line">    &#125;, <span class="number">500</span>); </div><div class="line"></div><div class="line">    <span class="keyword">return</span> deferred.promise;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 调用</span></div><div class="line">test.createTable();</div></pre></td></tr></table></figure>
+<ul>
+<li>使用Q.all , arr 中的异步方法将同时执行, 所有执行完后返回结果<br>将上面的 <code>_getUniqTableId</code> 方法重写如下: </li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> _getUniqTableId = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> arr = [];</div><div class="line">    <span class="keyword">var</span> i = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</div><div class="line">        <span class="keyword">if</span>(i++ == <span class="number">150</span>)  <span class="keyword">break</span>; <span class="comment">// 测试的次数</span></div><div class="line">        (<span class="function"><span class="keyword">function</span>(<span class="params">_i</span>) </span>&#123;</div><div class="line">            <span class="keyword">var</span> id = _.random(<span class="number">0</span> ,<span class="number">10</span>);</div><div class="line">            arr[_i] = _isIdExists(id, _i);</div><div class="line">        &#125;)(i);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> Q.all(arr);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>使用 reduce 的写法:  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> _getUniqTableId = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> arr = [];</div><div class="line">    <span class="keyword">var</span> i = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</div><div class="line">        <span class="keyword">if</span>(i++ == <span class="number">150</span>)  <span class="keyword">break</span>; <span class="comment">// 测试的次数</span></div><div class="line">        (<span class="function"><span class="keyword">function</span>(<span class="params">_i</span>) </span>&#123;</div><div class="line">            <span class="keyword">var</span> id = _.random(<span class="number">0</span> ,<span class="number">10</span>);</div><div class="line">            arr[_i] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                <span class="keyword">return</span> _isIdExists(id, _i);</div><div class="line">            &#125;; </div><div class="line">        &#125;)(i);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">var</span> initialVal = <span class="number">0</span>; <span class="comment">// 这个值这里用不到</span></div><div class="line">    <span class="keyword">return</span> arr.reduce(<span class="function"><span class="keyword">function</span> (<span class="params">soFar, f</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> soFar.then(f).then(<span class="function"><span class="keyword">function</span>(<span class="params">rs</span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'rs: '</span> ,rs);</div><div class="line">            <span class="keyword">return</span> rs;</div><div class="line">        &#125;);</div><div class="line">    &#125;, Q(initialVal));</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>通过递归的方式获取tableList中不存在的id,将上面的 <code>_getUniqTableId</code> 方法重写如下:  </p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> _getUniqTableId = <span class="function"><span class="keyword">function</span>(<span class="params">_count</span>) </span>&#123;</div><div class="line">    tableList = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>]; <span class="comment">// 模拟已经存在的id</span></div><div class="line">    <span class="keyword">var</span> id = _.random(<span class="number">0</span>, <span class="number">10</span>);</div><div class="line">    <span class="keyword">return</span> _isIdExists(id).then(<span class="function"><span class="keyword">function</span>(<span class="params">rs</span>)</span>&#123;</div><div class="line">        <span class="keyword">if</span>(rs &amp;&amp; rs.isExists != <span class="literal">true</span>)&#123;</div><div class="line">            <span class="keyword">return</span> id;</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            _count = !_count  ? <span class="number">1</span> : (_count + <span class="number">1</span>);</div><div class="line">            <span class="keyword">if</span>(_count &gt; <span class="number">3</span>)&#123;  <span class="comment">// 最多递归获取3次</span></div><div class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'&#123;_getUniqTableId&#125;,获取唯一id的次数超过3次了!!!'</span>);</div><div class="line">            &#125;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'重复id: '</span> + id, <span class="string">' | count: '</span> + _count);</div><div class="line">            <span class="keyword">return</span> _getUniqTableId(_count);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>注: 如果这些函数是有前后依赖关系的, 最好使用拼接then 的方式</strong></li>
+</ul>
+<h3 id="基础写法"><a href="#基础写法" class="headerlink" title="基础写法"></a>基础写法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> Q = <span class="built_in">require</span>(<span class="string">'q'</span>);</div><div class="line"><span class="keyword">var</span> _ = <span class="built_in">require</span>(<span class="string">'underscore'</span>);</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 返回是否已锁, true: 已锁, false: 未锁</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setLock</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> isLock = _.random(<span class="number">0</span>, <span class="number">1</span>);  <span class="comment">// 随机值模拟锁</span></div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'isLock: '</span>, isLock);</div><div class="line">    <span class="keyword">var</span> defer = Q.defer();</div><div class="line">    <span class="keyword">if</span>(isLock === <span class="number">1</span>)&#123;</div><div class="line">        <span class="comment">//throw new Error('It is locked.');</span></div><div class="line">        defer.resolve(<span class="literal">true</span>); <span class="comment">// 已锁</span></div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        defer.resolve(<span class="literal">false</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> defer.promise;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">setLock().then(<span class="function"><span class="keyword">function</span>(<span class="params">isLock</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(isLock)&#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'已锁!'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;)</div><div class="line">.then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'test1'</span>);</div><div class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">err1</span>)</span>&#123;</div><div class="line">    <span class="comment">// 这个then 前面跑出的错误会在这里处理掉, 然后继续执行下面的then</span></div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'err1:'</span>, err1);</div><div class="line">&#125;)</div><div class="line">.then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'test2'</span>);</div><div class="line">&#125;)</div><div class="line">.then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'test3'</span>);</div><div class="line">    <span class="comment">// 这个错误会被catch, 而后面test4 不会执行</span></div><div class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'test3-ERR'</span>);  </div><div class="line">&#125;)</div><div class="line">.then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'test4'</span>);</div><div class="line">&#125;)</div><div class="line"><span class="comment">// 下面的catch 和fail 哪个写在前面,error时会执行哪个, done 则都会执行</span></div><div class="line">.catch(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'catch: '</span>, err);</div><div class="line">&#125;)</div><div class="line">.fail(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'fail: '</span>, err);</div><div class="line">&#125;)</div><div class="line">.done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'done....'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h4 id="疑问"><a href="#疑问" class="headerlink" title="疑问:"></a>疑问:</h4><ul>
+<li>fail 和 catch 区别??</li>
+<li>如何中断, 不执行后面的then, throw Error 或者then嵌套除外</li>
+</ul>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/04/14/2-Node-modules_q_2/" class="archive-article-date">
+  	<time datetime="2016-04-14T11:00:00.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-04-14</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/promise/">promise</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/nodejs/">nodejs</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/04/17/2-Node-simple_promise/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Nodejs promise的简单实现
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/14/2-Node-modules_q_1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Nodejs q模块使用1</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="2-Node-modules_q_2" data-title="Nodejs q模块使用2" data-url="http://zengxp0605.github.io/2016/04/14/2-Node-modules_q_2/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Jason Zeng
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Css/" style="font-size: 10px;">Css</a> <a href="/tags/Git/" style="font-size: 12.5px;">Git</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/js/" style="font-size: 17.5px;">js</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/memcache/" style="font-size: 10px;">memcache</a> <a href="/tags/movie/" style="font-size: 10px;">movie</a> <a href="/tags/music/" style="font-size: 10px;">music</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nodejs/" style="font-size: 20px;">nodejs</a> <a href="/tags/php/" style="font-size: 12.5px;">php</a> <a href="/tags/promise/" style="font-size: 15px;">promise</a> <a href="/tags/redis/" style="font-size: 12.5px;">redis</a> <a href="/tags/sublime/" style="font-size: 12.5px;">sublime</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/每天学点js/" style="font-size: 17.5px;">每天学点js</a> <a href="/tags/读书笔记/" style="font-size: 10px;">读书笔记</a> <a href="/tags/转载/" style="font-size: 12.5px;">转载</a>
+    			</div>
+    	</section>
+    
+
+    
+
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

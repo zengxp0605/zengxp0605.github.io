@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://zengxp0605.github.io">
+  <title>Node.js child_processs中的pawn和exec | Jason Zeng</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="spawn和exec 的使用Node.js的child_process模块中有两个方法spawn和exec，这两个方法都可以被用来开启一个子进程来执行其他的程序。一些Node.js的新手常常对这个两个方法感到很困惑：既然两个方法的功能一样，那么究竟应该选择哪个方法。在本文中，我们将一起来探索spawn和我exec方法的不同之处，以便你在将来能够选择正确的方法。
+child_process.spae">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js child_processs中的pawn和exec">
+<meta property="og:url" content="http://zengxp0605.github.io/2016/04/12/2-Node-[child_process]_spawn_vs_exec/index.html">
+<meta property="og:site_name" content="Jason Zeng">
+<meta property="og:description" content="spawn和exec 的使用Node.js的child_process模块中有两个方法spawn和exec，这两个方法都可以被用来开启一个子进程来执行其他的程序。一些Node.js的新手常常对这个两个方法感到很困惑：既然两个方法的功能一样，那么究竟应该选择哪个方法。在本文中，我们将一起来探索spawn和我exec方法的不同之处，以便你在将来能够选择正确的方法。
+child_process.spae">
+<meta property="og:updated_time" content="2016-11-06T13:07:35.198Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node.js child_processs中的pawn和exec">
+<meta name="twitter:description" content="spawn和exec 的使用Node.js的child_process模块中有两个方法spawn和exec，这两个方法都可以被用来开启一个子进程来执行其他的程序。一些Node.js的新手常常对这个两个方法感到很困惑：既然两个方法的功能一样，那么究竟应该选择哪个方法。在本文中，我们将一起来探索spawn和我exec方法的不同之处，以便你在将来能够选择正确的方法。
+child_process.spae">
+  
+  
+    <link rel="icon" href="/assets/images/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/assets/images/avatar.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Jason Zeng</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Jason&#39;s personal blog</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/archives">所有文章</a></li>
+	        
+				<li><a href="/about">关于</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/zengxp0605" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/shopping0605" title="weibo">weibo</a>
+		        
+					<a class="mail" target="_blank" href="mailto:xiaoping_zeng@foxmail.com" title="mail">mail</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Jason Zeng</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/assets/images/avatar.jpg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Jason Zeng</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Jason&#39;s personal blog</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/zengxp0605" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/shopping0605" title="weibo">weibo</a>
+			        
+						<a class="mail" target="_blank" href="mailto:xiaoping_zeng@foxmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-2-Node-[child_process]_spawn_vs_exec" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Node.js child_processs中的pawn和exec
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="spawn和exec-的使用"><a href="#spawn和exec-的使用" class="headerlink" title="spawn和exec 的使用"></a>spawn和exec 的使用</h4><p>Node.js的child_process模块中有两个方法spawn和exec，这两个方法都可以被用来开启一个子进程来执行其他的程序。一些Node.js的新手常常对这个两个方法感到很困惑：既然两个方法的功能一样，那么究竟应该选择哪个方法。在本文中，我们将一起来探索spawn和我exec方法的不同之处，以便你在将来能够选择正确的方法。</p>
+<p>child_process.spaen会返回一个带有stdout和stderr流的对象。你可以通过stdout流来读取子进程返回给Node.js的数据。stdout拥有’data’,’end’以及一般流所具有的事件。当你想要子进程返回大量数据给Node时，比如说图像处理，读取二进制数据等等，你最好使用spawn方法。</p>
+<p>child_process.spawn方法是“异步中的异步”，意思是在子进程开始执行时，它就开始从一个流总将数据从子进程返回给Node。</p>
+<p>下面是一个例子，比如说我们想从一个URL下载文件，我们选择使用curl工具，此时，我们就可以在Node中使用spawn运行curl工具，下面是具体代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 使用curl下载文件的函数</span></div><div class="line"><span class="keyword">var</span> download_file_curl = <span class="function"><span class="keyword">function</span>(<span class="params">file_url</span>) </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// 提取文件名</span></div><div class="line">    <span class="keyword">var</span> file_name = url.parse(file_url).pathname.split(<span class="string">'/'</span>).pop();</div><div class="line"></div><div class="line">    <span class="comment">// 创建一个可写流的实例</span></div><div class="line">    <span class="keyword">var</span> file = fs.createWriteStream(DOWNLOAD_DIR + file_name);</div><div class="line">    <span class="comment">// 使用spawn运行curl</span></div><div class="line">    <span class="keyword">var</span> curl = spawn(<span class="string">'curl'</span>, [file_url]);</div><div class="line"></div><div class="line">    <span class="comment">// 为spawn实例添加了一个data事件</span></div><div class="line">    curl.stdout.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123; file.write(data); &#125;);</div><div class="line"></div><div class="line">    <span class="comment">// 添加一个end监听器来关闭文件流</span></div><div class="line">    curl.stdout.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">      file.end();</div><div class="line">      <span class="built_in">console</span>.log(file_name + <span class="string">' downloaded to '</span> + DOWNLOAD_DIR);</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    <span class="comment">// 当子进程退出时，检查是否有错误，同时关闭文件流</span></div><div class="line">    curl.on(<span class="string">'exit'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">code</span>) </span>&#123;</div><div class="line">      <span class="keyword">if</span> (code != <span class="number">0</span>) &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'Failed: '</span> + code);</div><div class="line">      &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>child_process.exec方法会从子进程中返回一个完整的buffer。默认情况下，这个buffer的大小应该是200k。如果子进程返回的数据大小超过了200k，程序将会崩溃，同时显示错误信息“Error：maxBuffer exceeded”。你可以通过在exec的可选项中设置一个更大的buffer体积来解决这个问题，但是你不应该这样做，因为exec本来就不是用来返回很多数据的方法。对于有很多数据返回的情况，你应该使用上面的spawn方法。那么exec究竟是用来做什么的呢？我们可以使用它来运行程序然后返回结果的状态，而不是结果的数据。</p>
+<p>child_process.exec方法是“同步中的异步”，意思是尽管exec是异步的，它一定要等到子进程运行结束以后然后一次性返回所有的buffer数据。如果exec的buffer体积设置的不够大，它将会以一个“maxBuffer exceeded”错误失败告终。</p>
+<p>和上面一样，我们现在还是想要从一个URL下载文件。不同的是，我们现在要使用wget方法而不是curl方法，此时我们就需要使用exec方法在Node中执行wget命令，同时在子进程运行完毕后返回结果信息。下面是具体代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 使用wget下载文件的函数</span></div><div class="line"><span class="keyword">var</span> download_file_wget = <span class="function"><span class="keyword">function</span>(<span class="params">file_url</span>) </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// 提取文件名</span></div><div class="line">    <span class="keyword">var</span> file_name = url.parse(file_url).pathname.split(<span class="string">'/'</span>).pop();</div><div class="line">    <span class="comment">// 组合wget命令</span></div><div class="line">    <span class="keyword">var</span> wget = <span class="string">'wget -P '</span> + DOWNLOAD_DIR + <span class="string">' '</span> + file_url;</div><div class="line">    <span class="comment">// 使用exec执行wget命令</span></div><div class="line">  </div><div class="line">    <span class="keyword">var</span> child = exec(wget, <span class="function"><span class="keyword">function</span>(<span class="params">err, stdout, stderr</span>) </span>&#123;</div><div class="line">      <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</div><div class="line">      <span class="keyword">else</span> <span class="built_in">console</span>.log(file_name + <span class="string">' downloaded to '</span> + DOWNLOAD_DIR);</div><div class="line">    &#125;);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>现在，你应该已经很清楚spawn和exec之间的区别了。总结一下：当你想要从子进程返回大量数据时使用spawn，如果只是返回简单的状态信息，那么使用exec。</p>
+<blockquote>
+<p>原文地址: <a href="http://www.html-js.com/article/A-day-to-learn-to-talk-about-JavaScript-spawn-and-exec-Nodejs-in-the-childprocess-module?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="external">说说Node.js child_process模块中的spawn和exec方法 </a></p>
+</blockquote>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/04/12/2-Node-[child_process]_spawn_vs_exec/" class="archive-article-date">
+  	<time datetime="2016-04-12T12:13:39.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-04-12</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/nodejs/">nodejs</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/04/12/2-Node-stdout_redirect_to_file/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          nodejs stdout重定向到文件(日志写入)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/08/2-Node-modules_forever/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Nodejs forever模块使用</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="2-Node-[child_process]_spawn_vs_exec" data-title="Node.js child_processs中的pawn和exec" data-url="http://zengxp0605.github.io/2016/04/12/2-Node-[child_process]_spawn_vs_exec/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Jason Zeng
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Css/" style="font-size: 10px;">Css</a> <a href="/tags/Git/" style="font-size: 12.5px;">Git</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/js/" style="font-size: 17.5px;">js</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/memcache/" style="font-size: 10px;">memcache</a> <a href="/tags/movie/" style="font-size: 10px;">movie</a> <a href="/tags/music/" style="font-size: 10px;">music</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nodejs/" style="font-size: 20px;">nodejs</a> <a href="/tags/php/" style="font-size: 12.5px;">php</a> <a href="/tags/promise/" style="font-size: 15px;">promise</a> <a href="/tags/redis/" style="font-size: 12.5px;">redis</a> <a href="/tags/sublime/" style="font-size: 12.5px;">sublime</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/每天学点js/" style="font-size: 17.5px;">每天学点js</a> <a href="/tags/读书笔记/" style="font-size: 10px;">读书笔记</a> <a href="/tags/转载/" style="font-size: 12.5px;">转载</a>
+    			</div>
+    	</section>
+    
+
+    
+
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

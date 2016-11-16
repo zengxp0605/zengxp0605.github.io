@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://zengxp0605.github.io">
+  <title>exports和module.exports的理解 | Jason Zeng</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="要理解exports和module.exports,首先应该了解一下Node中js模块的编译过程
+朴灵在《深入浅出node.js》一书 “Javascript模块编译”小节中介绍:在编译的过程中,Node对获取的JavaScript文件内容进行了头尾包装,在头部添加了(function(exports, require, module, __filename, __dirname){ \n, 在尾">
+<meta property="og:type" content="article">
+<meta property="og:title" content="exports和module.exports的理解">
+<meta property="og:url" content="http://zengxp0605.github.io/2016/04/05/2-Node-exports_vs_module.exports/index.html">
+<meta property="og:site_name" content="Jason Zeng">
+<meta property="og:description" content="要理解exports和module.exports,首先应该了解一下Node中js模块的编译过程
+朴灵在《深入浅出node.js》一书 “Javascript模块编译”小节中介绍:在编译的过程中,Node对获取的JavaScript文件内容进行了头尾包装,在头部添加了(function(exports, require, module, __filename, __dirname){ \n, 在尾">
+<meta property="og:updated_time" content="2016-11-06T13:07:35.198Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="exports和module.exports的理解">
+<meta name="twitter:description" content="要理解exports和module.exports,首先应该了解一下Node中js模块的编译过程
+朴灵在《深入浅出node.js》一书 “Javascript模块编译”小节中介绍:在编译的过程中,Node对获取的JavaScript文件内容进行了头尾包装,在头部添加了(function(exports, require, module, __filename, __dirname){ \n, 在尾">
+  
+  
+    <link rel="icon" href="/assets/images/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/assets/images/avatar.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Jason Zeng</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Jason&#39;s personal blog</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/archives">所有文章</a></li>
+	        
+				<li><a href="/about">关于</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/zengxp0605" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/shopping0605" title="weibo">weibo</a>
+		        
+					<a class="mail" target="_blank" href="mailto:xiaoping_zeng@foxmail.com" title="mail">mail</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Jason Zeng</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/assets/images/avatar.jpg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Jason Zeng</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Jason&#39;s personal blog</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/zengxp0605" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/shopping0605" title="weibo">weibo</a>
+			        
+						<a class="mail" target="_blank" href="mailto:xiaoping_zeng@foxmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-2-Node-exports_vs_module.exports" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      exports和module.exports的理解
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="要理解exports和module-exports-首先应该了解一下Node中js模块的编译过程"><a href="#要理解exports和module-exports-首先应该了解一下Node中js模块的编译过程" class="headerlink" title="要理解exports和module.exports,首先应该了解一下Node中js模块的编译过程"></a>要理解exports和module.exports,首先应该了解一下Node中js模块的编译过程</h4><blockquote>
+<p>朴灵在《深入浅出node.js》一书 “Javascript模块编译”小节中介绍:<br>在编译的过程中,Node对获取的JavaScript文件内容进行了头尾包装,在头部添加了<br><code>(function(exports, require, module, __filename, __dirname){ \n</code>, 在尾部添加了 <code>\n});</code> ;</p>
+</blockquote>
+<p>由此可以知道,我们代码中写的一系列方法,如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">exports.add = function(a, b)&#123;</div><div class="line">    return a + b;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">exports.sub = function(a, b)&#123;</div><div class="line">    return a - b;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>会被包装成:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">(function(exports, require, module, __filename, __dirname)&#123;</div><div class="line">    exports.add = function(a, b)&#123;</div><div class="line">        return a + b;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    exports.sub = function(a, b)&#123;</div><div class="line">        return a - b;</div><div class="line">    &#125;;</div><div class="line">&#125;)(module.exports, require, module, module.filename, currentDirname);</div><div class="line">// 这里传入的参数是我个人的理解</div></pre></td></tr></table></figure></p>
+<p>来执行的,也就更好的理解 <strong>exports就是module.exports的引用</strong> 这个说法了;</p>
+<p>所以,如果直接给exports赋值而不是添加属性的话,是无法正常导出方法的,如model.js定义为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 此时 exports指向了新的内存块, 与 module.exports 的引用关系断裂</div><div class="line">exports = &#123;</div><div class="line">    add: function()&#123;&#125;,</div><div class="line">    sub: function()&#123;&#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var m = require(&apos;./model&apos;);</div><div class="line">console.log(m); // 这里m 是空对象</div><div class="line">console.log(typeof m.add); // undefined</div></pre></td></tr></table></figure>
+<p>以上直接给exports赋值无法导出的原因是: </p>
+<blockquote>
+<p>exports对象是通过形参的方式传入的,直接赋值给形参会改变形参的引用,但是并不能改变作用域外的值.   </p>
+</blockquote>
+<p>具体参看文章最后<a href="#fun">js对象引用</a></p>
+<h4 id="以下写法是两种方法是可行的"><a href="#以下写法是两种方法是可行的" class="headerlink" title="以下写法是两种方法是可行的:"></a>以下写法是两种方法是可行的:</h4><p><strong>1. 使用exports逐个添加属性</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">exports.add = function(a, b)&#123;</div><div class="line">    return a + b;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">exports.sub = function(a, b)&#123;</div><div class="line">    return a - b;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p><strong>2. 新建对象,最后将对象赋值给 module.exports</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;</div><div class="line">    id: &apos;test&apos;,</div><div class="line">    add: function()&#123;&#125;,</div><div class="line">    sub: function()&#123;&#125;,</div><div class="line">&#125;;</div><div class="line"></div><div class="line"></div><div class="line">module.exports = obj;</div></pre></td></tr></table></figure></p>
+<p>或者直接给 module.exports赋值一个对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">module.exports = &#123;</div><div class="line">    id: &apos;test&apos;,</div><div class="line">    add: function()&#123;&#125;,</div><div class="line">    sub: function()&#123;&#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>对于很多人使用的 exports = module.exports = someObject, 个人觉得有些多余了,这样赋值后,以下两种方式都无法使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var someObject = &#123;</div><div class="line">    add: function()&#123;&#125;,</div><div class="line">    sub: function()&#123;&#125;,</div><div class="line">&#125;;</div><div class="line"></div><div class="line">exports.test = function()&#123;&#125;;  // 无法导出此方法</div><div class="line"></div><div class="line">module.exports.foo = function()&#123;&#125;;  // 无法导出此方法</div><div class="line"></div><div class="line">someObject.fun = function()&#123;&#125;; // 只能这么使用 </div><div class="line"></div><div class="line">exports = module.exports = someObject;</div></pre></td></tr></table></figure></p>
+<h4 id="最后-再简要说明下-js调用函数时对象传参"><a href="#最后-再简要说明下-js调用函数时对象传参" class="headerlink" title="最后,再简要说明下 js调用函数时对象传参"></a>最后,再简要说明下 <a href="#fun" name="fun" id="fun">js调用函数时对象传参</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&apos;use strict&apos;;</div><div class="line">var globalModule = &#123;</div><div class="line">    scope : &apos;global&apos;,</div><div class="line">    exports : &#123;</div><div class="line">        scope : &apos;global&apos;,</div><div class="line">        fun : function()&#123;console.log(&apos;globalModule.exports.fun&apos;);&#125;,</div><div class="line">    &#125;,</div><div class="line">&#125;;</div><div class="line"></div><div class="line">(function(exports, module)&#123;</div><div class="line">    exports.test = &apos;my-test&apos;;   // 可以给引用增加属性</div><div class="line">    exports.scope = &apos;global-mine&apos;;  // 也可以修改属性</div><div class="line">    console.log(exports);  // output: Object &#123;scope: &quot;global-mine&quot;, test: &quot;my-test&quot;, ...&#125;</div><div class="line">    // 直接赋值给形参会改变形参的引用, 使其指向新的内存块</div><div class="line">    // 这里只要进行其它初始化的操作都会导致同样的效果</div><div class="line">    exports = &#123;</div><div class="line">        scope : &apos;my-module&apos;,</div><div class="line">    &#125;;</div><div class="line">    console.log(exports); // output: Object &#123;scope: &quot;my-module&quot;&#125;</div><div class="line"></div><div class="line">    console.log(module.exports); // output: Object &#123;scope: &quot;global-mine&quot;, test: &quot;my-test&quot;, ...&#125;</div><div class="line"></div><div class="line">&#125;)(globalModule.exports, globalModule);</div></pre></td></tr></table></figure>
+<h5 id="以及关于引用对象的补充示例说明"><a href="#以及关于引用对象的补充示例说明" class="headerlink" title="以及关于引用对象的补充示例说明:"></a>以及关于引用对象的补充示例说明:</h5><ul>
+<li>调用函数时,通过参数传递对象时,传递的即是该对象的引用, 也就是说形参是实参的引用,它们指向同一内存地址</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">var a = &#123;name: &apos;aaa&apos;&#125;;</div><div class="line">var b = a; // 这里 b 即是 a 的引用,它们指向同一内存地址</div><div class="line"></div><div class="line">console.log(a);     // output: Object &#123;name: &quot;aaa&quot;&#125;</div><div class="line">console.log(b);     // output: Object &#123;name: &quot;aaa&quot;&#125;</div><div class="line"></div><div class="line">b.name = &apos;aaabbb&apos;;   // 这里改变了同一个内存地址中的值,因此下面两行输出仍然一致</div><div class="line">console.log(a);     // output: Object &#123;name: &quot;aaabbb&quot;&#125;</div><div class="line">console.log(b);     // output: Object &#123;name: &quot;aaabbb&quot;&#125;</div><div class="line"></div><div class="line">var b = &#123;name: &apos;bbb&apos;&#125;;   // 这里b引用了一个新的对象, 即指向了另一个内存地址</div><div class="line">console.log(a);     //  这里a没有被上一赋值改变,仍指向原来的内存地址 output: Object &#123;name: &quot;aaabbb&quot;&#125;</div><div class="line">console.log(b);     // 这里b是新的内存指向, output: Object &#123;name: &quot;bbb&quot;&#125;</div></pre></td></tr></table></figure>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><ul>
+<li><a href="https://cnodejs.org/topic/5231a630101e574521e45ef8" target="_blank" rel="external">exports 和 module.exports 的区别</a></li>
+<li>朴灵 &lt;&lt;深入浅出node.js&gt;&gt;</li>
+</ul>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/04/05/2-Node-exports_vs_module.exports/" class="archive-article-date">
+  	<time datetime="2016-04-05T04:26:24.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-04-05</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/nodejs/">nodejs</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/04/08/2-Node-modules_pm2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Nodejs pm2模块使用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/04/sublime插件使用/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">sublime插件使用</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="2-Node-exports_vs_module.exports" data-title="exports和module.exports的理解" data-url="http://zengxp0605.github.io/2016/04/05/2-Node-exports_vs_module.exports/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Jason Zeng
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Css/" style="font-size: 10px;">Css</a> <a href="/tags/Git/" style="font-size: 12.5px;">Git</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/js/" style="font-size: 17.5px;">js</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/memcache/" style="font-size: 10px;">memcache</a> <a href="/tags/movie/" style="font-size: 10px;">movie</a> <a href="/tags/music/" style="font-size: 10px;">music</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nodejs/" style="font-size: 20px;">nodejs</a> <a href="/tags/php/" style="font-size: 12.5px;">php</a> <a href="/tags/promise/" style="font-size: 15px;">promise</a> <a href="/tags/redis/" style="font-size: 12.5px;">redis</a> <a href="/tags/sublime/" style="font-size: 12.5px;">sublime</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/每天学点js/" style="font-size: 17.5px;">每天学点js</a> <a href="/tags/读书笔记/" style="font-size: 10px;">读书笔记</a> <a href="/tags/转载/" style="font-size: 12.5px;">转载</a>
+    			</div>
+    	</section>
+    
+
+    
+
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

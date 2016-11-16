@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://zengxp0605.github.io">
+  <title>Linux shell命令 | Jason Zeng</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="cat 输出文件内容
+功能：把一个或者多个文件（或者标准输入）连接在一起，并标准输出。（Concatenate FILE(s), or standard input, to standard output.）cat命令常用来显示文件内容，或者将几个文件连接起来显示，或者从标准输入读取内容并显示。它常与重定向符号配合使用。cat是Concatenate的缩写。  
+
+
+语法：cat   [选项]">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux shell命令">
+<meta property="og:url" content="http://zengxp0605.github.io/2016/05/11/3-Linux-shell/index.html">
+<meta property="og:site_name" content="Jason Zeng">
+<meta property="og:description" content="cat 输出文件内容
+功能：把一个或者多个文件（或者标准输入）连接在一起，并标准输出。（Concatenate FILE(s), or standard input, to standard output.）cat命令常用来显示文件内容，或者将几个文件连接起来显示，或者从标准输入读取内容并显示。它常与重定向符号配合使用。cat是Concatenate的缩写。  
+
+
+语法：cat   [选项]">
+<meta property="og:updated_time" content="2016-11-16T06:32:56.202Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux shell命令">
+<meta name="twitter:description" content="cat 输出文件内容
+功能：把一个或者多个文件（或者标准输入）连接在一起，并标准输出。（Concatenate FILE(s), or standard input, to standard output.）cat命令常用来显示文件内容，或者将几个文件连接起来显示，或者从标准输入读取内容并显示。它常与重定向符号配合使用。cat是Concatenate的缩写。  
+
+
+语法：cat   [选项]">
+  
+  
+    <link rel="icon" href="/assets/images/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/assets/images/avatar.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Jason Zeng</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Jason&#39;s personal blog</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/archives">所有文章</a></li>
+	        
+				<li><a href="/about">关于</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/zengxp0605" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/shopping0605" title="weibo">weibo</a>
+		        
+					<a class="mail" target="_blank" href="mailto:xiaoping_zeng@foxmail.com" title="mail">mail</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Jason Zeng</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/assets/images/avatar.jpg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Jason Zeng</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Jason&#39;s personal blog</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/zengxp0605" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/shopping0605" title="weibo">weibo</a>
+			        
+						<a class="mail" target="_blank" href="mailto:xiaoping_zeng@foxmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-3-Linux-shell" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux shell命令
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="cat-输出文件内容"><a href="#cat-输出文件内容" class="headerlink" title="cat 输出文件内容"></a>cat 输出文件内容</h3><blockquote>
+<p>功能：把一个或者多个文件（或者标准输入）连接在一起，并标准输出。（Concatenate FILE(s), or standard input, to standard output.）<br>cat命令常用来显示文件内容，或者将几个文件连接起来显示，或者从标准输入读取内容并显示。它常与重定向符号配合使用。cat是Concatenate的缩写。  </p>
+</blockquote>
+<ul>
+<li>语法：cat   [选项]   [文件]  </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">短选项 长选项 涵义</div><div class="line">-A  --show-all  等于-vET</div><div class="line">-b  --number-nonblank   对非空输出行编号</div><div class="line">-e      等于-vE</div><div class="line">-E  --show-ends 在每行结束处显示&quot;$&quot;</div><div class="line">-n  --number    对输出的所有行编号</div><div class="line">-s  --squeeze-blank 不输出多行空行</div><div class="line">-t      与-vT 等价</div><div class="line">-T  --show-tabs 将跳格字符显示为^I</div><div class="line">-v  --show-nonprinting  使用^ 和M- 引用，除了LFD和 TAB 之外</div></pre></td></tr></table></figure>
+<h3 id="head-显示文件开头若干行内容"><a href="#head-显示文件开头若干行内容" class="headerlink" title="head 显示文件开头若干行内容"></a>head 显示文件开头若干行内容</h3><blockquote>
+<p> 功能：head命令显示文件开头若干行（默认10行）。<br> 将每个指定文件的头10 行显示到标准输出。如果指定了多于一个文件，在每一段输出前会给出文件名作为文件头。如果不指定文件，或者文件为”-“，则从标准输入读取数据。  </p>
+</blockquote>
+<ul>
+<li>语法：head   [选项]   [文件]</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">短选项 长选项 涵义</div><div class="line">-c [-]K --bytes=[-]K    每个文件显示开头K字节。若使用了-K，则显示文件全部内容，除去最后K字节</div><div class="line">-n [-]K --lines=[-]K    每个文件显示开头K行。若使用了-K，则显示文件全部内容，除去最后K行</div><div class="line">-q  --quiet 或 --silent  不显示包含给定文件名的文件头</div><div class="line">-v  --verbose   总是显示包含给定文件名的文件头（默认）</div></pre></td></tr></table></figure>
+<h3 id="tail-显示文件最后若干行内容"><a href="#tail-显示文件最后若干行内容" class="headerlink" title="tail 显示文件最后若干行内容"></a>tail 显示文件最后若干行内容</h3><blockquote>
+<p> 功能：tail命令可以输出文件的尾部内容，默认情况下它显示文件的最后十行。<br> 显示每个指定文件的最后10 行到标准输出。若指定了多于一个文件，程序会在每段输出的开始添加相应文件名作为头。如果不指定文件或文件为”-“ ，则从标准输入读取数据。<br> 它常用来动态监视文件的尾部内容的增长情况，比如用来监视日志文件的变化。</p>
+</blockquote>
+<ul>
+<li>语法：tail   [选项]   [文件]</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">短选项 长选项 涵义</div><div class="line">-c [+] K    --bytes=[+] K   输出最后 K 字节；另外，使用-c +K 从每个文件的第 K 字节输出</div><div class="line">-n [+] K    --lines=[+] K   输出最后 K 行，代替最后10 行；使用-n +K 从每个文件的第 K 字节输出</div><div class="line">-f  --follow=descriptor</div><div class="line">--follow=name   descriptor是 --follow 默认值，所以 -f 等价 --follow 等价--follow=descriptor</div><div class="line">即时输出文件变化后追加的数据。</div><div class="line">tail -f file 动态跟踪文件file的增长情况，tail会每隔一秒去检查一下文件是否增加新的内容。如果增加就追加在原来的输出后面显示。但这种情况，必须保证在执行tail命令时，文件已经存在。</div><div class="line">如果想终止 tail -f 输出，按 Ctrl+C 中断tail程序。如果按Ctrl+C不能中断输出，那么可以在别的终端上执行 killall tail 强行终止。</div><div class="line">    --pid=PID   同 -f 使用，当 PID 所对应的进程死去后，终止。</div><div class="line">    ---retry    即使目标文件不可访问依然试图打开；在与参数-f 或 --follow=name 同时使用时常常有用。</div><div class="line">-F  --follow=name --retry   与 -f 相同，也是动态跟踪文件的变化，不同的是执行此命令时文件可以不存在。</div><div class="line">    --max-unchanged-stats=N N 默认为5，使用--follow=name，重新打开一个在 N 次迭代后没有改变大小的文件来看它是否被解除连接或重命名（这是循环日志文件的通常情况）。</div><div class="line">由于有inotify，这个选项很少使用。</div><div class="line">-s S    --sleep-interval=S  与 -f 合用,表示在每次反复的间隔休眠 S 秒</div><div class="line">对于 --pid=PID ，每隔 S 秒检查进程。</div><div class="line">-q  --quiet 或 --silent  不输出文件名</div><div class="line">-v  --verbose   总是输出给出文件名的首部</div></pre></td></tr></table></figure>
+<h3 id="wc-统计文件行数"><a href="#wc-统计文件行数" class="headerlink" title="wc 统计文件行数"></a>wc 统计文件行数</h3><blockquote>
+<p>说明：该命令统计给定文件中的字节数、字数、行数。如果没有给出文件名，则从标准输入读取。wc同时也给出所有指定文件的总统计数。字是由空格字符区分开的最大字符串。</p>
+</blockquote>
+<ul>
+<li>语法：wc  [选项]  [文件]</li>
+</ul>
+<p>该命令各选项含义如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">　　- c 统计字节数。</div><div class="line"></div><div class="line">　　- l 统计行数。</div><div class="line"></div><div class="line">　　- w 统计字数。</div></pre></td></tr></table></figure></p>
+<h3 id="其他常用命令"><a href="#其他常用命令" class="headerlink" title="其他常用命令"></a>其他常用命令</h3><ol>
+<li><p>查看端口占用: <code>netstat -tplne</code></p>
+</li>
+<li><p>查看文件夹占用空间 du(disk usage)</p>
+<ul>
+<li><code>du -sh</code>  # 查看当前目录总共占的容量。而不单独列出各子项占用的容量</li>
+<li><code>du -lh --max-depth=1</code>  # 查看当前目录下一级子文件和子目录占用的磁盘容量。</li>
+</ul>
+</li>
+<li><p>查看设备的空间使用率: <code>df -lh</code></p>
+</li>
+</ol>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/05/11/3-Linux-shell/" class="archive-article-date">
+  	<time datetime="2016-05-11T07:07:00.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-05-11</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/Linux/">Linux</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/07/05/9-vscode-use/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          VSCode 使用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/19/1-Js-EveryDay-Replacing_switch_statements_with_Object_literals/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">每天学点js-用对象属性替换switch</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="3-Linux-shell" data-title="Linux shell命令" data-url="http://zengxp0605.github.io/2016/05/11/3-Linux-shell/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Jason Zeng
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Css/" style="font-size: 10px;">Css</a> <a href="/tags/Git/" style="font-size: 12.5px;">Git</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/js/" style="font-size: 17.5px;">js</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/memcache/" style="font-size: 10px;">memcache</a> <a href="/tags/movie/" style="font-size: 10px;">movie</a> <a href="/tags/music/" style="font-size: 10px;">music</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nodejs/" style="font-size: 20px;">nodejs</a> <a href="/tags/php/" style="font-size: 12.5px;">php</a> <a href="/tags/promise/" style="font-size: 15px;">promise</a> <a href="/tags/redis/" style="font-size: 12.5px;">redis</a> <a href="/tags/sublime/" style="font-size: 12.5px;">sublime</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/每天学点js/" style="font-size: 17.5px;">每天学点js</a> <a href="/tags/读书笔记/" style="font-size: 10px;">读书笔记</a> <a href="/tags/转载/" style="font-size: 12.5px;">转载</a>
+    			</div>
+    	</section>
+    
+
+    
+
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://zengxp0605.github.io">
+  <title>Jason Zeng</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="tech blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Jason Zeng">
+<meta property="og:url" content="http://zengxp0605.github.io/index.html">
+<meta property="og:site_name" content="Jason Zeng">
+<meta property="og:description" content="tech blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jason Zeng">
+<meta name="twitter:description" content="tech blog">
+  
+  
+    <link rel="icon" href="/assets/images/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/assets/images/avatar.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Jason Zeng</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Jason&#39;s personal blog</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/archives">所有文章</a></li>
+	        
+				<li><a href="/about">关于</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/zengxp0605" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/shopping0605" title="weibo">weibo</a>
+		        
+					<a class="mail" target="_blank" href="mailto:xiaoping_zeng@foxmail.com" title="mail">mail</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Jason Zeng</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/assets/images/avatar.jpg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Jason Zeng</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Jason&#39;s personal blog</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/zengxp0605" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/shopping0605" title="weibo">weibo</a>
+			        
+						<a class="mail" target="_blank" href="mailto:xiaoping_zeng@foxmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        
+  
+    <article id="post-2-Node-logger-tracer" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/16/2-Node-logger-tracer/">nodejs 日志输出-追踪文件名,方法名及行号</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>参考库: <a href="https://github.com/baryon/tracer" target="_blank" rel="external">baryon/tracer</a></p>
+</blockquote>
+<h2 id="通过Error对象追踪调用栈-获取到调用方法所在的问文件-方法名称-及行号等"><a href="#通过Error对象追踪调用栈-获取到调用方法所在的问文件-方法名称-及行号等" class="headerlink" title="通过Error对象追踪调用栈, 获取到调用方法所在的问文件,方法名称,及行号等"></a>通过Error对象追踪调用栈, 获取到调用方法所在的问文件,方法名称,及行号等</h2><ul>
+<li>测试代码如下: </li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Logger</span> </span>&#123;</div><div class="line">    <span class="keyword">constructor</span>() &#123;&#125;</div><div class="line"></div><div class="line">    <span class="keyword">static</span> log(msg) &#123;</div><div class="line">        <span class="keyword">let</span> stackInfoStr = stackInfo();</div><div class="line">        msg = <span class="string">`<span class="subst">$&#123;stackInfoStr.file&#125;</span>:<span class="subst">$&#123;stackInfoStr.line&#125;</span> (<span class="subst">$&#123;stackInfoStr.method&#125;</span>) <span class="subst">$&#123;msg&#125;</span>`</span>;</div><div class="line">        <span class="keyword">let</span> time = (<span class="keyword">new</span> <span class="built_in">Date</span>).toLocaleString();</div><div class="line">        <span class="built_in">console</span>.log(time + <span class="string">' '</span> + msg);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 追踪日志输出文件名,方法名,行号等信息</div><div class="line"> * @returns Object</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">stackInfo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line">    <span class="keyword">var</span> stackReg = <span class="regexp">/at\s+(.*)\s+\((.*):(\d*):(\d*)\)/i</span>;</div><div class="line">    <span class="keyword">var</span> stackReg2 = <span class="regexp">/at\s+()(.*):(\d*):(\d*)/i</span>;</div><div class="line">    <span class="keyword">var</span> stacklist = (<span class="keyword">new</span> <span class="built_in">Error</span>()).stack.split(<span class="string">'\n'</span>).slice(<span class="number">3</span>);</div><div class="line">    <span class="keyword">var</span> s = stacklist[<span class="number">0</span>];</div><div class="line">    <span class="keyword">var</span> sp = stackReg.exec(s) || stackReg2.exec(s);</div><div class="line">    <span class="keyword">var</span> data = &#123;&#125;;</div><div class="line">    <span class="keyword">if</span> (sp &amp;&amp; sp.length === <span class="number">5</span>) &#123;</div><div class="line">        data.method = sp[<span class="number">1</span>];</div><div class="line">        data.path = sp[<span class="number">2</span>];</div><div class="line">        data.line = sp[<span class="number">3</span>];</div><div class="line">        data.pos = sp[<span class="number">4</span>];</div><div class="line">        data.file = path.basename(data.path);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> data;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">testFun</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    Logger.log(<span class="string">'test string'</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">testFun();</div><div class="line"><span class="comment">// output: 2016-11-16 14:10:28 tmp.js:38 (testFun) test string</span></div></pre></td></tr></table></figure>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/11/16/2-Node-logger-tracer/" class="archive-article-date">
+  	<time datetime="2016-11-16T12:13:54.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-16</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/nodejs/">nodejs</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-2-Node-multi-promise-type" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/16/2-Node-multi-promise-type/">nodejs 多种promise库混用的写法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul>
+<li><p>由于一些老的项目使用<code>Q</code>模块封装promise, 现在使用新的<code>bluebird</code>做的项目需要使用到原来封装的库,这时有些代码可能会出现无法兼容的问题,<br>可以将原来的Q封装转换为 <code>bluebird</code></p>
+</li>
+<li><p>切换promise库的原因是Q比<code>bluebird</code>速度慢,并且内存占用较大,最重要的是Q的promise链在没有<code>.catch</code> 也没有 <code>.done</code>时,<br>内部抛出的错误没有任何提示,容易导致内存飙升, 目前6.x版本原生的Promise对象速度也比较快的,但是没有捕获的错误也是没有提示,而<code>bluebird</code>会有错误提示<br><code>Unhandled rejection...</code></p>
+</li>
+</ul>
+<h3 id="以Q开头的Promise链-可以以Q的方式结束"><a href="#以Q开头的Promise链-可以以Q的方式结束" class="headerlink" title="以Q开头的Promise链, 可以以Q的方式结束"></a>以Q开头的Promise链, 可以以Q的方式结束</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> <span class="built_in">Promise</span> = <span class="built_in">require</span>(<span class="string">'bluebird'</span>);</div><div class="line"><span class="keyword">const</span> Q = <span class="built_in">require</span>(<span class="string">'q'</span>);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">q1</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> deferred = Q.defer();</div><div class="line">    <span class="keyword">if</span> (<span class="built_in">Math</span>.random() &lt; <span class="number">0.5</span>) &#123;</div><div class="line">        deferred.reject(<span class="string">'q1 test err'</span>);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        deferred.resolve(<span class="literal">true</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> deferred.promise;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">b1</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="built_in">Math</span>.random() &lt; <span class="number">0.5</span>) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="built_in">Promise</span>.resolve(<span class="number">1</span>);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(<span class="string">'b1 test err'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">q1().then(<span class="function">(<span class="params">rs</span>) =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'q1 rs: '</span>, rs);</div><div class="line">    <span class="keyword">return</span> b1();</div><div class="line">&#125;).then(<span class="function">(<span class="params">rs</span>) =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'b1 rs: '</span>, rs);</div><div class="line">&#125;).fail(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'err: '</span>, err);</div><div class="line">&#125;).done();</div></pre></td></tr></table></figure>
+<h3 id="以bluebird开头的Promise链-则以bluebird的方式结束-bluebird没有提供-fail方法-并且不建议使用-done"><a href="#以bluebird开头的Promise链-则以bluebird的方式结束-bluebird没有提供-fail方法-并且不建议使用-done" class="headerlink" title="以bluebird开头的Promise链, 则以bluebird的方式结束(bluebird没有提供 .fail方法,并且不建议使用.done)"></a>以<code>bluebird</code>开头的Promise链, 则以<code>bluebird</code>的方式结束(bluebird没有提供 .fail方法,并且不建议使用.done)</h3><ul>
+<li>这里没有捕获错误, 但是无论<code>b1</code>,<code>q1</code>方法抛出错误后,bluebird 会有错误提示</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">b1().then(<span class="function">(<span class="params">rs</span>) =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'b1 rs: '</span>, rs);</div><div class="line">    <span class="keyword">return</span> q1();</div><div class="line">&#125;).then(<span class="function">(<span class="params">rs</span>) =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'q1 rs: '</span>, rs);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/11/16/2-Node-multi-promise-type/" class="archive-article-date">
+  	<time datetime="2016-11-16T12:13:54.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-16</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/nodejs/">nodejs</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-8-Css-multiple-columns-equal-height" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/12/8-Css-multiple-columns-equal-height/">Css 多列等高设置技巧</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Css-多列等高设置技巧"><a href="#Css-多列等高设置技巧" class="headerlink" title="Css 多列等高设置技巧"></a>Css 多列等高设置技巧</h2><blockquote>
+<p>参考: <a href="http://www.cnblogs.com/2050/archive/2012/07/31/2616460.html" target="_blank" rel="external">http://www.cnblogs.com/2050/archive/2012/07/31/2616460.html</a></p>
+</blockquote>
+<h3 id="布局方案"><a href="#布局方案" class="headerlink" title="布局方案"></a>布局方案</h3><p>等高布局有几种不同的方法，但目前为止我认为浏览器兼容最好最简便的应该是padding补偿法。首先把列的padding-bottom设为一个足够大的值，再把列的margin-bottom设一个与前面的padding-bottom的正值相抵消的负值，父容器设置超出隐藏，这样子父容器的高度就还是它里面的列没有设定padding-bottom时的高度，当它里面的任一列高度增加了，则父容器的高度被撑到它里面最高那列的高度，其他比这列矮的列则会用它们的padding-bottom来补偿这部分高度差。因为背景是可以用在padding占用的空间里的，而且边框也是跟随padding变化的，所以就成功的完成了一个障眼法。</p>
+<ul>
+<li>效果图</li>
+</ul>
+<p><img src="/assets/images/3-css-1.png" alt="效果图" title="css多列等高"></p>
+<ul>
+<li>代码如下  </li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>高度自适应布局<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line">body&#123; padding:0; margin:0; color:#f00;&#125;</div><div class="line">.container&#123; margin:0 auto; width:600px; border:3px solid #00C;</div><div class="line">    overflow:hidden; /*这个超出隐藏的声明在IE6里不写也是可以的*/</div><div class="line">&#125;</div><div class="line">.left&#123; float:left; width:150px; background:#B0B0B0;</div><div class="line">    padding-bottom:2000px;</div><div class="line">    margin-bottom:-2000px;</div><div class="line">&#125;</div><div class="line">.right&#123; float:left; width:450px; background:#6CC;</div><div class="line">   padding-bottom:2000px;</div><div class="line">   margin-bottom:-2000px;</div><div class="line">&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span>我是left<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span>我是right<span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span>现在我的高度比left高，但left用它的padding-bottom补偿了这部分高度<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"clear:both;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"clear:both;background:pink;"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span> 我是后面的内容...<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/11/12/8-Css-multiple-columns-equal-height/" class="archive-article-date">
+  	<time datetime="2016-11-12T04:01:00.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-12</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Css/">Css</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/Git/">Git</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-1-Js-EveryDay-Object_Key_Sort" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/08/1-Js-EveryDay-Object_Key_Sort/">每天学点js-js对象属性排序</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="js中的对象根据属性排序后输出"><a href="#js中的对象根据属性排序后输出" class="headerlink" title="js中的对象根据属性排序后输出"></a>js中的对象根据属性排序后输出</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sortObj</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> keys = <span class="built_in">Object</span>.keys(obj);</div><div class="line"></div><div class="line">    keys.sort();</div><div class="line"></div><div class="line">    <span class="keyword">var</span> rs = &#123;&#125;;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; keys.length; i++) &#123;</div><div class="line">        <span class="keyword">var</span> _key = keys[i];</div><div class="line">        rs[_key] = obj[_key];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> rs;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj = &#123; <span class="attr">x</span>: <span class="number">2</span>, <span class="attr">z</span>: <span class="number">1</span>, <span class="attr">y</span>: <span class="number">3</span> &#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> sobj = sortObj(obj);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(obj);    <span class="comment">// 输出  &#123;x:2，z:1, y:3&#125;</span></div><div class="line"></div><div class="line"><span class="comment">// 排序完成</span></div><div class="line"><span class="built_in">console</span>.log(sobj);   <span class="comment">//  &#123;x: 2, y: 3, z: 1&#125;</span></div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/08/08/1-Js-EveryDay-Object_Key_Sort/" class="archive-article-date">
+  	<time datetime="2016-08-08T02:35:00.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-08-08</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每天学点js/">每天学点js</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/js/">js</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-9-转-javascript_the_good_parts" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/07/9-转-javascript_the_good_parts/">JavaScript语言精粹</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>转自: <a href="https://github.com/qibaoguang/Study-Step-by-Step/blob/master/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/javascript_the_good_parts.md">https://github.com/qibaoguang/Study-Step-by-Step/blob/master/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/javascript_the_good_parts.md</a></p>
+</blockquote>
+<h1 id="JavaScript语言精粹"><a href="#JavaScript语言精粹" class="headerlink" title="JavaScript语言精粹"></a>JavaScript语言精粹</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>约定：=&gt; 表示参考相关文章或书籍; JS是JavaScript的缩写。</p>
+<p>本书专注于JavaScript的精华部分，同时会偶尔警告要去避免的糟粕部分。作者提炼出的JavaScript精华子集，更可靠，更易读，更易于维护。</p>
+<p>本书的目的是揭示JavaScript中的精华，让大家知道它是一门杰出的动态编程语言。</p>
+<p><a href="http://javascript.crockford.com/javascript.html">JavaScript：世界上最被误解的语言</a></p>
+<h3 id="第1章-精华"><a href="#第1章-精华" class="headerlink" title="第1章 精华"></a>第1章 精华</h3><ul>
+<li><p>为什么要使用JavaScript语言</p>
+<ol>
+<li>你没有选择，JavaScript是唯一一门所有浏览器都可以识别的语言。</li>
+<li>JavaScript有缺陷，但它真的很优秀。轻量级又富有表现力，一旦熟练掌握就能体会到函数式编程的乐趣。</li>
+</ol>
+</li>
+<li><p>分析JavaScript</p>
+</li>
+</ul>
+<p>JavaScript优秀的思想：函数，弱类型，动态对象，对象字面量。糟糕的思想：基于全局变量的编程模型。</p>
+<p>函数：基于词法来划分作用域，而不是动态划分作用域 =&gt;《JavaScript权威指南》第5章“8.8.1 词法作用域”。</p>
+<p>弱类型：强类型允许编译器在编译时检测错误。事实证明，强类型并不会让你的测试工作变得轻松。弱类型是自由的，不需要建立复杂的类层次，也不用做强制类型转换。</p>
+<p>对象字面量：通过列出对象的组成部分，它们就能简单地被创建出来。JSON的灵感来源于此（作者是JSON的创立者）。</p>
+<p>全局变量：JavaScript依赖于全局变量来进行连接。所有编译单元的所有顶级变量被撮合到一个被称为全局对象(the global object)的公共命名空间中。全局变量是魔鬼，而它们在JavaScript中却是基础，非常糟糕！</p>
+<ul>
+<li>一个简单的实验场</li>
+</ul>
+        <p class="article-more-link">
+          <a class="article-more-a"  href="/2016/08/07/9-转-javascript_the_good_parts/#more">more >></a>
+        </p>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/08/07/9-转-javascript_the_good_parts/" class="archive-article-date">
+  	<time datetime="2016-08-07T04:30:00.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-08-07</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/转载/">转载</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-1-Js-EveryDay-构造器调用重构为闭包" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/07/1-Js-EveryDay-构造器调用重构为闭包/">每天学点js-构造器调用方式与闭包</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="构造器方式调用-使用-new-关键字"><a href="#构造器方式调用-使用-new-关键字" class="headerlink" title="构造器方式调用: 使用 new 关键字"></a>构造器方式调用: 使用 <code>new</code> 关键字</h3><blockquote>
+<p>JS是一门基于原型继承的语言，对象可以直接从其他对象继承属性。该语言是无类型的。<br>构造器函数：函数创建的目的是结合new前缀来调用，那它就被称为构造器函数。按照约定，它们保存在以大写格式命名的变量里。<br>构造器函数缺点：如果调用构造器函数时，没有在前面加上new，可能会产生非常糟糕的事情，即没有编译时警告，也没有运行时警告，所以约定非常重要。不推荐使用这种形式的构造器函数,推荐使用下面的闭包</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Quo = <span class="function"><span class="keyword">function</span>(<span class="params">str</span>)</span>&#123; <span class="comment">//创建一个名为Quo的构造器函数，它创建一个带有status属性的对象。</span></div><div class="line">    <span class="keyword">this</span>.status = str;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">//给Quo的所有实例提供一个getStatus的公共方法</span></div><div class="line">Quo.prototype.getStatus = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.status;</div><div class="line">&#125;;</div><div class="line"><span class="comment">//构造一个Quo实例</span></div><div class="line"><span class="keyword">var</span> myQuo = <span class="keyword">new</span> Quo(<span class="string">"confused"</span>);</div><div class="line"><span class="built_in">console</span>.log(myQuo.getStatus()); <span class="comment">//打印显示"confused"</span></div></pre></td></tr></table></figure>
+<ul>
+<li>此时同样可以通过 <code>myQuo.status</code> 来获取status的值, 无法做到私有成员变量</li>
+<li>并且可以通过 <code>myQuo.status = 1</code> 来改变myQuo对象的属性值</li>
+</ul>
+<h3 id="使用闭包"><a href="#使用闭包" class="headerlink" title="使用闭包"></a>使用闭包</h3><blockquote>
+<p>JS作用域：不支持块级作用域,支持函数作用域。定义在函数中的参数和变量在函数外部不可见，而在函数内部任何位置定义的变量，在该函数内部任何地方都可见。由于JS缺少块级作用域，所以不建议延迟声明变量，最好的做法是在函数体的顶部声明函数中可能用到的所有变量。<br>闭包的好处是内部函数可以访问定义它们的外部函数的参数和变量。当内部函数拥有比它的外部函数更长的生命周期时，内部函数引用的外部函数变量不会被释放（Java中一般会引起内存泄漏，而JS闭包恰好利用该特性）。</p>
+</blockquote>
+<ol>
+<li>闭包示例:</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//创建一个myObj对象，把匿名函数调用结果赋值给它。</span></div><div class="line"><span class="keyword">var</span> myObj = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> value = <span class="number">0</span>;<span class="comment">//由于函数作用域，外部对value的操作只能基于return的对象的两个方法。</span></div><div class="line">  <span class="comment">//该匿名函数返回一个包含两个方法的对象，并且这些方法继续享有访问value变量的特权。</span></div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    <span class="attr">increment</span>: <span class="function"><span class="keyword">function</span>(<span class="params">inc</span>)</span>&#123;</div><div class="line">      value += <span class="keyword">typeof</span> inc === <span class="string">'number'</span> ? inc : <span class="number">1</span>;</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">getValue</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      <span class="keyword">return</span> value;</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line">&#125;());</div></pre></td></tr></table></figure>
+<ol>
+<li>重构Quo构造器：</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 将status作为私有属性，提供对应的getter方法(原版本直接可以访问status，提供getter没意义，还需要显式new)。</span></div><div class="line"><span class="keyword">var</span> quo = <span class="function"><span class="keyword">function</span>(<span class="params">status</span>)</span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">var</span> flowNo = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime();</div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    <span class="attr">getStatus</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      <span class="keyword">return</span> status;</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">getFlowNo</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> flowNo;</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> myQuo = quo(<span class="string">"amazed"</span>); <span class="comment">// 由于不需要加上new，所以名字没有首字母大写</span></div><div class="line"><span class="built_in">console</span>.log(</div><div class="line">  myQuo.getStatus(),</div><div class="line">  myQuo.getFlowNo()</div><div class="line">);</div><div class="line"></div><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> b = quo(<span class="string">"bbb"</span>); </div><div class="line">  <span class="built_in">console</span>.log(</div><div class="line">    b.getStatus(),</div><div class="line">    b.getFlowNo()</div><div class="line">  );</div><div class="line">&#125;, <span class="number">1000</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>此时不能通过 <code>myQuo.status</code>, <code>myQuo.flowNo</code> 来获取相应的属性值</li>
+<li>通过 <code>myQuo.status = 1</code>, <code>myQuo.flowNo = &#39;12345&#39;</code> 这种方式也没有改变原来的属性,只是添加了新属性</li>
+<li>注：当调用quo时，它返回一个包含get_status方法的新对象。该对象的一个引用保存在myQuo中。即使quo已经返回，但get_status方法仍然享有访问quo对象的status属性的特权。get_status方法并不是访问该参数的一个副本，而是参数本身。因为该函数可以访问它被创建时所处的上下文环境，这被称为闭包。</li>
+</ul>
+<ol>
+<li>加深闭包理解的例子</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 糟糕的例子</span></div><div class="line"><span class="comment">//构造一个用于显示节点序号的函数，但由于用错误的方式给数组中的节点设置事件处理函数，而造成每次点击总是显示节点的数目</span></div><div class="line"><span class="keyword">var</span> add_the_handlers = <span class="function"><span class="keyword">function</span>(<span class="params">nodes</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> i;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;nodes.length; i+=<span class="number">1</span>)&#123;</div><div class="line">        nodes[i].onclick = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">            alert(i);</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 改良后的例子</span></div><div class="line"><span class="keyword">var</span> add_the_handlers = <span class="function"><span class="keyword">function</span>(<span class="params">nodes</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> helper = <span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">            alert(i);</div><div class="line">        &#125;;</div><div class="line">    &#125;;</div><div class="line">    <span class="keyword">var</span> i;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;nodes.length; i+=<span class="number">1</span>)&#123;</div><div class="line">        nodes[i].onclick = helper(i);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>注：避免在循环中创建函数，它可能只会带来无谓的计算，还会引起混淆。建议先在循环之外创建一个辅助函数，让辅助函数返回一个绑定当前i值的函数，这样就不会导致混淆。</p>
+<h3 id="另一个关于立即执行函数的例子"><a href="#另一个关于立即执行函数的例子" class="headerlink" title="另一个关于立即执行函数的例子"></a>另一个关于立即执行函数的例子</h3><ol>
+<li>预期1秒后输出0~9, 实际输出10次 10</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)&#123;</div><div class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(i);</div><div class="line">  &#125;, <span class="number">1000</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>改进方法1(一般的做法):</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)&#123;</div><div class="line">  (<span class="function"><span class="keyword">function</span>(<span class="params">_i</span>)</span>&#123;</div><div class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(_i);</div><div class="line">    &#125;, <span class="number">1000</span>);</div><div class="line">  &#125;)(i);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>改进方法2(根据上面闭包突然想到的尝试,可行):</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> _helper = <span class="function"><span class="keyword">function</span>(<span class="params">i</span>) </span>&#123;</div><div class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(i);</div><div class="line">  &#125;, <span class="number">1000</span>);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)&#123;</div><div class="line">  _helper(i);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="闭包延伸-模块"><a href="#闭包延伸-模块" class="headerlink" title="闭包延伸: 模块"></a>闭包延伸: 模块</h3><blockquote>
+<p>模块：为了屏蔽JS全局变量的使用，我们可以使用函数和闭包来构造模块。模块是一个提供接口却隐藏状态与实现的函数或对象。</p>
+<p>模块模式：模块模式利用了函数作用域和闭包来创建对象与私有成员的关联。在下面示例中，只有deentityify方法有权访问字符实体表这个数据对象。</p>
+<p>模块模式的一般形式：一个定义了私有变量和函数的函数; 利用闭包创建可以访问私有变量和函数的特权函数; 最后返回这个特权函数，或把它们保存到一个可访问的地方。</p>
+<p>模块模式好处：使用模块模式可以摒弃全局变量的使用。模块模式促进信息隐藏和其他优秀的设计实践，比如单例模式，利于应用程序的封装。模块模式也可以用来产生安全的对象，比如下面示例中用来产生序列号的对象。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> serial_marker = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> prefix = <span class="string">''</span>;</div><div class="line">  <span class="keyword">var</span> seq = <span class="number">0</span>;</div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">      <span class="attr">set_prefix</span>: <span class="function"><span class="keyword">function</span>(<span class="params">p</span>)</span>&#123;</div><div class="line">          prefix = <span class="built_in">String</span>(p);</div><div class="line">      &#125;,</div><div class="line">      <span class="attr">set_seq</span>: <span class="function"><span class="keyword">function</span>(<span class="params">s</span>)</span>&#123;</div><div class="line">          seq = s;</div><div class="line">      &#125;,</div><div class="line">      <span class="attr">gensym</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">          <span class="keyword">var</span> result = prefix + seq;</div><div class="line">          seq += <span class="number">1</span>;</div><div class="line">          <span class="keyword">return</span> result;</div><div class="line">      &#125;</div><div class="line">  &#125;;</div><div class="line">&#125;;</div><div class="line"><span class="comment">// 虽然seqer可变，且可以替换它的方法，但替换后的方法依然不能访问私有成员。</span></div><div class="line"><span class="keyword">var</span> seqer = serial_marker();</div><div class="line">seqer.set_prefix(<span class="string">'Q'</span>);</div><div class="line">seqer.set_seq(<span class="number">1000</span>);</div><div class="line"><span class="keyword">var</span> unique = seqer.gensym(); <span class="comment">//unique='Q1000'</span></div></pre></td></tr></table></figure>
+<h3 id="记忆-不太理解使用场景"><a href="#记忆-不太理解使用场景" class="headerlink" title="记忆(不太理解使用场景)"></a><strong>记忆</strong>(不太理解使用场景)</h3><blockquote>
+<p>记忆：函数可以将先前操作的结果记录在某个对象里，从而避免无谓的重复运算，这种优化被称为记忆。JS的对象和数组能很方便的实现这种优化。</p>
+</blockquote>
+<p>带记忆功能的函数：memoizer<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//memoizer取得一个初始的memo数组和formula函数，返回一个管理memo存储和调用formula的recur函数。</span></div><div class="line"><span class="comment">//把这个recur函数和它的参数传递给formula函数。</span></div><div class="line"><span class="keyword">var</span> memoizer = <span class="function"><span class="keyword">function</span>(<span class="params">memo, formula</span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> recur = <span class="function"><span class="keyword">function</span>(<span class="params">n</span>)</span>&#123;</div><div class="line">      <span class="keyword">var</span> result = memo[n];</div><div class="line">      <span class="keyword">if</span>(<span class="keyword">typeof</span> result !== <span class="string">'number'</span>)&#123;</div><div class="line">          result = formula(recur, n);</div><div class="line">          memo[n] = result;</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">return</span> result;</div><div class="line">  &#125;;</div><div class="line">  <span class="keyword">return</span> recur;</div><div class="line">&#125;;</div><div class="line"><span class="comment">//应用memoizer产生可记忆的阶乘函数</span></div><div class="line"><span class="keyword">var</span> factorial = memoizer([<span class="number">1</span>, <span class="number">1</span>], <span class="function"><span class="keyword">function</span>(<span class="params">recur, n</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> n * recur(n<span class="number">-1</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><blockquote>
+<p>(JavaScript语言精粹)[<a href="https://github.com/qibaoguang/Study-Step-by-Step/blob/master/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/javascript_the_good_parts.md" target="_blank" rel="external">https://github.com/qibaoguang/Study-Step-by-Step/blob/master/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/javascript_the_good_parts.md</a>]</p>
+</blockquote>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/08/07/1-Js-EveryDay-构造器调用重构为闭包/" class="archive-article-date">
+  	<time datetime="2016-08-07T02:55:00.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-08-07</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每天学点js/">每天学点js</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/js/">js</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-8-Book-Clean-Code" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/06/8-Book-Clean-Code/">代码整洁之道-笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="启示摘要"><a href="#启示摘要" class="headerlink" title="启示摘要"></a>启示摘要</h3><ul>
+<li><p>整洁的代码只做好一件事! 代码逻辑应该直截了当,让缺陷难以隐藏;尽量减少依赖关系,使之便于维护</p>
+</li>
+<li><p>它只提供一种而非多种做一件事的途径,它使用有意义的命名,明确定义和提供清晰的尽量少的API</p>
+</li>
+<li><p>标示参数丑陋不堪,向函数传入布尔值简直就是骇人听闻的做法,相当于大声宣布本函数不止做一件事情</p>
+</li>
+<li><p>函数的第一规则是要短小,第二条规则是还要更短小. 20行以内</p>
+</li>
+<li><p>函数应该只做一件事,做好这件事: 里边会有多个步骤; 当前函数无法再拆分出另一个函数</p>
+</li>
+<li><p>每个函数一个抽象层级[!!! 不太懂!!!], 例如: 拼接html字符串 与 其他参数验证属于两个层级</p>
+</li>
+<li><p>函数参数保持在2个以下, 不要出现3个参数以上的, 否则以对象方式传递</p>
+</li>
+<li><p>极端情况,如果一个函数做了多个事情,应该以正确的函数名称体现</p>
+<ul>
+<li>checkPassword 里边做了session初始化</li>
+<li>改为: checkPasswordAndInitSession</li>
+</ul>
+</li>
+<li><p>分隔指令与询问, 比如 checkXXX 时,不要做例如修改的操作</p>
+</li>
+</ul>
+<ul>
+<li><p>Do’t Repeat Yourself</p>
+</li>
+<li><p>与其花时间编写解释你搞出来的糟糕的代码的注释,不如花时间清理那堆糟糕的代码</p>
+</li>
+<li><p>得墨忒耳定律认为,模块不应了解它所操作对象的内部情形;方法不应调用任何函数返回的对象的方法,即只跟朋友谈话,不与陌生人谈话</p>
+<ul>
+<li>对象暴露行为,隐藏数据. 便于添加新对象类型而无需修改既有的行为</li>
+<li>有时希望能够灵活的添加新数据类型,此时倾向于使用对象;有时希望能够灵活的添加新行为,此时倾向于使用数据类型和过程</li>
+</ul>
+</li>
+<li><p>区分数据结构和对象, 最为精炼的数据结构是一个只有公共变量没有函数的类, 这种数据结构被称为数据传送对象DTO(Data Transfer Objects)</p>
+</li>
+<li><p>整洁的测试 (F.I.R.S.T)</p>
+<ul>
+<li>快速 fast</li>
+<li>独立 independent</li>
+<li>可重复 repeatable</li>
+<li>自足验证 self-validating</li>
+<li>及时 timely</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/08/06/8-Book-Clean-Code/" class="archive-article-date">
+  	<time datetime="2016-08-06T05:50:00.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-08-06</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/读书笔记/">读书笔记</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-1-Js-EveryDay-type" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/08/1-Js-EveryDay-type/">每天学点js-js类型判断(typeof,instanceof,constructor,prototype)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="定义的数据"><a href="#定义的数据" class="headerlink" title="定义的数据"></a>定义的数据</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> _undefined = <span class="literal">undefined</span>;</div><div class="line"><span class="keyword">var</span> _null = <span class="literal">null</span>;</div><div class="line"><span class="keyword">var</span> _date = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line"></div><div class="line"><span class="keyword">var</span> _number = <span class="number">123.00</span>;  <span class="comment">// JavaScript 只有一种数字类型。数字可以带小数点，也可以不带：</span></div><div class="line"><span class="keyword">var</span> _numberObj = <span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">123</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> str = <span class="string">'a string'</span>;</div><div class="line"><span class="keyword">var</span> strObj = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">'a new string'</span>); </div><div class="line"></div><div class="line"><span class="keyword">var</span> bool = <span class="literal">true</span>;</div><div class="line"><span class="keyword">var</span> boolObj = <span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="literal">true</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</div><div class="line"><span class="keyword">var</span> arrObj = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj = &#123;<span class="attr">a</span>: <span class="number">111</span>, <span class="attr">b</span>: <span class="number">222</span>&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> fun = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</div><div class="line"><span class="keyword">var</span> funObj = <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">'alert(111)'</span>);</div></pre></td></tr></table></figure>
+        <p class="article-more-link">
+          <a class="article-more-a"  href="/2016/07/08/1-Js-EveryDay-type/#more">more >></a>
+        </p>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/07/08/1-Js-EveryDay-type/" class="archive-article-date">
+  	<time datetime="2016-07-08T11:30:00.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-07-08</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每天学点js/">每天学点js</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/js/">js</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-9-electron-use" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/07/9-electron-use/">使用Electron制作简单的桌面应用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="安装环境-首先安装nodejs"><a href="#安装环境-首先安装nodejs" class="headerlink" title="安装环境(首先安装nodejs)"></a>安装环境(首先安装nodejs)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --g electron-prebuilt</div></pre></td></tr></table></figure>
+<h5 id="安装的时候需要翻墙-如果修改部分源代码"><a href="#安装的时候需要翻墙-如果修改部分源代码" class="headerlink" title="安装的时候需要翻墙, 如果修改部分源代码"></a>安装的时候需要翻墙, 如果修改部分源代码</h5><ul>
+<li><p>这里说一下修改源</p>
+</li>
+<li><p>先执行上面的安装命令, 执行到 “ Downloading electron-v1.2.6-win32-x64.zip” 的时候,如果卡住了</p>
+</li>
+<li><p>找到全局安装目录下的 <code>electron-prebuilt\node_modules\electron-download</code> 目录下的 <code>index.js</code></p>
+</li>
+</ul>
+<p>将下面一段url地址改成镜像源<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var url = process.env.NPM_CONFIG_ELECTRON_MIRROR ||</div><div class="line">  process.env.ELECTRON_MIRROR ||</div><div class="line">  opts.mirror ||</div><div class="line">  &apos;https://github.com/electron/electron/releases/download/v&apos;</div><div class="line">url += process.env.ELECTRON_CUSTOM_DIR || opts.customDir || version</div><div class="line">url += &apos;/&apos;</div><div class="line">url += process.env.ELECTRON_CUSTOM_FILENAME || opts.customFilename || filename</div></pre></td></tr></table></figure></p>
+<p>改为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// 根据自己的版本做修改</div><div class="line"> var url = &apos;https://npm.taobao.org/mirrors/electron/1.2.6/electron-v1.2.6-win32-ia32.zip&apos;;</div></pre></td></tr></table></figure>
+<p>然后重新执行 <code>npm install --g electron-prebuilt</code></p>
+<h4 id="其他依赖-为了方便这里统一全局安装"><a href="#其他依赖-为了方便这里统一全局安装" class="headerlink" title="其他依赖, 为了方便这里统一全局安装"></a>其他依赖, 为了方便这里统一全局安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 打包使用, 可能同样需要修改`electron-download`模块index.js中的 url</div><div class="line">npm install -g electron-package</div><div class="line"></div><div class="line">// 加密用</div><div class="line">npm install -g asar</div></pre></td></tr></table></figure>
+<p>electron-packager的打包基本命令是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">electron-packager &lt;location of project&gt; &lt;name of project&gt; &lt;platform&gt; &lt;architecture&gt; &lt;electron version&gt; &lt;optional options&gt;</div></pre></td></tr></table></figure>
+<p>在package.json中添加脚本<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">"scripts" : &#123;</div><div class="line">  "start": "electron .",</div><div class="line">  "packager": "electron-packager ./app appName --all --out ./OutApp --version 1.2.6 --overwrite --icon=./app/img/icon.ico"</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>然后可以通过下面的命令来打包, 打完包以后 会在./OutApp下生成对应平台的包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm run packager</div></pre></td></tr></table></figure></p>
+<p>加密源代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">asar pack ./app app.asar</div></pre></td></tr></table></figure></p>
+<h3 id="实例demo"><a href="#实例demo" class="headerlink" title="实例demo"></a>实例demo</h3><p>目录结构<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">appName</div><div class="line">    |- OutApp</div><div class="line">    |- README.md</div><div class="line">    |- package.json</div><div class="line">    |- node_modules</div><div class="line">    |- app</div><div class="line">        |- index.html</div><div class="line">        |- main.js</div><div class="line">        |- package.json</div><div class="line">        |- renderer.js</div></pre></td></tr></table></figure></p>
+<p>运行前先 <code>npm install</code></p>
+<p>代码参考 github:<a href="https://github.com/electron/electron-quick-start" target="_blank" rel="external">electron/electron-quick-start</a> </p>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><blockquote>
+<p><a href="https://segmentfault.com/a/1190000004843033?_ea=710087" target="_blank" rel="external">https://segmentfault.com/a/1190000004843033?_ea=710087</a><br><a href="https://segmentfault.com/a/1190000004863646" target="_blank" rel="external">https://segmentfault.com/a/1190000004863646</a><br><a href="https://github.com/electron/electron-quick-start" target="_blank" rel="external">https://github.com/electron/electron-quick-start</a>  </p>
+</blockquote>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/07/07/9-electron-use/" class="archive-article-date">
+  	<time datetime="2016-07-07T14:33:57.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-07-07</time>
+</a>
+      
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/nodejs/">nodejs</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-2-Node-modules_q_3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/05/2-Node-modules_q_3/">Nodejs 使用Q.all时遇到的一个问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="问题"><a href="#问题" class="headerlink" title="问题:"></a>问题:</h4><ul>
+<li><p>使用Q.all 获取多个异步函数的结果, 其中有一个函数可能会比较费时(getInfoFromApi), 另外一个返回很快(getStatusFromRedis), 而且这个值是会被其他用户改变的<br>遇到的情况正好是: <code>getStatusFromRedis</code>已经获取到了数据,等待api返回数据的时候, 其他操作改变了redis的值, 而后续的判断仍然使用了原来取出来的值,因此导致判断这个值时出现错误!!</p>
+</li>
+<li><p>代码如下:</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Q = <span class="built_in">require</span>(<span class="string">'q'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> redisValue = <span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="comment">// 费时的api操作</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getInfoFromApi</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> deferred = Q.defer();</div><div class="line"></div><div class="line">    Q.delay(<span class="number">35000</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'delay 35000,redisValue: '</span> + redisValue);</div><div class="line">        deferred.resolve(&#123;</div><div class="line">            <span class="attr">test</span>: <span class="string">'data'</span></div><div class="line">        &#125;);</div><div class="line">    &#125;).done();</div><div class="line"></div><div class="line">    <span class="keyword">return</span> deferred.promise;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">changeRedisVal</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    redisValue = <span class="number">1</span>;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'changeRedisVal,redisValue: '</span> + redisValue);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getStatusFromRedis</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> redisValue;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Q.all([</div><div class="line">    getInfoFromApi(),  <span class="comment">// 可能费时的操作</span></div><div class="line"></div><div class="line">    getStatusFromRedis(),  <span class="comment">// 获取一个会被其他操作改变的状态值</span></div><div class="line"></div><div class="line">]).spread(<span class="function"><span class="keyword">function</span>(<span class="params">info, status</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'done....'</span>, info, <span class="string">'status: '</span> + status);  <span class="comment">// 这里获取的status值是未被改变的值</span></div><div class="line">&#125;).done();</div><div class="line"></div><div class="line"><span class="comment">// 其他操作</span></div><div class="line">Q.delay(<span class="number">10000</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'delay 1000'</span>);</div><div class="line">    changeRedisVal();</div><div class="line">&#125;).done();</div></pre></td></tr></table></figure>
+<ul>
+<li>简单分析就会发现这用法其实是错误的, 不应该使用all获取,应该先获取费时的数据,再获取需要用于验证并且是可变的数据</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Q.fcall(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> getInfoFromApi();</div><div class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">info</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(info);</div><div class="line">    <span class="keyword">return</span> getStatusFromRedis();</div><div class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">status</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'status'</span>, status);</div><div class="line">&#125;)</div><div class="line">.catch(<span class="built_in">console</span>.error)</div><div class="line">.done();</div></pre></td></tr></table></figure>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/07/05/2-Node-modules_q_3/" class="archive-article-date">
+  	<time datetime="2016-07-05T11:00:00.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-07-05</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/promise/">promise</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/nodejs/">nodejs</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
+  
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Jason Zeng
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: true,
+		isPost: false,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Css/" style="font-size: 10px;">Css</a> <a href="/tags/Git/" style="font-size: 12.5px;">Git</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/js/" style="font-size: 17.5px;">js</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/memcache/" style="font-size: 10px;">memcache</a> <a href="/tags/movie/" style="font-size: 10px;">movie</a> <a href="/tags/music/" style="font-size: 10px;">music</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nodejs/" style="font-size: 20px;">nodejs</a> <a href="/tags/php/" style="font-size: 12.5px;">php</a> <a href="/tags/promise/" style="font-size: 15px;">promise</a> <a href="/tags/redis/" style="font-size: 12.5px;">redis</a> <a href="/tags/sublime/" style="font-size: 12.5px;">sublime</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/每天学点js/" style="font-size: 17.5px;">每天学点js</a> <a href="/tags/读书笔记/" style="font-size: 10px;">读书笔记</a> <a href="/tags/转载/" style="font-size: 12.5px;">转载</a>
+    			</div>
+    	</section>
+    
+
+    
+
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://zengxp0605.github.io">
+  <title>每天学点js-传值机制 | Jason Zeng</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="直接赋值时(非基本类型数据)12345678910111213var me = &amp;#123;name: &apos;Tom&apos;&amp;#125;; var self = me;self.name = &apos;Change a name&apos;;console.log(self);  // output: Object &amp;#123;partOf: &quot;Change a name&quot;&amp;#125;console.log(me);">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每天学点js-传值机制">
+<meta property="og:url" content="http://zengxp0605.github.io/2016/04/13/1-Js-EveryDay-pass_by_value_or_reference/index.html">
+<meta property="og:site_name" content="Jason Zeng">
+<meta property="og:description" content="直接赋值时(非基本类型数据)12345678910111213var me = &amp;#123;name: &apos;Tom&apos;&amp;#125;; var self = me;self.name = &apos;Change a name&apos;;console.log(self);  // output: Object &amp;#123;partOf: &quot;Change a name&quot;&amp;#125;console.log(me);">
+<meta property="og:updated_time" content="2016-11-06T13:07:35.195Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="每天学点js-传值机制">
+<meta name="twitter:description" content="直接赋值时(非基本类型数据)12345678910111213var me = &amp;#123;name: &apos;Tom&apos;&amp;#125;; var self = me;self.name = &apos;Change a name&apos;;console.log(self);  // output: Object &amp;#123;partOf: &quot;Change a name&quot;&amp;#125;console.log(me);">
+  
+  
+    <link rel="icon" href="/assets/images/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/assets/images/avatar.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Jason Zeng</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Jason&#39;s personal blog</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/archives">所有文章</a></li>
+	        
+				<li><a href="/about">关于</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/zengxp0605" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/shopping0605" title="weibo">weibo</a>
+		        
+					<a class="mail" target="_blank" href="mailto:xiaoping_zeng@foxmail.com" title="mail">mail</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Jason Zeng</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/assets/images/avatar.jpg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Jason Zeng</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Jason&#39;s personal blog</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/zengxp0605" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/shopping0605" title="weibo">weibo</a>
+			        
+						<a class="mail" target="_blank" href="mailto:xiaoping_zeng@foxmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-1-Js-EveryDay-pass_by_value_or_reference" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      每天学点js-传值机制
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="直接赋值时-非基本类型数据"><a href="#直接赋值时-非基本类型数据" class="headerlink" title="直接赋值时(非基本类型数据)"></a>直接赋值时(非基本类型数据)</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> me = &#123;<span class="attr">name</span>: <span class="string">'Tom'</span>&#125;; </div><div class="line"></div><div class="line"><span class="keyword">var</span> self = me;</div><div class="line"></div><div class="line">self.name = <span class="string">'Change a name'</span>;</div><div class="line"><span class="built_in">console</span>.log(self);  <span class="comment">// output: Object &#123;partOf: "Change a name"&#125;</span></div><div class="line"><span class="built_in">console</span>.log(me);    <span class="comment">// output: Object &#123;partOf: "Change a name"&#125;</span></div><div class="line"></div><div class="line"><span class="comment">// 改变self </span></div><div class="line">self = &#123;<span class="attr">name</span> : <span class="string">'Jason'</span>&#125;;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(self);  <span class="comment">// output: &#123;name: "Jason"&#125;</span></div><div class="line"><span class="built_in">console</span>.log(me);    <span class="comment">// output: &#123;partOf: "Change a name"&#125;</span></div></pre></td></tr></table></figure>
+<h3 id="函数传递时"><a href="#函数传递时" class="headerlink" title="函数传递时"></a>函数传递时</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">    <span class="attr">b</span>: <span class="number">2</span></div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> fn = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</div><div class="line">fn.c = <span class="number">3</span>;</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">x, y, z</span>) </span>&#123;</div><div class="line">    x = <span class="number">4</span>;</div><div class="line">    y.b = <span class="number">5</span>;</div><div class="line">    z.c = <span class="number">6</span>;</div><div class="line">    <span class="keyword">return</span> z;</div><div class="line">&#125;</div><div class="line">test(a, obj, fn);</div><div class="line"><span class="built_in">console</span>.log(a + obj.b + fn.c);  <span class="comment">// output: 6</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>首先test传递进去的实参中，a是基本类型（复制了一份值），obj是object（指向地址呼啦啦，你动我也动呢），<br>fn也当然不是基本类型啦。在执行test的时候，x被赋值为4(跟a没关系，各玩各的嘛，a仍然为1)，y的b被赋值为5，那obj的b也变为5，z的c变为6，那fn的c当然也会是6. 所以结果应该是1+5+6 =12. （其实test不返回z也一样，z仍然改变的）。<br>参考: <a href="http://www.2cto.com/kf/201401/273413.html" target="_blank" rel="external">http://www.2cto.com/kf/201401/273413.html</a></p>
+</blockquote>
+<h4 id="关于类型的介绍"><a href="#关于类型的介绍" class="headerlink" title="关于类型的介绍"></a>关于类型的介绍</h4><ul>
+<li>基本类型</li>
+</ul>
+<p>Javascript的基本类型有Boolean,String,Number,还有Undefined和Null，首先得明白的是，只有字面量的Boolean，String和Number，以及undefined+null(exact undefined null，区分大小写)才是属于基本类型的，new出来的不算。</p>
+<p>即：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">alert(<span class="keyword">typeof</span> <span class="literal">false</span>);    <span class="comment">//"boolean"</span></div><div class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="literal">false</span>);</div><div class="line">alert(<span class="keyword">typeof</span> b);        <span class="comment">//"object"</span></div></pre></td></tr></table></figure></p>
+<p>同样，<code>new String(&#39;aaa&#39;)</code>这种都不是基本类型，直接的<code>a=&#39;aaa&#39;</code>，a是基本类型，这就是：字面量的才是基本类型。</p>
+<p>另一方面，Object，Function，Array其实都是构造函数，因为可以直接new Object()等，<br>所以它们都是函数，<code>(Object instanceof Function === true) &amp;&amp; (Function instanceof Object===true)</code></p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结:"></a>小结:</h3><blockquote>
+<p>基本类型, JavaScript 按值传递,copy副本,与原值互不影响<br>非基本类型，JavaScript将引用 按值传递, </p>
+</blockquote>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/04/13/1-Js-EveryDay-pass_by_value_or_reference/" class="archive-article-date">
+  	<time datetime="2016-04-13T12:00:00.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-04-13</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每天学点js/">每天学点js</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/js/">js</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/04/13/1-Js-EveryDay-avg(reduce)/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          每天学点js-求平均值
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/12/2-Node-stdout_redirect_to_file/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">nodejs stdout重定向到文件(日志写入)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="1-Js-EveryDay-pass_by_value_or_reference" data-title="每天学点js-传值机制" data-url="http://zengxp0605.github.io/2016/04/13/1-Js-EveryDay-pass_by_value_or_reference/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Jason Zeng
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Css/" style="font-size: 10px;">Css</a> <a href="/tags/Git/" style="font-size: 12.5px;">Git</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/js/" style="font-size: 17.5px;">js</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/memcache/" style="font-size: 10px;">memcache</a> <a href="/tags/movie/" style="font-size: 10px;">movie</a> <a href="/tags/music/" style="font-size: 10px;">music</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nodejs/" style="font-size: 20px;">nodejs</a> <a href="/tags/php/" style="font-size: 12.5px;">php</a> <a href="/tags/promise/" style="font-size: 15px;">promise</a> <a href="/tags/redis/" style="font-size: 12.5px;">redis</a> <a href="/tags/sublime/" style="font-size: 12.5px;">sublime</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/每天学点js/" style="font-size: 17.5px;">每天学点js</a> <a href="/tags/读书笔记/" style="font-size: 10px;">读书笔记</a> <a href="/tags/转载/" style="font-size: 12.5px;">转载</a>
+    			</div>
+    	</section>
+    
+
+    
+
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

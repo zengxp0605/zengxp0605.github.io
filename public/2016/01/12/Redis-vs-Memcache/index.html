@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://zengxp0605.github.io">
+  <title>Redis与Memcache的对比 | Jason Zeng</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="它们都是C语言开发的(key-value)内存数据存储 
+
+线程:
+
+redis 是单线程,使用epoll 多路复用io模型,非阻塞
+memcache 为多线程,依赖libevent
+
+
+锁
+
+redis 中没有使用锁, 可以使用watch 命令添加乐观锁,一般结合事务使用 multi ... exec  ||  discard  
+
+watch命令会监视给定的key,当exec时候如果监视的k">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis与Memcache的对比">
+<meta property="og:url" content="http://zengxp0605.github.io/2016/01/12/Redis-vs-Memcache/index.html">
+<meta property="og:site_name" content="Jason Zeng">
+<meta property="og:description" content="它们都是C语言开发的(key-value)内存数据存储 
+
+线程:
+
+redis 是单线程,使用epoll 多路复用io模型,非阻塞
+memcache 为多线程,依赖libevent
+
+
+锁
+
+redis 中没有使用锁, 可以使用watch 命令添加乐观锁,一般结合事务使用 multi ... exec  ||  discard  
+
+watch命令会监视给定的key,当exec时候如果监视的k">
+<meta property="og:updated_time" content="2016-11-06T13:07:35.209Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Redis与Memcache的对比">
+<meta name="twitter:description" content="它们都是C语言开发的(key-value)内存数据存储 
+
+线程:
+
+redis 是单线程,使用epoll 多路复用io模型,非阻塞
+memcache 为多线程,依赖libevent
+
+
+锁
+
+redis 中没有使用锁, 可以使用watch 命令添加乐观锁,一般结合事务使用 multi ... exec  ||  discard  
+
+watch命令会监视给定的key,当exec时候如果监视的k">
+  
+  
+    <link rel="icon" href="/assets/images/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/assets/images/avatar.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Jason Zeng</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Jason&#39;s personal blog</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/archives">所有文章</a></li>
+	        
+				<li><a href="/about">关于</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/zengxp0605" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/shopping0605" title="weibo">weibo</a>
+		        
+					<a class="mail" target="_blank" href="mailto:xiaoping_zeng@foxmail.com" title="mail">mail</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Jason Zeng</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/assets/images/avatar.jpg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Jason Zeng</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Jason&#39;s personal blog</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/zengxp0605" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/shopping0605" title="weibo">weibo</a>
+			        
+						<a class="mail" target="_blank" href="mailto:xiaoping_zeng@foxmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-Redis-vs-Memcache" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Redis与Memcache的对比
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p>它们都是C语言开发的(key-value)内存数据存储 </p>
+</li>
+<li><p>线程:</p>
+<ul>
+<li>redis 是单线程,使用epoll 多路复用io模型,非阻塞</li>
+<li>memcache 为多线程,依赖libevent</li>
+</ul>
+</li>
+<li><p>锁</p>
+<ul>
+<li><p>redis 中没有使用锁, 可以使用watch 命令添加乐观锁,一般结合事务使用 <code>multi ... exec  ||  discard</code>  </p>
+<ul>
+<li>watch命令会监视给定的key,当exec时候如果监视的key从调用watch后发生过变化，则整个事务会失败。也可以调用watch多次监视多个key.这 样就可以对指定的key加乐观锁了。注意watch的key是对整个连接有效的，事务也一样。如果连接断开，监视和事务都会被自动清除。当然了exec,discard,unwatch命令都会清除连接中的所有监视。</li>
+<li>redis只能保证事务的每个命令连续执行，但是如果事务中的一个命令失败了，并不回滚其他命令</li>
+</ul>
+</li>
+<li><p>乐观锁：  </p>
+<ul>
+<li>大多数是基于数据版本(version)的记录机制实现的。数据版本即为数据增加一个版本标识，在基于数据库表的版本解决方案中，一般是通过为数据库表添加一个 “version”字段来实现读取出数据时，将此版本号一同读出，之后更新时，对此版本号加1。</li>
+<li>此时，将提交数据的版本号与数据库表对应记录的当前版本号进行比对，如果提交的数据版本号大于数据库表当前版本号，则予以更新，否则认为是过期数据。</li>
+</ul>
+</li>
+<li><p>memcache是一个内存缓存，key的长度小于250字符，单个item存储要小于1M，不适合虚拟机使用</p>
+</li>
+<li><p>数据一致性不同  </p>
+<ul>
+<li>redis使用的是单线程模型，保证了数据按顺序提交。</li>
+<li>memcache需要使用cas保证数据一致性。CAS（Check and Set）是一个确保并发一致性的机制，属于“乐观锁”范畴；原理很简单：拿版本号，操作，对比版本号，如果一致就操作，不一致就放弃任何操作</li>
+</ul>
+</li>
+<li><p>cpu利用  </p>
+<ul>
+<li>redis单线程模型只能使用一个cpu，可以开启多个redis进程</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>incr &amp; decr</p>
+<ul>
+<li>Redis支持的整数型Value值的具体类型为带符号64-bit整数，而Memcached支持的整数型Value值的具体类型为无符号64-bit整数，这就导致两个系统支持的整数型Value值的取值范围是不一样的。Redis支持的整数型Value值范围是-9223372036854775808~9223372036854775807，而Memcached的范围则是0~18446744073709551615。</li>
+<li>Redis 当数值达到最大或者最小极值时,再incr/decr 操作会报错(error)ERR increment or decrement would overflow</li>
+<li>Memcache 当达到最大值时,incr key 1, 那么key=0; 当key=0时,decr key 1, 此时key仍然为0</li>
+</ul>
+</li>
+<li><p>整体对比</p>
+<ul>
+<li>性能对比：由于Redis只使用单核，而Memcached可以使用多核，所以平均每一个核上Redis在存储小数据时比Memcached性 能更高。而在100k以上的数据中，Memcached性能要高于Redis，虽然Redis最近也在存储大数据的性能上进行优化，但是比起 Memcached，还是稍有逊色。</li>
+<li>内存使用效率对比：使用简单的key-value存储的话，Memcached的内存利用率更高，而如果Redis采用hash结构来做key-value存储，由于其组合式的压缩，其内存利用率会高于Memcached。</li>
+<li>Redis支持服务器端的数据操作：Redis相比Memcached来说，拥有更多的数据结构和并支持更丰富的数据操作，通常在 Memcached 里，你需要将数据拿到客户端来进行类似的修改再set回去。这大大增加了网络IO的次数和数据体积。在Redis中，这些复杂的操作通常和一般的 GET/SET一样高效。所以，如果需要缓存能够支持更复杂的结构和操作，那么Redis会是不错的选择。 </li>
+</ul>
+</li>
+<li><p>Redis 快速的原因</p>
+<ul>
+<li>绝大部分请求是纯粹的内存操作（非常快速） </li>
+<li>采用单线程,避免了不必要的上下文切换和竞争条件 </li>
+<li>非阻塞IO,内部实现采用epoll，采用了epoll+自己实现的简单的事件框架。epoll中的读、写、关闭、连接都转化成了事件，然后利用epoll的多路复用特性，绝不在io上浪费一点时间 </li>
+</ul>
+<p>ps: 这3个条件不是相互独立的，特别是第一条，如果请求都是耗时的，采用单线程吞吐量及性能可想而知了。应该说redis为特殊的场景选择了合适的技术方案。</p>
+</li>
+<li><p>Redis 持久化</p>
+<ul>
+<li><p>rdb  内存快照直接 dump到 dump.rdb 文件中</p>
+<ul>
+<li>在 Redis 运行时， RDB 程序将当前内存中的数据库快照保存到磁盘文件中， 在 Redis 重启动时， RDB 程序可以通过载入 RDB 文件来还原数据库的状态。</li>
+<li>save 命令阻塞主进程, bgsave 命令fork一个子进程来执行保存操作,因此不阻塞主进程</li>
+</ul>
+</li>
+<li><p>aof 执行的命令追加到这个文件中(可以通过重写来优化:bgrewriteaof)  AppendOnlyFile   </p>
+<ul>
+<li>AOF 文件通过保存所有修改数据库的命令来记录数据库的状态。</li>
+<li>AOF 文件中的所有命令都以 Redis 通讯协议的格式保存。</li>
+<li>不同的 AOF 保存模式对数据的安全性、以及 Redis 的性能有很大的影响。</li>
+<li>AOF 重写的目的是用更小的体积来保存数据库状态，整个重写过程基本上不影响 Redis 主进程处理命令请求。</li>
+<li>AOF 重写是一个有歧义的名字，实际的重写工作是针对数据库的当前值来进行的，程序既不读写、也不使用原有的 AOF 文件。</li>
+<li>AOF 可以由用户手动触发，也可以由服务器自动触发。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Redis 数据类型</p>
+<ul>
+<li>String</li>
+<li>Set</li>
+<li>Sorted Set</li>
+<li>List</li>
+<li>Hash</li>
+</ul>
+</li>
+</ol>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考:"></a>参考:</h4><ol>
+<li>Redis的设计与实现 <a href="http://redisbook.readthedocs.org/en/latest/index.html" target="_blank" rel="external">http://redisbook.readthedocs.org/en/latest/index.html</a></li>
+<li>redis和memcache的对比 <a href="http://blog.csdn.net/u011386690/article/details/17469007" target="_blank" rel="external">http://blog.csdn.net/u011386690/article/details/17469007</a></li>
+</ol>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/01/12/Redis-vs-Memcache/" class="archive-article-date">
+  	<time datetime="2016-01-12T14:33:57.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-01-12</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/memcache/">memcache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/Redis/">Redis</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/03/15/english-music-top100/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          世界上排名前100的英文歌
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/09/21/php多线程/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">php多线程简单示例</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Redis-vs-Memcache" data-title="Redis与Memcache的对比" data-url="http://zengxp0605.github.io/2016/01/12/Redis-vs-Memcache/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Jason Zeng
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Css/" style="font-size: 10px;">Css</a> <a href="/tags/Git/" style="font-size: 12.5px;">Git</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/js/" style="font-size: 17.5px;">js</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/memcache/" style="font-size: 10px;">memcache</a> <a href="/tags/movie/" style="font-size: 10px;">movie</a> <a href="/tags/music/" style="font-size: 10px;">music</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nodejs/" style="font-size: 20px;">nodejs</a> <a href="/tags/php/" style="font-size: 12.5px;">php</a> <a href="/tags/promise/" style="font-size: 15px;">promise</a> <a href="/tags/redis/" style="font-size: 12.5px;">redis</a> <a href="/tags/sublime/" style="font-size: 12.5px;">sublime</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/每天学点js/" style="font-size: 17.5px;">每天学点js</a> <a href="/tags/读书笔记/" style="font-size: 10px;">读书笔记</a> <a href="/tags/转载/" style="font-size: 12.5px;">转载</a>
+    			</div>
+    	</section>
+    
+
+    
+
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
